@@ -6,4 +6,8 @@
 
 My Cheatsheet Repository
 
+## Repo Stats
+
+![GitHub last commit](https://img.shields.io/github/last-commit/ruanbekker/cheatsheets.svg) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ruanbekker/cheatsheets.svg)
+
 Busy moving from: https://github.com/ruanbekker/awesome-list/tree/master/cheatsheets
