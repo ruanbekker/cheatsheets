@@ -49,3 +49,14 @@ rows_examined_avg: 0
         last_seen: 2019-07-04 11:21:23.155084
            digest: x
 ```
+
+Number of queries that generated errors or warnings:
+
+```
+mysql> SELECT SUM(errors) FROM sys.statements_with_errors_or_warnings;
++-------------+
+| SUM(errors) |
++-------------+
+|           4 |
++-------------+
+```
