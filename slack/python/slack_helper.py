@@ -10,8 +10,8 @@ def list_channels():
     res = slack_client.api_call(
         "groups.list", # groups are private channels, conversations are public channels. Different API.
     )
-    list_channels = {"private_channels": {}}
+    list_channels = {"private_channels": []}
     for channel in res['groups']:
-        list_channels['private_channels'] = {channel['name']: channel['id']}
+        list_channels['private_channels'].append({channel['name']: channel['id']})
+
     return list_channels
-        
