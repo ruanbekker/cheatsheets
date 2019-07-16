@@ -2,6 +2,8 @@
 
 - [Using cURL](#using-curl)
   - [Cluster Health](#health-with-curl)
+  - [Ingest](#ingest-data)
+  - [Search](#search)
   - [Reindex](#reindex-using-curl)
   - [Update Replica Shards](#update-replicas-curl)
   - [Snapshots](#snapshots-with-curl)
