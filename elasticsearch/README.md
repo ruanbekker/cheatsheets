@@ -12,7 +12,7 @@
 
 ## Using Curl
 
-#### Health with Curl
+### Health with Curl
 
 View the cluster status:
 
@@ -32,7 +32,31 @@ View recovery process:
 curl -s -XGET 'http://127.0.0.1:9200/_cat/recovery?detailed&h=index,stage,time,bytes_percent'
 ```
 
-#### Reindex using Curl
+### Ingest Data
+
+### Search
+
+**Searcing with query parameters:**
+
+Name = Kevin
+
+```
+curl -XGET 'http://localhost:9200/myfirstindex/_search?q=name:kevin&pretty'
+```
+
+Age < 30
+
+```
+curl -XGET 'http://localhost:9200/myfirstindex/_search?q=age:<30&pretty'
+```
+
+Name = Michelle AND age < 30
+
+```
+curl -XGET 'http://localhost:9200/myfirstindex/_search?q=name:michelle%20AND%20age:<30&pretty'
+```
+
+### Reindex using Curl
 
 Reindex source index to target index:
 
@@ -136,7 +160,7 @@ $ curl -XPOST -H 'Content-Type: application/json' 'http://127.0.0.1:9200/_reinde
 }'
 ```
 
-#### Update Replicas Curl
+### Update Replicas Curl
 
 Increase/Decrease the number of Replica Shards using the Settings API:
 
@@ -145,7 +169,7 @@ curl -XPUT -H 'Content-Type: application/json' 'http://127.0.0.1:9200/my-index-2
   -d '{"index": {"number_of_replicas": 1, "refresh_interval": "30s"}}'
 ```
 
-#### Snapshots with Curl
+### Snapshots with Curl
 
 View snapshot repositories:
 
@@ -189,7 +213,7 @@ View snapshot info:
 curl -s 'http://127.0.0.1:9200/_snapshot/es-index-backups/my-es-snapshot-latest' | jq .
 ```
 
-#### Restore Snapshots with Curl
+### Restore Snapshots with Curl
 
 Restore with original names:
 
