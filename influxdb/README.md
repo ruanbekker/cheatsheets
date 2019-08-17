@@ -45,5 +45,5 @@ $ influx
 ### Show field keys
 
 ```
-> show field keys FROM "bar-A1"
+> show field keys from "bar-A1"
 ```
