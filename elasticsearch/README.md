@@ -18,16 +18,22 @@
 
 ### Health with Curl
 
-View the cluster status:
+View the cluster health on a cluster level:
 
 ```
-curl -s -XGET 'http://127.0.0.1:9200_cluster/health?pretty'
+$ curl -s -XGET "http://127.0.0.1:9200/_cluster/health?pretty"
+```
+
+View the cluster health on a index level:
+
+```
+$ curl -XGET "http://127.0.0.1:9200/_cluster/health?level=indices&pretty"
 ```
 
 Check all indices in yellow status:
 
 ```
-curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&health=yellow'
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&health=yellow'
 ```
 
 View recovery process:
@@ -54,6 +60,12 @@ View all your indices, sort by size:
 
 ```
 $ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&s=pri.store.size'
+```
+
+View all indices, but return only the index.name value:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&h=index'
 ```
 
 ### Ingest Data
@@ -342,6 +354,29 @@ View all tasks relating to write actions:
 
 ```
 $ curl -s -XGET "http://127.0.0.1:9200/_tasks?detailed=true&pretty&actions=indices:*/write*"
+{
+  "nodes" : {
+    "DzSOmlH3RRaLGA33QJl3Bg" : {
+      "name" : "xx",
+      "roles" : [ "data", "ingest" ],
+      "tasks" : {
+        "nodeX:idY" : {
+          "node" : "nodeX",
+          "id" : idY,
+          "type" : "netty",
+          "action" : "indices:data/write/bulk[s]",
+          "status" : {
+            "phase" : "waiting_on_primary"
+          },
+          "description" : "requests[5], index[logstash-logs-2019.08]",
+          "start_time_in_millis" : 1566542804806,
+          "running_time_in_nanos" : 65730,
+          "cancellable" : false,
+          "parent_task_id" : "nodeA:idZ",
+          "headers" : { }
+        }
+      }
+    },
 ```
 
 Some of the other actions:
