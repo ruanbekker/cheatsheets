@@ -2,6 +2,7 @@
 
 - [Using cURL](#using-curl)
   - [Cluster Health](#health-with-curl)
+  - [View Indices](#view-indices)
   - [Ingest](#ingest-data)
   - [Search](#search)
   - [Reindex](#reindex-using-curl)
@@ -32,6 +33,26 @@ View recovery process:
 
 ```
 curl -s -XGET 'http://127.0.0.1:9200/_cat/recovery?detailed&h=index,stage,time,bytes_percent'
+```
+
+### View Indices
+
+View all your indices:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v'
+```
+
+View all indices from 2019.05:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices/*2019.05*?v'
+```
+
+View all your indices, sort by size:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&s=pri.store.size'
 ```
 
 ### Ingest Data
