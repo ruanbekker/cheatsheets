@@ -343,3 +343,17 @@ View all tasks relating to write actions:
 ```
 $ curl -s -XGET "http://127.0.0.1:9200/_tasks?detailed=true&pretty&actions=indices:*/write*"
 ```
+
+Some of the other actions:
+
+```
+"action" : "cluster:monitor/tasks/lists
+"action" : "cluster:monitor/tasks/lists
+"action" : "cluster:monitor/nodes/stats"
+"action" : "cluster:admin/snapshot/create"
+"action" : "internal:cluster/snapshot/update_snapshot_status"
+"action" : "indices:data/read/search
+ - "description": (context of query)
+"action" : "indices:data/read/msearch"
+"action" : "indices:data/write/bulk
+```
