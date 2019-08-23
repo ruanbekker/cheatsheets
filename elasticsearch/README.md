@@ -9,6 +9,7 @@
   - [Update Replica Shards](#update-replicas-curl)
   - [Snapshots](#snapshots-with-curl)
   - [Restore Snapshots](#restore-snapshots-with-curl)
+  - [Tasks API](#tasks)
 - [using Python](python-elasticsearch.md#python-library)
   - [Ingest](python-elasticsearch.md#ingest-using-python)
 
@@ -300,3 +301,45 @@ green  open   restored_index_ecommerce
 green  open   restored_index_logs                         
 ```
 
+### Tasks
+
+View tasks in table format:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_cat/tasks?v&detailed' 
+action                         task_id                          parent_task_id                   type      start_time    timestamp running_time ip            node    description
+cluster:monitor/nodes/stats    DzSOmlH3RRaLGA33QJl3Bg:137161492 -                                transport 1566542180463 23:36:20  1.1s         x.x.x.x DzSOmlH 
+cluster:monitor/nodes/stats[n] C50akcLqScuJDwLx2nk9UA:95915234  DzSOmlH3RRaLGA33QJl3Bg:137161492 netty     1566542180464 23:36:20  1.1s         x.x.x.x  C50akcL 
+indices:data/write/bulk        yZXq8fZWRjiurCvtO7tSpQ:92155276  -                                transport 1566542181565 23:36:21  23ms         x.x.x.x yZXq8fZ requests[83], indices[logstash-logs-2019.08]
+```
+
+View tasks in json format:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_tasks?detailed&format=json' 
+{"nodes":{"xx":{"name":"xx","roles":["data","ingest"],"tasks":{"xx:xx":{"node":"xx","id":xx,"type":"transport","action":"cluster:monitor/nodes/stats"
+```
+
+View tasks in json format and pretty print:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_tasks?detailed&pretty&format=json' 
+{
+  "nodes" : {
+    "xx" : {
+      "name" : "xx",
+      "roles" : [ "data", "ingest" ],
+
+```
+
+View all tasks relating to snapshots being created:
+
+```
+$ curl -s -XGET 'http://127.0.0.1:9200/_tasks?detailed=true&pretty&actions=cluster:admin/snapshot/create'
+```
+
+View all tasks relating to write actions:
+
+```
+$ curl -s -XGET "http://127.0.0.1:9200/_tasks?detailed=true&pretty&actions=indices:*/write*"
+```
