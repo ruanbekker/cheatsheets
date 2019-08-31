@@ -10,6 +10,12 @@ Create role:
 CREATE ROLE user1 WITH LOGIN PASSWORD 'secret';
 ```
 
+List roles:
+
+```
+\du
+```
+
 Grant all privileges to database:
 
 ```
