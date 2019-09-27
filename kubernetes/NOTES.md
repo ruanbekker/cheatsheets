@@ -1,0 +1,1 @@
+* In Kubernetes, when a pod is in the state ImagePullBackOff, you can check the error message and related events with the command kubectl get pod --namespace=<namespace of the pod> <pod id> -o yaml. Retrieving this information would help a lot to understand
