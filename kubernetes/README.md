@@ -50,6 +50,12 @@ Show pods with their labels:
 kubectl get pods --show-labels
 ```
 
+Show pods from a specific deployment:
+
+```
+kubectl get pods --output wide --selector app.kubernetes.io/name=my-test-app
+```
+
 Show pods on specific node:
 
 ```
