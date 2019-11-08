@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowStartStopEc2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": [
+                "arn:aws:ec2:eu-west-1:xxxxxxxxxxxx:instance/i-00000000000000000",
+                "arn:aws:ec2:eu-west-1:xxxxxxxxxxxx:instance/i-00000000000000001"
+            ]
+        }
+    ]
+}
