@@ -5,7 +5,7 @@
 Describe Security Group:
 
 ```
-$ aws --profile eu-dev ec2 describe-security-groups --group-ids "sg-00000000000000000"
+$ aws --profile dev ec2 describe-security-groups --group-ids "sg-00000000000000000"
 {
     "SecurityGroups": [
         {
