@@ -1,5 +1,12 @@
 ## AWS CLI / IAM Cheatsheet
 
+View Policy ARN:
+
+```
+$ aws --profile dev iam list-attached-user-policies --user my-policy | jq -r '.AttachedPolicies[].PolicyArn'
+arn:aws:iam::000000000000:policy/my-policy
+```
+
 Detach Role Policy and Delete Role:
 
 ```
