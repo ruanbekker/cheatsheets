@@ -32,13 +32,7 @@ $ aws --profile dev ec2 describe-security-groups --group-ids "sg-000000000000000
     "FromPort": 22,
     "IpRanges": [
       {
-        "CidrIp": "10.1.160.0/19"
-      },
-      {
-        "CidrIp": "10.1.96.0/19"
-      },
-      {
-        "CidrIp": "10.1.128.0/19"
+        "CidrIp": "10.1.10.0/24"
       }
     ],
     "ToPort": 22,
