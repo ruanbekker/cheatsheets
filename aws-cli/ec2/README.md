@@ -1,5 +1,20 @@
 ## EC2 AWS CLI Cheatsheet
 
+### EC2
+
+#### Query
+
+Show InstanceId, State, PrivateDnsName of a given PrivateDnsName:
+
+```
+$ aws --profile dev ec2 describe-instances --query 'Reservations[*].Instances[?PrivateDnsName==`ip-192-168-42-186.eu-west-1.compute.internal`].[InstanceId,PrivateDnsName,State.Name][][]'
+[
+    "i-0d016de17a46d5178",
+    "ip-192-168-42-186.eu-west-1.compute.internal",
+    "running"
+]
+```
+
 ### Security Groups
 
 Describe Security Group:
