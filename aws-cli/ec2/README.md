@@ -57,3 +57,9 @@ $ aws --profile dev ec2 describe-security-groups --group-ids "sg-000000000000000
   }
 ]
 ```
+
+Allow Ingress Rule:
+
+```
+$ aws --profile dev ec2 authorize-security-group-ingress --group-id sg-00000000000000000 --protocol tcp --port 3306 --cidr 10.1.10.0/16
+```
