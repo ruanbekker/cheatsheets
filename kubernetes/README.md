@@ -38,6 +38,20 @@ Show pods in yaml format:
 kubectl get pods --output yaml
 ```
 
+### Logs
+
+Tail logs from a pod:
+
+```
+kubectl logs -f drone-agent-557ddc7bb4-crjns
+```
+
+Tail logs from a container (when two or more containers runs in a pod):
+
+```
+kubectl logs -f drone-agent-557ddc7bb4-crjns -c docker-in-docker
+```
+
 Show pods and dont truncate the output:
 
 ```
