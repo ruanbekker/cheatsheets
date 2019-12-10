@@ -4,6 +4,10 @@ My Bash Cheatsheet Index:
 
 * [One Liners](#one-liners)
   * [Block Bad IPs](#block-bad-ips)
+* [If Statements](#if-statements)
+  * [Check if args are passed](#check-if-args-are-passed)
+  * [Check if required variables exist](#check-if-required-variables-exist)
+  * [Check if environment variables exists](#check-if-environment-variables-exists)
 * [While Loops](#while-loops)
   * [Run for 5 Seconds](#run-process-for-5-seconds)
 * [Redirecting Outputs](#redirecting-outputs)
@@ -50,6 +54,42 @@ Redirect the output to iptables:
 
 ```
 $ for ip in $(cat /var/log/maillog | grep 'lost connection after AUTH from unknown' | cut -d'[' -f3 | cut -d ']' -f1 | sort | uniq); do iptables -I INPUT -s ${ip} -p tcp --dport 25 -j DROP; done
+```
+
+## If Statements
+
+### Check if args are passed
+
+```
+if [[ $# -eq 0 ]] ; then
+    echo 'need to pass args'
+    exit 0
+fi
+```
+
+## Check if required variables exist
+
+```
+if [ $1 == "one" ] || [ $1 == "two" ]
+then
+  echo "argument 1 has the value one or two"
+  exit 0
+else
+  echo "I require argument 1 to be one or two"
+  exit 1
+fi
+```
+
+## Check if environment variables exists
+
+```
+if [ -z ${OWNER} ] || [ -z ${NAME} ]
+then
+  echo "does not meet requirements of both environment variables"
+  exit 1
+else
+  echo "required environment variables exists"
+fi
 ```
 
 ## While Loops
