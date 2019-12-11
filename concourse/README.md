@@ -17,3 +17,15 @@ name       url                    team             expiry
 ci         https://ci.domain.com  teamy            n/a
 ci-teamx   https://ci.domain.com  teamx            Tue, 15 Oct 2019 20:42:34 UTC
 ```
+
+Get a Pipeline's Config:
+
+```
+$ fly -t ci-teamx gp -p prod-pipeline
+```
+
+Delete a Pipeline:
+
+```
+$ fly -t ci-teamx destroy-pipeline -p prod-pipeline
+```
