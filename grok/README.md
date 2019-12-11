@@ -68,4 +68,5 @@ Result:
 {
   "date": 1575982567890,
   "status": "INFO" 
+}
 ```
