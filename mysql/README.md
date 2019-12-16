@@ -28,6 +28,15 @@ Flush:
 mysql> FLUSH PRIVILEGES;
 ```
 
+## Delete
+
+Delete data older than x:
+
+```
+mysql> delete from maillog where timestamp < "2012-09-07";
+mysql> optimize table maillog;
+```
+
 ## Get Size in MB
 
 ```
