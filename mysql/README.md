@@ -28,6 +28,88 @@ Flush:
 mysql> FLUSH PRIVILEGES;
 ```
 
+## Create Tables
+
+
+Create a table:
+
+```
+mysql> CREATE TABLE domains (
+  domain varchar(50) NOT NULL, 
+  owner  varchar(50),
+  year_registered int(4)
+);
+```
+
+Create a table with primary key:
+
+```
+mysql> CREATE TABLE domains (
+  domain varchar(50) NOT NULL, 
+  owner  varchar(50),
+  year_registered int(4),
+  PRIMARY KEY (domain) 
+);
+```
+
+## Changing Tables
+
+Changing the column length:
+
+```
+mysql> ALTER TABLE contacts_business CHANGE COLUMN contact_number contact_number varchar(40);
+```
+
+## Check and Repair Tables
+
+Check all tables in mailscanner db:
+
+```
+$ mysqlcheck -c mailscanner -u root -p
+```
+
+Check all tables all dbs:
+
+```
+$ mysqlcheck -c  -u root -p --all-databases
+```
+
+Check one table:
+
+```
+$ check table maillog;
+```
+
+analyzes employee table that is located in thegeekstuff database:
+
+```
+$ mysqlcheck -a thegeekstuff employee -u root -p
+```
+
+optimizes employee table that is located in thegeekstuff database.
+
+```
+$ mysqlcheck -o thegeekstuff employee -u root -p
+```
+
+repairs employee table that is located in thegeekstuff database.
+
+```
+$ mysqlcheck -r thegeekstuff employee -u root -p
+```
+
+checks, optimizes and repairs all the corrupted table in thegeekstuff database.
+
+```
+$ mysqlcheck -u root -p --auto-repair -c -o thegeekstuff
+```
+
+optimize and repair all the tables across all your databases using the following command.
+
+```
+$ mysqlcheck -u root -p --auto-repair -c -o --all-databases
+```
+
 ## Delete
 
 Delete data older than x:
@@ -46,6 +128,14 @@ sum( data_length + index_length ) / 1024 /
 sum( data_free )/ 1024 / 1024 "Free Space in MB" 
 FROM information_schema.TABLES 
 GROUP BY table_schema ;
+```
+
+## Indexes
+
+Add a index to an existing table:
+
+```
+mysql> ALTER TABLE goods ADD PRIMARY KEY(id);
 ```
 
 ## Performance Schema Metrics:
