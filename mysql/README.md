@@ -35,6 +35,7 @@ Create a table:
 
 ```
 mysql> CREATE TABLE domains (
+  id INT(10) NOT NULL AUTO_INCREMENT,
   domain varchar(50) NOT NULL, 
   owner  varchar(50),
   year_registered int(4)
@@ -45,11 +46,23 @@ Create a table with primary key:
 
 ```
 mysql> CREATE TABLE domains (
+  id INT(10) NOT NULL AUTO_INCREMENT,
   domain varchar(50) NOT NULL, 
   owner  varchar(50),
   year_registered int(4),
   PRIMARY KEY (domain) 
 );
+```
+
+Create a table as a select query:
+
+```
+mysql> CREATE TABLE purchases_fnb_2016 
+       AS 
+         SELECT * FROM customers where date >= '2016-01-01 00:00:00' 
+         AND date  <= '2016-10-29 00:00:00' 
+         AND bank = 'fnb'
+;
 ```
 
 ## Changing Tables
@@ -135,7 +148,27 @@ GROUP BY table_schema ;
 Add a index to an existing table:
 
 ```
-mysql> ALTER TABLE goods ADD PRIMARY KEY(id);
+mysql> DESCRIBE salaries;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| emp_no    | int(11) | NO   | PRI | NULL    |       |
+| salary    | int(11) | NO   |     | NULL    |       |
+| from_date | date    | NO   | PRI | NULL    |       |
+| to_date   | date    | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+ALTER TABLE salaries ADD INDEX ( salary );
+```
+
+## Insert Data
+
+Insert data into our domain table
+
+```
+mysql> INSERT INTO domains (domain,owner,year_registered) VALUES("example.com", "John", 2019);
 ```
 
 ## Performance Schema Metrics:
@@ -184,4 +217,11 @@ mysql> SELECT SUM(errors) FROM sys.statements_with_errors_or_warnings;
 +-------------+
 |           4 |
 +-------------+
+```
+
+## Repair Table
+
+```
+mysql> repair table x;
+mysql> optimize table x;
 ```
