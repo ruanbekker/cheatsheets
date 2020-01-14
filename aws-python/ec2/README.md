@@ -1,6 +1,6 @@
 ## List Instances
 
-Get instance details from a filter
+Get instance details from a filter, [examples/ec2_list_instances.py](examples/ec2_list_instances.py)
 
 ```
 >>> import boto3
