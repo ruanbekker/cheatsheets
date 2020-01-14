@@ -16,3 +16,13 @@ CMD ["python", "app.py"]
 
 For Swarm:
 - https://forums.docker.com/t/example-usage-of-docker-swarm-template-placeholders/73859
+
+## Update
+
+### Service Update
+
+Add a constraint to move to a worker node:
+
+```
+$ docker service update --constraint-add 'node.role==worker' my-service-name
+```
