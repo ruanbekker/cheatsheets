@@ -91,3 +91,18 @@ $ cat data.json | jq '.images[] | select(.arch == "amd64") | .id'
 "x3cf2bbf-fe08-947f-8bf2-c8ce51f92050"
 ```
 
+For loops with jq:
+
+```
+$ echo '{"Records": [{"Data": "abc", "PartitionKey": "123"}, {"Data": "def", "PartitionKey": "456"}]}' | jq -c '.Records[]'
+{"Data":"abc","PartitionKey":"123"}
+{"Data":"def","PartitionKey":"456"}
+```
+
+For loop and base64 encode them:
+
+```
+$ echo '{"Records": [{"Data": "abc", "PartitionKey": "123"}, {"Data": "def", "PartitionKey": "456"}]}' | jq -cr '.Records[].Data | @base64'
+YWJj
+ZGVm
+```
