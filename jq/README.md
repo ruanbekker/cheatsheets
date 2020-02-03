@@ -106,3 +106,19 @@ $ echo '{"Records": [{"Data": "abc", "PartitionKey": "123"}, {"Data": "def", "Pa
 YWJj
 ZGVm
 ```
+
+Check if a string exists in a array:
+
+```
+$ echo '["superfast","fast","slow"]' | jq -c '.[] | select(. | contains("fast"))'
+"superfast"
+"fast"
+```
+
+Check if a string exists in a array of dictionaries:
+
+```
+$ echo '[{"speed": "superfast"},{"speed": "fast"},{"speed": "slow"}]' | jq -c '.[] | select(.speed | contains("fast"))'
+{"speed":"superfast"}
+{"speed":"fast"}
+```
