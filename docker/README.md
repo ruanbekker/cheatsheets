@@ -17,6 +17,16 @@ CMD ["python", "app.py"]
 For Swarm:
 - https://forums.docker.com/t/example-usage-of-docker-swarm-template-placeholders/73859
 
+Get a container to report the host's hostname:
+
+```
+version: '3.7'
+services:
+  telegraf:
+    ..
+    hostname: "{{.Node.Hostname}}"
+```
+
 ## Update
 
 ### Service Update
