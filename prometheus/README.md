@@ -219,6 +219,12 @@ name: `stack`
 label: `stack`
 query: `label_values(container_last_seen,container_label_com_docker_stack_namespace)`
 
+- Docker Swarm Service Names
+
+name: `service_name`
+label: `service_name`
+query: `label_values(container_last_seen,container_label_com_docker_swarm_service_name)`
+
 - Docker Swarm Manager NodeId:
 
 name: `manager_node_id`
