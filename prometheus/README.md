@@ -58,6 +58,12 @@ Memory Available by Node:
 node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_info)
 ```
 
+Disk Available by Node:
+
+```
+node_filesystem_free_bytes{mountpoint="/"} * on(instance) group_left(nodename) (node_uname_info)
+```
+
 Histogram:
 
 ```
