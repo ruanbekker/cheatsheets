@@ -64,6 +64,18 @@ Disk Available by Node:
 node_filesystem_free_bytes{mountpoint="/"} * on(instance) group_left(nodename) (node_uname_info)
 ```
 
+Disk IO per Node: Outbound:
+
+```
+sum(rate(node_disk_read_bytes_total[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
+```
+
+Disk IO per Node: Inbound:
+
+```
+sum(rate(node_disk_written_bytes_total{job="node"}[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
+```
+
 Histogram:
 
 ```
