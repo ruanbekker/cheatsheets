@@ -140,4 +140,16 @@ Memory Usage per Stack:
 sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"}) BY (container_label_com_docker_stack_namespace)
 ```
 
+## Grafana with Prometheus
 
+If you have output like this on grafana:
+
+```
+{instance="10.0.2.66:9100",job="node",nodename="rpi-02"}
+```
+
+and you only want to show the hostnames, you can apply the following in "Legend" input:
+
+```
+{{nodename}}
+```
