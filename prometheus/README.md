@@ -2,6 +2,7 @@
 
 - [Prometheus](https://prometheus.io/docs/querying/basics/)
 - [PromQL for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
+- [Prometheus 101](https://medianetlab.gr/prometheus-101/)
 - [Biggest Metrics](https://www.robustperception.io/which-are-my-biggest-metrics)
 - [Top Metrics](https://github.com/grafana/grafana/issues/6561)
 - [Ordina-Jworks](https://ordina-jworks.github.io/monitoring/2016/09/23/Monitoring-with-Prometheus.html)
@@ -74,6 +75,13 @@ Disk IO per Node: Inbound:
 
 ```
 sum(rate(node_disk_written_bytes_total{job="node"}[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
+```
+
+Network IO per Node:
+
+```
+sum(rate(node_network_receive_bytes_total[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
+sum(rate(node_network_transmit_bytes_total[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
 ```
 
 Histogram:
