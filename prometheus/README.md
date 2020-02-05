@@ -52,6 +52,12 @@ CPU Usage by Node:
 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[10m]) * 100) * on(instance) group_left(nodename) (node_uname_info))
 ```
 
+Memory Available by Node:
+
+```
+node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_info)
+```
+
 Histogram:
 
 ```
