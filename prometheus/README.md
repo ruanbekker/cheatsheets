@@ -46,6 +46,12 @@ Average Memory Available for Last 5 Minutes:
 avg_over_time(node_memory_MemAvailable_bytes[5m])/1024/1024
 ```
 
+CPU Usage by Node:
+
+```
+100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[10m]) * 100) * on(instance) group_left(nodename) (node_uname_info))
+```
+
 Histogram:
 
 ```
