@@ -191,3 +191,43 @@ and you only want to show the hostnames, you can apply the following in "Legend"
 ```
 {{nodename}}
 ```
+
+### Variables
+
+- Hostname:
+
+name: `node`
+label: `node`
+node: `label_values(node_uname_info, nodename)`
+
+Then in Grafana you can use:
+
+```
+sum(rate(node_disk_read_bytes_total{job="node"}[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info{nodename=~"$node"})
+```
+
+- Static Values:
+
+type: `custom`
+name: `dc`
+label: `dc`
+values seperated by comma: `eu-west-1a,eu-west-1b,eu-west-1c`
+
+- Docker Swarm Stack Names
+
+name: `stack`
+label: `stack`
+query: `label_values(container_last_seen,container_label_com_docker_stack_namespace)`
+
+- Docker Swarm Manager NodeId:
+
+name: `manager_node_id`
+label: `manager_node_id`
+query: `label_values(container_last_seen{container_label_com_docker_swarm_service_name=~"proxy_traefik", container_label_com_docker_swarm_node_id=~".*"}, container_label_com_docker_swarm_node_id)`
+
+- Docker Swarm Stacks Running on Managers
+
+name: `stack_on_manager`
+label: `stack_on_manager`
+query: `label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)`
+
