@@ -223,11 +223,17 @@ query: `label_values(container_last_seen,container_label_com_docker_stack_namesp
 
 name: `manager_node_id`
 label: `manager_node_id`
-query: `label_values(container_last_seen{container_label_com_docker_swarm_service_name=~"proxy_traefik", container_label_com_docker_swarm_node_id=~".*"}, container_label_com_docker_swarm_node_id)`
+query: 
+```
+label_values(container_last_seen{container_label_com_docker_swarm_service_name=~"proxy_traefik", container_label_com_docker_swarm_node_id=~".*"}, container_label_com_docker_swarm_node_id)
+```
 
 - Docker Swarm Stacks Running on Managers
 
 name: `stack_on_manager`
 label: `stack_on_manager`
-query: `label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)`
+query: 
+```
+label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)
+```
 
