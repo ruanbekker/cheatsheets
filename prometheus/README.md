@@ -10,6 +10,7 @@
 - [Prometheus Relabeling Tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
 - [@Valyala: PromQL Tutorial for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
 - [@Jitendra: PromQL Cheat Sheet](https://github.com/jitendra-1217/promql.cheat.sheet)
+- [InfinityWorks: Prometheus Example Queries](https://github.com/infinityworks/prometheus-example-queries/blob/master/README.md)
 - [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/)
 - [SectionIO: Prometheus Querying](https://www.section.io/blog/prometheus-querying/)
 - [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
