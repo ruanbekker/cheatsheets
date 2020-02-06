@@ -8,6 +8,13 @@
 - [Ordina-Jworks](https://ordina-jworks.github.io/monitoring/2016/09/23/Monitoring-with-Prometheus.html)
 - [Infinity Works](https://github.com/infinityworks/prometheus-example-queries)
 - [Prometheus Relabeling Tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
+- [@Valyala: PromQL Tutorial for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
+- [@Jitendra: PromQL Cheat Sheet](https://github.com/jitendra-1217/promql.cheat.sheet)
+- [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/)
+- [SectionIO: Prometheus Querying](https://www.section.io/blog/prometheus-querying/)
+- [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
+- [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
+- [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 
 ## Example Queries
 
@@ -21,6 +28,12 @@ Combining values from 2 different vectors (Hostname with a Metric):
 
 ```
 up * on(instance) group_left(nodename) (node_uname_info)
+```
+
+Exclude labels:
+
+```
+sum without(job) (up * on(instance)  group_left(nodename)  (node_uname_info))
 ```
 
 Amount of Memory Available:
