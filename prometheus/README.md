@@ -110,6 +110,18 @@ Number of Nodes (Up):
 count(up{job="cadvisor_my-swarm"})
 ```
 
+Running Containers per Node:
+
+```
+count(container_last_seen) BY (container_label_com_docker_swarm_node_id)
+```
+
+Running Containers per Node, include corresponding hostnames:
+
+```
+count(container_last_seen) BY (container_label_com_docker_swarm_node_id) * ON (container_label_com_docker_swarm_node_id) GROUP_LEFT(node_name) node_meta 
+```
+
 HAProxy Response Codes:
 
 ```
