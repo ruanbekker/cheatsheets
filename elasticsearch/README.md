@@ -3,6 +3,7 @@
 - [Using cURL](#using-curl)
   - [Cluster Health](#health-with-curl)
   - [View Indices](#view-indices)
+  - [Create Index](#create-index)
   - [Ingest](#ingest-data)
   - [Search](#search)
   - [Reindex](#reindex-using-curl)
@@ -66,6 +67,16 @@ View all indices, but return only the index.name value:
 
 ```
 $ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&h=index'
+```
+
+### Create Index
+
+Create a Index with 5 Primary Shards, 1 Replica Shard and Refresh Interval of 30 seconds:
+
+```
+$ curl -XPUT -H "Content-Type: application/json" \
+  http://localhost:9200/metricbeat-2020.02 \
+  -d '{"index": {"number_of_shards":"5","number_of_replicas": 1, "refresh_interval": "30"}}'
 ```
 
 ### Ingest Data
