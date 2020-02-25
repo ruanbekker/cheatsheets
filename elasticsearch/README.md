@@ -390,6 +390,29 @@ $ curl -s -XGET "http://127.0.0.1:9200/_tasks?detailed=true&pretty&actions=indic
     },
 ```
 
+Create a Task:
+
+```
+$ curl -XPOST -H 'Content-Type: application/json' 'http://127.0.0.1:9200/_reindex?wait_for_completion=false' -d '{"source": {"index": "metricbeat-2019.*"}, "dest": {"index": "metricbeat-2019"}}'
+{"task":"-thJvCFgQlusd2vVFZGOfg:26962"}
+```
+
+View Task Status by TaskId:
+
+```
+$ curl http://localhost:9200/_tasks/-thJvCFgQlusd2vVFZGOfg:26962?pretty
+{
+  "completed" : true,
+  "task" : {
+    "node" : "-thJvCFgQlusd2vVFZGOfg",
+    "id" : 26962,
+    "type" : "transport",
+    "action" : "indices:data/write/reindex",
+...
+  }
+}
+```
+
 Some of the other actions:
 
 ```
