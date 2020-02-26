@@ -36,7 +36,6 @@ es = Elasticsearch(
 
 ```
 from elasticsearch import Elasticsearch, RequestsHttpConnection, helpers
-from requests_aws4auth import AWS4Auth
 
 aws_auth = AWS4Auth(access_key, secret_key, AWS_REGION, 'es', session_token=token)
 es = Elasticsearch(
