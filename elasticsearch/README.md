@@ -426,3 +426,6 @@ Some of the other actions:
 "action" : "indices:data/read/msearch"
 "action" : "indices:data/write/bulk
 ```
+
+### External Resources
+- http://elasticsearch-cheatsheet.jolicode.com/
