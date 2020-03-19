@@ -56,3 +56,9 @@ RDS Cluster Name:
 ```
 Query: dimension_values($region,AWS/RDS,CPUUtilization,DBClusterIdentifier)
 ```
+
+RDS Instance Name:
+
+```
+Query: dimension_values($region,AWS/RDS,CPUUtilization,DBInstanceIdentifier)
+```
