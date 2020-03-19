@@ -51,3 +51,8 @@ ECS Service Name:
 Query: dimension_values($region,AWS/ECS,CPUUtilization,ServiceName)
 ```
 
+RDS Cluster Name:
+
+```
+Query: dimension_values($region,AWS/RDS,CPUUtilization,DBClusterIdentifier)
+```
