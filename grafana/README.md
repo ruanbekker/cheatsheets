@@ -2,6 +2,10 @@
 
 ### Variables for CloudWatch
 
+Docs: 
+
+- https://grafana.com/docs/grafana/latest/features/datasources/cloudwatch/
+
 Overview:
 
 The `Name` field allows you to use it as a variable, example:
