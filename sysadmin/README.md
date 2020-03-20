@@ -6,6 +6,22 @@
 
 ### Memory Stats
 
+Using ps to sort by memory usage:
+
+```
+$ ps aux --sort -rss
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      2124  0.1 11.4 422028 232864 ?       Ssl  Mar19   0:35 /bin/thanos
+```
+
+Difference between vsz and rss:
+
+```
+The Virtual Set Size is a memory size assigned to a process ( program ) during the initial execution. The Virtual Set Size memory is simply a number of how much memory a process has available for its execution. 
+
+As oppose to VSZ ( Virtual Set Size ), RSS is a memory currently used by a process. This is a actual number in kilobytes of how much RAM the current process is using. 
+```
+
 Get memory stats:
 
 ```
