@@ -1,8 +1,17 @@
-### Memory
+## Memory
 
 * **Free** memory is the amount of memory which is currently not used for anything. This number should be small, because memory which is not used is simply wasted.
 
 * **Available** memory is the amount of memory which is available for allocation to a new process or to existing processes.
+
+### Memory Stats
+
+Get memory stats:
+
+```
+$ wget https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py
+$ sudo python ps_mem.py
+```
 
 ### External Resources
 
