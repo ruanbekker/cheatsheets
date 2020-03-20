@@ -218,6 +218,24 @@ and you only want to show the hostnames, you can apply the following in "Legend"
 {{nodename}}
 ```
 
+If your output want `exported_instance` in:
+
+```
+sum(exporter_memory_usage{exported_instance="myapp"})
+```
+
+You would need to do:
+
+```
+sum by (exported_instance) (exporter_memory_usage{exported_instance="my_app"})
+```
+
+Then on Legend:
+
+```
+{{exported_instance}}
+```
+
 ### Variables
 
 - Hostname:
