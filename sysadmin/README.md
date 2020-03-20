@@ -46,6 +46,29 @@ $ vmstat -s
   13244420 K swap cache
 ```
 
+Using top:
+
+```
+$ top -n 1 -b
+top - 07:50:06 up 13 days, 22:22,  1 user,  load average: 0.06, 0.07, 0.02
+Tasks: 124 total,   1 running,  73 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.0 us,  0.4 sy,  0.0 ni, 97.3 id,  0.0 wa,  0.0 hi,  0.2 si,  0.0 st
+KiB Mem : 16424260 total,   249368 free,  2597924 used, 13576968 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 13490404 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+15482 user      20   0 7949520 2.150g  24408 S  37.5 13.7  40:35.70 java
+```
+
+More info on above:
+
+```
+%MEM is directly related to RES, it’s the percentage use of total physical memory by the process.
+VIRT is the total memory that this process has access to shared memory, mapped pages, swapped out pages, etc.
+RES is the total physical memory used shared or private that the process has access to.
+SHR is the total physical shared memory that the process has access to.
+```
+
 Get memory stats:
 
 ```
