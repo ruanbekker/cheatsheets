@@ -2,11 +2,13 @@
 
 My Elasticsearch Cheatsheet using Python
 
-- [using Python](python-elasticsearch.md#python-library)
+- [Using Python Elasticsearch Library](python-elasticsearch.md#python-library)
   - [Authentication](python-elasticsearch.md#authenticate-with-http-basic-auth)
   - [Info](python-elasticsearch.md#elasticsearch-info-response)
   - [Ingest](python-elasticsearch.md#ingest)
   - [Bulk Ingest](python-elasticsearch.md#ingest)
+- [Using Python Requests]()
+  - [Create a Index]()
 - [Using cURL](README.md#using-curl)
   - [Cluster Health](README.md#health-with-curl)
   - [Reindex](README.md#reindex-using-curl)
@@ -116,4 +118,17 @@ Query: `{"query": {"match": {"text": "HI"}}}`
 >>> es.search(index="telegram-bot", doc_type="_doc", body={"query": {"match": {"text": "HI"}}})
 {'took': 335, 'timed_out': False, '_shards': {'total': 5, 'successful': 5, 'skipped': 0, 'failed': 0}, 'hits': {'total': 1, 'max_score': 0.6931472, 'hits': [{'_index': 'telegram-bot', '_type': '_doc', '_id': 'x', '_score': 0.6931472, '_source': {'message_id': x, 'date': x, 'text': 'HI', 'entities': [], 'caption_entities': [], 'photo': [], 'new_chat_members': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'group_chat_created': False, 'supergroup_chat_created': False, 'channel_chat_created': False}}]}}
 
+```
+
+## Using Python Requests
+
+### Create a Index:
+
+```
+>>> response = requests.put(
+    'https://es.x.x/xstats', 
+    auth=('username', 'pass'), 
+    headers={'content-type': 'application/json'}, 
+    json={'settings': {'number_of_shards': 2}}
+)
 ```
