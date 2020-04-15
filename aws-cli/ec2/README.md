@@ -2,6 +2,41 @@
 
 ### EC2
 
+#### Run Instances
+
+Create the EBS Mapping:
+
+```
+[
+    {
+        "DeviceName": "/dev/sda1",
+        "Ebs": {
+            "DeleteOnTermination": true,
+            "VolumeSize": 50,
+            "VolumeType": "standard"
+        }
+    }
+]
+```
+
+Get the latest AMI (ecs optimized in this case):
+
+```
+AWS_AMI_ID="$(aws --profile prod ssm get-parameter --name '/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id' | jq -r '.Parameter.Value')"
+```
+
+Create a EC2 instance:
+
+```
+aws --profile default ec2 run-instances --image-id ${AWS_AMI_ID} --count 1 \
+     --instance-type t2.micro --key-name mykey \
+     --subnet-id subnet-123456789 --security-group-ids ${AWS_SG_ID} \
+     --block-device-mappings file://ebs_mapping.json \
+     --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MyEC2}]' 'ResourceType=volume,Tags=[{Key=Name,Value=MyEC2}]' \
+     --iam-instance-profile '{"Name":"my-instance-role"}' \
+     --user-data file://userdata.txt
+```
+
 #### Query
 
 Show InstanceId, State, PrivateDnsName of a given PrivateDnsName:
