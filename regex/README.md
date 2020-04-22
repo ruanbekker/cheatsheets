@@ -3,6 +3,9 @@
 ## Tools:
 - https://regex101.com/
 
+## Sources
+- https://groups.google.com/forum/#!topic/fluentd/arfxLzfU_5c
+
 ## Patterns
 
 string:
@@ -22,3 +25,56 @@ match everything until ccnum=
 ```
 \d+.\d+.\d+.\d+ .* \[\d{2}\/\w+\/\d{4}.*\d{2}:\d{2}:\d{2}\].*"\w+.*\/?ccnum=\d+
 ```
+
+Log:
+
+```
+2020-04-21 08:37:04 172.31.37.169 - - [21/Apr/2020:08:37:04 +0200] "POST /mamamoney/mama/api/v1/doAPICall?token=a.a.U HTTP/1.1" 200 540 "http://localhost/send-money/" "Mozilla/5.0 (Linux; Android 10; POT-LX1AF Build/HUAWEIPOT-L01AF; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.111 Mobile Safari/537.36" "41.162.163.228"
+```
+
+Date:
+
+```
+.[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]
+.\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+```
+
+IP Address `10.173.4.20`:
+
+```
+ \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+```
+
+Apache / Nginx Log:
+
+```
+172.128.80.109 - Bins5273 656 [2019-05-03T13:11:48-04:00] "PUT /mesh" 406 10272
+
+^([\w\.]+) - ([\w]+) ([\d]+) \[(.*)\] "([\w]+) (.*)" ([\d]+) ([\d]+)$
+```
+
+```
+127.0.0.1 - - [21/Apr/2020:11:47:07 +0000] "GET / HTTP/1.1" 200 612 "http://" "curl/7.58.0"
+
+^([\w\.]+) ([^ ]*) ([^ ]*) \[(.*)\] "(\S+)(?: +([^ ]*) +\S*)?" ([\d]+) ([\d]+) "([^"]*)" "([^\"]*)"?
+```
+
+```
+127.0.0.1 - - [21/Apr/2020:11:47:07 +0000] "GET / HTTP/1.1" 200 612 "http://" "curl/7.58.0"
+
+^([\w\.]+) - ([^ ]*) \[(.*)\] "([^ ]*) ([^ ]*) ([^ ]*)" ([\d]+) ([\d]+) "([^"]*)" "([^\"]*)"?
+```
+
+```
+127.0.0.1 - - [21/Apr/2020:11:47:07 +0000] "GET / HTTP/1.1" 200 612 "http://" "curl/7.58.0" "10.20.30.1"
+
+^([\w\.]+) - ([^ ]*) \[(.*)\] "([^ ]*) ([^ ]*) ([^ ]*)" ([\d]+) ([\d]+) "([^"]*)" "([^\"]*)" "([\w\.]+)"?
+```
+
+Assigning it labels with things like vector, promtail:
+
+```
+^(?P<remote_ip>[\w\.]+) - (?P<user>[^ ]*) \[(?P<timestamp>.*)\] "(?P<method>[^ ]*) (?P<request_url>[^ ]*) (?P<request_http_protocol>[^ ]*)" (?P<status>[\d]+) (?P<bytes_out>[\d]+) "(?P<http_referer>[^"]*)" "(?P<user_agent>[^"]*)" "(?P<client_ip>[\w\.]+)"?
+```
+
+
