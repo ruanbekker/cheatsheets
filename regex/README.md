@@ -29,7 +29,7 @@ match everything until ccnum=
 Log:
 
 ```
-2020-04-21 08:37:04 172.31.37.169 - - [21/Apr/2020:08:37:04 +0200] "POST /mamamoney/mama/api/v1/doAPICall?token=a.a.U HTTP/1.1" 200 540 "http://localhost/send-money/" "Mozilla/5.0 (Linux; Android 10; POT-LX1AF Build/HUAWEIPOT-L01AF; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.111 Mobile Safari/537.36" "41.162.163.228"
+2020-04-21 08:37:04 172.16.1.1 - - [21/Apr/2020:08:37:04 +0200] "POST /path?foo=bar HTTP/1.1" 200 540 "http://localhost/bar/" "Mozilla/5.0 (Linux; Android 10; One Build/One-Boo; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.111 Mobile Safari/537.36" "1.1.1.1"
 ```
 
 Date:
