@@ -77,4 +77,16 @@ Assigning it labels with things like vector, promtail:
 ^(?P<remote_ip>[\w\.]+) - (?P<user>[^ ]*) \[(?P<timestamp>.*)\] "(?P<method>[^ ]*) (?P<request_url>[^ ]*) (?P<request_http_protocol>[^ ]*)" (?P<status>[\d]+) (?P<bytes_out>[\d]+) "(?P<http_referer>[^"]*)" "(?P<user_agent>[^"]*)" "(?P<client_ip>[\w\.]+)"?
 ```
 
+Full match value between brackets:
 
+```
+this is [foo] bar
+\(?\w+(?=\]):?
+```
+
+using positive lookbehind:
+
+```
+this is [foo] bar
+(?<=\[)[\w+.-]*
+```
