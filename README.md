@@ -4,7 +4,7 @@
 
 ![GitHub followers](https://img.shields.io/github/followers/ruanbekker.svg?label=Follow&style=social) ![Twitter Follow](https://img.shields.io/twitter/follow/ruanbekker.svg?style=social) ![Twitter URL](https://img.shields.io/twitter/url/https/github.com/ruanbekker/cheatsheets.svg?label=Tweet%20Me&style=social)
 
-My Cheatsheet Repository
+My Cheatsheet Repository - [https://blog.ruanbekker.com/cheatsheets/](https://blog.ruanbekker.com/cheatsheets/)
 
 ## Repo Stats
 
