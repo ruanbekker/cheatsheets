@@ -14,4 +14,6 @@ Busy moving from: https://github.com/ruanbekker/awesome-list/tree/master/cheatsh
 
 ## Index
 
+* [AWS CLI]()
+  * [EC2](aws-cli/ec2/README.md)
 * [Bash](bash/README.md)
