@@ -7,7 +7,7 @@ More Info:
 
 > The pipeline example below, takes the current value of level from the extracted map and converts its value to be all lowercase. For example, if the extracted map contained level with a value of INFO, this pipeline would change its value to info"
 
-Pipeline Transform example, change uppercase values to lowercase:
+Pipeline Transform example, change uppercase values to lowercase (INFO to info):
 
 ```
 scrape_configs:
@@ -28,7 +28,7 @@ scrape_configs:
         - regex:
             expression: "(?P<level>(INFO|WARNING|ERROR))(.*)"
         - template:
-            source: app
+            source: level
             template: '{{ ToLower .Value }}'
         - labels:
             level:
