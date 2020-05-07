@@ -22,6 +22,12 @@ Grant User all Permissions to Database:
 mysql> GRANT ALL PRIVILEGES ON my_db.* TO 'user1'@'%';
 ```
 
+Grant User all Permissions to Database in AWS RDS:
+
+```
+mysql> GRANT SELECT, UPDATE, DELETE, INSERT, CREATE, DROP, INDEX, ALTER, LOCK TABLES, EXECUTE, CREATE TEMPORARY TABLES, EXECUTE, TRIGGER, CREATE VIEW, SHOW VIEW, EVENT ON my_db.* TO user1@'%';
+```
+
 Flush:
 
 ```
