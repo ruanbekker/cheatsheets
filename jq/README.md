@@ -91,6 +91,13 @@ $ cat data.json | jq '.images[] | select(.arch == "amd64") | .id'
 "x3cf2bbf-fe08-947f-8bf2-c8ce51f92050"
 ```
 
+We can do similar with (`contains`, `startswith`):
+
+```
+$ cat data.json | jq '.images[] | select(.arch | contains("amd")) | .id'
+$ cat data.json | jq '.images[] | select(.arch | startswith("md6")) | .id'
+```
+
 For loops with jq:
 
 ```
