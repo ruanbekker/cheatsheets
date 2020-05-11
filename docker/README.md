@@ -1,3 +1,31 @@
+## Manipulating Output:
+
+Filter and specify the name that you are interested in:
+
+```
+$ docker ps -f name=my-hostname-service
+CONTAINER ID        IMAGE                        COMMAND  CREATED              STATUS              PORTS                     NAMES
+edb30579c208        ruanbekker/hostname:latest   "/app"   About a minute ago   Up About a minute   0.0.0.0:42177->8080/tcp   my-hostname-service-1234
+```
+
+Only output the ID:
+
+```
+$ docker ps -f name=my-hostname-service --format '{{.ID}}'
+edb30579c208
+```
+
+ID, string characters and Name:
+
+```
+$ docker ps  -f name=my-hostname-service --format '{{.ID}} -> {{.Names}}'
+edb30579c208 -> my-hostname-service-1234
+```
+
+More examples:
+
+- https://docs.docker.com/engine/reference/commandline/ps/
+
 ## Permissions
 
 ### Copy as User
