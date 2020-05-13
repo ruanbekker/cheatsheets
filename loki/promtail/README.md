@@ -1,3 +1,16 @@
+## Examples
+- https://www.bookstack.cn/read/loki/clients-promtail-pipelines.md
+- https://github.com/grafana/loki/issues/333#issuecomment-570651075 (parsing labels from log tag)
+- https://docs.docker.com/config/containers/logging/configure/      (^ related) 
+- https://github.com/grafana/loki/issues/775#issuecomment-568814165 (create labels from filename)
+- https://www.gitmemory.com/issue/grafana/loki/748/534945463 (drop logs from something)
+- https://github.com/cyriltovena/loki/blob/master/docs/clients/promtail/stages/match.md#example (drop logs from match)
+- https://www.youtube.com/watch?v=bIAC0uQee0k (using promtail with loki)
+
+## Current Issues
+
+- https://github.com/grafana/loki/issues/74 (multi-line)
+- https://github.com/grafana/loki/issues/1880 (malformed logs with slashes)
 
 ## Pipelines
 
