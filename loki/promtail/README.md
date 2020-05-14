@@ -12,11 +12,16 @@
 - https://github.com/grafana/loki/issues/74 (multi-line)
 - https://github.com/grafana/loki/issues/1880 (malformed logs with slashes)
 
+## LogQL
+- https://github.com/grafana/loki/blob/master/docs/logql.md
+
 ## Pipelines
 
 More Info: 
   - https://github.com/grafana/loki/blob/master/docs/clients/promtail/pipelines.md
   - https://github.com/grafana/loki/blob/master/docs/clients/promtail/stages/template.md
+
+### Transform
 
 > The pipeline example below, takes the current value of level from the extracted map and converts its value to be all lowercase. For example, if the extracted map contained level with a value of INFO, this pipeline would change its value to info"
 
@@ -45,4 +50,41 @@ scrape_configs:
             template: '{{ ToLower .Value }}'
         - labels:
             level:
+```
+
+
+### Drop
+
+In this scenario, we want to drop specific logs to not appear in loki
+
+Ref: https://github.com/cyriltovena/loki/blob/master/docs/clients/promtail/stages/match.md#example
+
+```
+- job_name: qa/docker
+  entry_parser: raw
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: preprod/docker
+      service: app1
+      __path__: /var/lib/docker/containers/*/*-json.log
+
+scrape_configs:
+  pipeline_stages:
+  - match:
+      pipeline_name: 'drop_elb_healthchecks'
+      selector: '{service="app1"} |= "ELB-HealthChecker"'
+      action: drop
+
+  - match:
+      pipeline_name: 'drop_ecs_agent_logs'
+      selector: '{service="app1"} |~ ".*(Managed task|Task engine).*" |~ "arn:aws:ecs:eu-west-1:000000000000:task"'
+      #selector: '{service="app1"} |~ ".*Managed task.*" |= "eu-west-1:000000000000:task"'
+      action: drop
+
+  - match:
+      pipeline_name: 'drop_blackbox_exporter_checks'
+      selector: '{service="app1"} |~ ".*Go-http-client.*" |= "GET /login"'
+      action: drop
 ```
