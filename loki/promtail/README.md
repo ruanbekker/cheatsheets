@@ -52,6 +52,17 @@ scrape_configs:
             level:
 ```
 
+Convert from stdout to info, stderr to error:
+
+```
+  pipeline_stages:
+  - regex:
+      expression: '(?P<level>(stdout|stderr))'
+
+  - template:
+      source: level
+      template: '{{ if eq .Value "stdout" }}{{ Replace .Value "stdout" "info" -1 }}{{ else if eq .Value "stderr" }}{{ Replace .Value "stderr" "error" -1 }}{{ .Value }}{{ end }}'
+```
 
 ### Drop
 
