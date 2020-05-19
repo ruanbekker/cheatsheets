@@ -98,3 +98,43 @@ Allow Ingress Rule:
 ```
 $ aws --profile dev ec2 authorize-security-group-ingress --group-id sg-00000000000000000 --protocol tcp --port 3306 --cidr 10.1.10.0/16
 ```
+
+### Subnets
+
+List the subnets containing "private" in tags:
+
+```
+$ aws --profile prod ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-xxxxxx" | jq -r '.Subnets[] | select(.Tags[].Value | contains("private"))'
+{
+  "AvailabilityZone": "eu-west-1c",
+  "AvailabilityZoneId": "euw1-az3",
+  "AvailableIpAddressCount": 4089,
+  "CidrBlock": "172.31.80.0/20",
+  "DefaultForAz": false,
+  "MapPublicIpOnLaunch": false,
+  "State": "available",
+  "SubnetId": "subnet-xxxxxxxx",
+  "VpcId": "vpc-xxxxxxx",
+  "OwnerId": "xxxxxxxxxxx",
+  "AssignIpv6AddressOnCreation": false,
+  "Ipv6CidrBlockAssociationSet": [],
+  "Tags": [
+    {
+      "Key": "Name",
+      "Value": "prod-private-subnet-1c"
+    }
+  ],
+  "SubnetArn": "arn:aws:ec2:eu-west-1:xxxxxxxxx:subnet/subnet-xxxxxxxx"
+}
+{
+...
+```
+
+Get only the subnetids:
+
+```
+$ aws --profile prod ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-xxxxxxxx" | jq -r '.Subnets[] | select(.Tags[].Value | contains("private")) .SubnetId'
+subnet-xxxxxx
+subnet-xxxxxx
+subnet-xxxxxx
+```
