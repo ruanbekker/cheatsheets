@@ -13,6 +13,18 @@ Only output the ID:
 ```
 $ docker ps -f name=my-hostname-service --format '{{.ID}}'
 edb30579c208
+
+or:
+
+$ docker ps -f name=my-hostname-service -q
+edb30579c208
+```
+
+If you have more than one container with the same prefix, but you are only interested in the most recent one:
+
+```
+$ docker ps -f name=my-hostname-service -ql
+edb30579c208
 ```
 
 ID, string characters and Name:
@@ -20,6 +32,12 @@ ID, string characters and Name:
 ```
 $ docker ps  -f name=my-hostname-service --format '{{.ID}} -> {{.Names}}'
 edb30579c208 -> my-hostname-service-1234
+```
+
+Chaining them to exec into the container:
+
+```
+$ docker exec -it $(docker ps -f name=my-hostname-service -ql) sh
 ```
 
 More examples:
