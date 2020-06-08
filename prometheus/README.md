@@ -104,6 +104,18 @@ Histogram:
 histogram_quantile(1.00, sum(rate(prometheus_http_request_duration_seconds_bucket[5m])) by (handler, le)) * 1e3
 ```
 
+Metrics 24 hours ago (nice when you compare today with yesterday):
+
+```
+# query a
+total_number_of_errors{instance="my-instance", region="eu-west-1"}
+# query b
+total_number_of_errors{instance="my-instance", region="eu-west-1"} offset 24h
+
+# related:
+# https://about.gitlab.com/blog/2019/07/23/anomaly-detection-using-prometheus/
+```
+
 Number of Nodes (Up):
 
 ```
