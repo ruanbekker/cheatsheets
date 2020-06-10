@@ -105,6 +105,19 @@ mysql> select name, IF(matriculated, 'yes', 'no') matriculated from myusers limi
 +------+--------------+
 ```
 
+To query for people not matriculated:
+
+```
+mysql> select name, IF(matriculated, 'yes', 'no') matriculated from myusers where matriculated = false limit 1;
++------+--------------+
+| name | matriculated |
++------+--------------+
+| tom  | no           |
++------+--------------+
+
+# you can use it without the if
+```
+
 ## Changing Tables
 
 Changing the column length:
