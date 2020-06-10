@@ -71,6 +71,40 @@ mysql> CREATE TABLE purchases_fnb_2016
 ;
 ```
 
+Create a table with a boolean data type:
+
+```
+CREATE TABLE myusers(name VARCHAR(50), matriculated BOOLEAN);
+```
+
+Insert with boolean data:
+
+```
+INSERT INTO myusers VALUES('tom', False);
+```
+
+Read data:
+
+```
+mysql> select name, matriculated from myusers limit 1;
++------+--------------+
+| name | matriculated |
++------+--------------+
+| tom  |            0 |
++------+--------------+
+```
+
+Use IF statement and replace value:
+
+```
+mysql> select name, IF(matriculated, 'yes', 'no') matriculated from myusers limit 1;
++------+--------------+
+| name | matriculated |
++------+--------------+
+| tom  | no           |
++------+--------------+
+```
+
 ## Changing Tables
 
 Changing the column length:
