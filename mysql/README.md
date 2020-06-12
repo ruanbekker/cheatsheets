@@ -1,6 +1,15 @@
 # MySQL Cheatsheet
 
+* [Changing Tables](#changing-tables)
+* [Check and Repair Tables](#check-and-repair-tables)
+* [Create Tables](#create-tables)
+* [Delete](#delete)
 * [Get Size in MB](#get-size-in-mb)
+* [Indexes](#indexes)
+* [Insert Data](#insert-data)
+* [Performance Schema Metrics](#performance-schema-metrics)
+* [Permissions](#permissions)
+* [Repair Table](#repair-table)
 
 ## Permissions
 
@@ -278,3 +287,8 @@ mysql> SELECT SUM(errors) FROM sys.statements_with_errors_or_warnings;
 mysql> repair table x;
 mysql> optimize table x;
 ```
+
+## External Resources:
+
+- https://www.mysqltutorial.org/mysql-inner-join.aspx/
+- https://www.mysqltutorial.org/mysql-index/mysql-create-index/
