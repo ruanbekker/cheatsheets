@@ -279,6 +279,34 @@ mysql> SHOW VARIABLES LIKE '%connections%';
 3 rows in set (0.16 sec)
 ```
 
+or"
+
+```
+mysql> show status like '%onn%';
++-----------------------------------------------+-----------+
+| Variable_name                                 | Value     |
++-----------------------------------------------+-----------+
+| Aborted_connects                              | 35        |
+| Connection_errors_accept                      | 0         |
+| Connection_errors_internal                    | 0         |
+| Connection_errors_max_connections             | 0         |
+| Connection_errors_peer_address                | 0         |
+| Connection_errors_select                      | 0         |
+| Connection_errors_tcpwrap                     | 0         |
+| Connections                                   | 66059     |
+| Max_used_connections                          | 502       |
+| Performance_schema_session_connect_attrs_lost | 0         |
+| Slave_connections                             | 0         |
+| Slaves_connected                              | 1         |
+| Ssl_client_connects                           | 0         |
+| Ssl_connect_renegotiates                      | 0         |
+| Ssl_finished_connects                         | 0         |
+| Threads_connected                             | 46        |
+| wsrep_connected                               | OFF       |
++-----------------------------------------------+-----------+
+17 rows in set (0.16 sec)
+```
+
 Show me cache information:
 
 ```
