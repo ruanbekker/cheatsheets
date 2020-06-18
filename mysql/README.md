@@ -233,6 +233,71 @@ Insert data into our domain table
 mysql> INSERT INTO domains (domain,owner,year_registered) VALUES("example.com", "John", 2019);
 ```
 
+## Information Schema
+
+Show me idle connections:
+
+```
+mysql> select id, user, host, db, command, time from information_schema.processlist where command = "sleep";
++-----------+-------+---------------------+--------+---------+------+
+| id        | user  | host                | db     | command | time |
++-----------+-------+---------------------+--------+---------+------+
+| 659558686 | james | 172.31.27.126:37154 | mydb12 | Sleep   |  332 |
+```
+
+Show me connected sessions:
+
+```
+mysql> select count(*) from information_schema.processlist;
++----------+
+| count(*) |
++----------+
+|       60 |
++----------+
+
+or
+
+mysql> show status where variable_name = 'threads_connected';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_connected | 61    |
++-------------------+-------+
+```
+
+Show connection related variables:
+
+```
+mysql> SHOW VARIABLES LIKE '%connections%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| extra_max_connections | 1     |
+| max_connections       | 1296  |
+| max_user_connections  | 0     |
++-----------------------+-------+
+3 rows in set (0.16 sec)
+```
+
+Show me cache information:
+
+```
+mysql> SHOW VARIABLES LIKE 'have_query_cache';
+mysql> SHOW STATUS LIKE 'Qcache%';
+```
+
+Show me how long a connection can idle:
+
+```
+# https://aws.amazon.com/blogs/database/best-practices-for-configuring-parameters-for-amazon-rds-for-mysql-part-3-parameters-related-to-security-operational-manageability-and-connectivity-timeout/
+mysql> SHOW VARIABLES LIKE 'wait_timeout';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| wait_timeout  | 28800 |
++---------------+-------+
+```
+
 ## Performance Schema Metrics:
 
 Execution time of all the different statement types executed by each user:
