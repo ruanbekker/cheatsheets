@@ -262,6 +262,17 @@ Then in Grafana you can use:
 sum(rate(node_disk_read_bytes_total{job="node"}[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info{nodename=~"$node"})
 ```
 
+- Node Exporter Address
+
+type: `query`
+query: `label_values(node_network_up, instance)`
+
+- MySQL Exporter Address
+
+type: `query`
+query: `label_values(mysql_up, instance)`
+
+
 - Static Values:
 
 type: `custom`
