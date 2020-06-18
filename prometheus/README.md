@@ -216,6 +216,38 @@ Memory Usage per Stack:
 sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"}) BY (container_label_com_docker_stack_namespace)
 ```
 
+## Scrape Config
+
+static_configs:
+
+```
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+         - targets: ['localhost:9090']
+      labels:
+        region: 'eu-west-1'
+```
+
+dns_sd_configs:
+
+```
+scrape_configs:
+  - job_name: 'mysql-exporter'
+    scrape_interval: 5s
+    dns_sd_configs:
+    - names:
+      - 'tasks.mysql-exporter'
+      type: 'A'
+      port: 9104
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '.*'
+      target_label: instance
+      replacement: 'mysqld-exporter'
+```
+
 ## Grafana with Prometheus
 
 If you have output like this on grafana:
