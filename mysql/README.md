@@ -326,6 +326,12 @@ mysql> SHOW VARIABLES LIKE 'wait_timeout';
 +---------------+-------+
 ```
 
+Binlog format:
+
+```
+mysql> show variables like 'binlog_format';
+```
+
 ## Performance Schema Metrics:
 
 Execution time of all the different statement types executed by each user:
