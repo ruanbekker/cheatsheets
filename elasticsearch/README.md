@@ -71,12 +71,41 @@ $ curl -s -XGET 'http://127.0.0.1:9200/_cat/indices?v&h=index'
 
 ### Create Index
 
+Create a Index:
+
+```
+$ curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/my-test-index
+```
+
 Create a Index with 5 Primary Shards, 1 Replica Shard and Refresh Interval of 30 seconds:
 
 ```
 $ curl -XPUT -H "Content-Type: application/json" \
-  http://localhost:9200/metricbeat-2020.02 \
-  -d '{"index": {"number_of_shards":"5","number_of_replicas": 1, "refresh_interval": "30"}}'
+  http://localhost:9200/my-foobar-index \
+  -d '{"index": {"number_of_shards":"5","number_of_replicas": 1, "refresh_interval": "30s"}}'
+```
+
+If you want to manually refresh your index to see the data:
+
+```
+$ curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/my-foobar-index/_refresh"
+```
+
+### Update Index Settings
+
+Documentation:
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html
+
+View the index settings:
+
+```
+$ curl -XGET -H "Content-Type: application/json" "http://127.0.0.1:9200/my-foobar-index/_settings?pretty"
+```
+
+Update the settings, disable refresh for example:
+
+```
+$ curl -XPUT -H "Content-Type: application/json" "http://127.0.0.1:9200/my-foobar-index/_settings" -d '{"index": {"refresh_interval": "-1"}}'
 ```
 
 ### Ingest Data
