@@ -63,8 +63,22 @@ CMD ["python", "app.py"]
 For Docker:
 
 ```
-$ docker run -it --log-driver json-file --log-opt tag="{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}" alpine echo hi
+$ docker run -it --log-driver json-file --log-opt tag="{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}|{{.ID}}" alpine echo hi
 hi
+```
+
+Get the logfile:
+
+```
+$ docker inspect $(docker ps -l) | jq '.[].LogPath'
+/var/lib/docker/containers/b8e6523c8741d33f778a4f899dc04dab912472cedfba5ab71119a8c9ab1555a8/b8e6523c8741d33f778a4f899dc04dab912472cedfba5ab71119a8c9ab1555a8-json.log
+```
+
+View the content:
+
+```
+$ cat /var/lib/docker/containers/b8e6523c8741d33f778a4f899dc04dab912472cedfba5ab71119a8c9ab1555a8/b8e6523c8741d33f778a4f899dc04dab912472cedfba5ab71119a8c9ab1555a8-json.log
+{"log":"hi\r\n","stream":"stdout","attrs":{"tag":"alpine|festive_bell|sha256:e7d92cdc71feacf90708cb59182d0df1b911f8ae022d29e8e95d75ca6a99776a|b8e6523c8741d33f778a4f899dc04dab912472cedfba5ab71119a8c9ab1555a8|b8e6523c8741"},"time":"2020-07-07T12:35:12.3938298Z"}
 ```
 
 - https://docs.docker.com/config/formatting/
