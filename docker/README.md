@@ -60,6 +60,15 @@ CMD ["python", "app.py"]
 
 ## Template Variables
 
+For Docker:
+
+```
+$ docker run -it --log-driver json-file --log-opt tag="{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}" alpine echo hi
+hi
+```
+
+- https://docs.docker.com/config/formatting/
+
 For Swarm:
 - https://forums.docker.com/t/example-usage-of-docker-swarm-template-placeholders/73859
 
