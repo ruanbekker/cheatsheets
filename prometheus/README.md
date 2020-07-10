@@ -216,6 +216,16 @@ Memory Usage per Stack:
 sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"}) BY (container_label_com_docker_stack_namespace)
 ```
 
+Remove labels from a metric:
+
+```
+sum without (age, country) (people_metrics)
+```
+
+Remove / Replace:
+
+- https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
+
 ## Scrape Config
 
 static_configs:
