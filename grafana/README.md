@@ -1,4 +1,11 @@
-## Grafana Cheatsheet
+# Grafana Cheatsheet
+
+- [Datasources]
+  - [CloudWatch]()
+  - [MySQL]()
+
+
+## Datasource: CloudWatch
 
 ### Variables for CloudWatch
 
@@ -65,4 +72,49 @@ RDS Instance Name:
 
 ```
 Query: dimension_values($region,AWS/RDS,CPUUtilization,DBInstanceIdentifier)
+```
+
+## Datasource: MySQL
+
+### Variables for MySQL 
+
+Name: `status`
+Label: `Status`
+Type: `Query`
+Datasource: `MySQL`
+Query: `SELECT status FROM mytable`
+
+### Queries for MySQL
+
+Gauge:
+
+```
+SELECT 
+country,
+SUM(cnt) AS total,
+NOW() AS time
+FROM mytable
+WHERE status = ${status}
+GROUP BY country
+```
+
+Bar Gauge:
+
+```
+SELECT NOW() AS time, count(*) as cnt, CONCAT(name,', ',surname,', ',country) AS entity FROM mytable 
+WHERE status = "PENDING"
+AND name REGEXP '${name:pipe}' 
+AND surname REGEXP '${surname:pipe}'
+AND country REGEXP '${country:pipe}'
+GROUP BY CONCAT(name,', ',surname,', ',country)
+```
+
+Table Panel:
+
+```
+SELECT name, surname, country, status, pending_time from mytable
+WHERE status = "PENDING"
+AND name REGEXP '${name:pipe}' 
+AND surname REGEXP '${surname:pipe}'
+AND country REGEXP '${country:pipe}'
 ```
