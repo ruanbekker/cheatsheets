@@ -1,8 +1,12 @@
 # Grafana Cheatsheet
 
-- [Datasources]
-  - [CloudWatch]()
-  - [MySQL]()
+- [CloudWatch]()
+  - [CloudWatch Datasource](#datasource-cloudwatch)
+  - [CloudWatch Variables](#variables-for-cloudWatch)
+- [MySQL]()
+  - [MySQL Datasource](#datasource-cloudwatch)
+  - [MySQL Variables](#variables-for-mysql)
+  - [MySQL Queries](#mysql-queries)
 
 
 ## Datasource: CloudWatch
