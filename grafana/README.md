@@ -97,6 +97,16 @@ Domain Name (Filtered Results):
 {"find": "terms", "field": "domain_name.keyword", "query": "domain_name: *.mydomain.com"}
 ```
 
+2 Variables, ALB and Domain Name (domain name results filtered based on the alb that you select / should be in correct order):
+
+```
+alb_name:
+{"find": "terms", "field": "alb_name.keyword"}
+
+domain_name:
+{"find": "terms", "field": "domain_name.keyword", "query": "domain_name: *.mydomain.com AND alb_name:$alb_name.keyword"}
+```
+
 ## Datasource: MySQL
 
 ### Variables for MySQL 
