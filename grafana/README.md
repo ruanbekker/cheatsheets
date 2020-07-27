@@ -83,6 +83,8 @@ Query: dimension_values($region,AWS/RDS,CPUUtilization,DBInstanceIdentifier)
 
 ## Datasource: Elasticsearch
 
+- [how-to-effectively-use-the-elasticsearch-data-source-in-grafana-and-solutions-to-common-pitfalls/](https://grafana.com/blog/2016/03/09/how-to-effectively-use-the-elasticsearch-data-source-in-grafana-and-solutions-to-common-pitfalls/)
+
 ### Variables for Elasticsearch
 
 Domain Name:
