@@ -3,6 +3,9 @@
 - [CloudWatch]()
   - [CloudWatch Datasource](#datasource-cloudwatch)
   - [CloudWatch Variables](#variables-for-cloudWatch)
+- [Elasticsearch]()
+  - [Elasticsearch Datasource](#datasource-elasticsearch)
+  - [Elasticsearch Variables](#variables-for-elasticsearch)
 - [MySQL]()
   - [MySQL Datasource](#datasource-cloudwatch)
   - [MySQL Variables](#variables-for-mysql)
@@ -76,6 +79,22 @@ RDS Instance Name:
 
 ```
 Query: dimension_values($region,AWS/RDS,CPUUtilization,DBInstanceIdentifier)
+```
+
+## Datasource: Elasticsearch
+
+### Variables for Elasticsearch
+
+Domain Name:
+
+```
+{"find": "terms", "field": "domain_name.keyword"}
+```
+
+Domain Name (Filtered Results):
+
+```
+{"find": "terms", "field": "domain_name.keyword", "query": "domain_name: *.mydomain.com"}
 ```
 
 ## Datasource: MySQL
