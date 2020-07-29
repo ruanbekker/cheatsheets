@@ -1,3 +1,8 @@
+# Prometheus Cheatsheets
+
+- [Example Queries](#example-queries)
+- [Scrape Configs](#scrape-config)
+
 ## External Sources:
 
 - [Prometheus](https://prometheus.io/docs/querying/basics/)
@@ -227,6 +232,15 @@ Remove / Replace:
 - https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
 
 ## Scrape Config
+
+Relabel configs:
+
+- https://gist.github.com/trastle/1aa205354577ef0b329d4b8cc84c674a
+- https://github.com/prometheus/docs/issues/341
+- https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda
+- https://blog.freshtracks.io/prometheus-relabel-rules-and-the-action-parameter-39c71959354a
+- https://www.robustperception.io/relabel_configs-vs-metric_relabel_configs
+- https://training.robustperception.io/courses/prometheus-configuration/lectures/3170347
 
 static_configs:
 
