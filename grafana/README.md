@@ -10,6 +10,10 @@
   - [MySQL Datasource](#datasource-cloudwatch)
   - [MySQL Variables](#variables-for-mysql)
   - [MySQL Queries](#mysql-queries)
+- [Prometheus]()
+  - [Prometheus Datasource](#prometheus-datasource)
+  - [Prometheus Variables](#prometheus-variables)
+  - [Prometheus Queries](#prometheus-queries)
 
 
 ## Datasource: CloudWatch
@@ -153,3 +157,40 @@ AND name REGEXP '${name:pipe}'
 AND surname REGEXP '${surname:pipe}'
 AND country REGEXP '${country:pipe}'
 ```
+
+## Prometheus: Datasource
+
+### Variables for Prometheus
+
+**Basics**
+
+Lets say you want to have a variable defined `jobs` and the metric looks like:
+
+```
+up{cluster_name="cluster-a",instance="1.1.1.1:443",job="container-metrics"}
+up{cluster_name="cluster-b=",instance="1.1.1.1:443",job="node-metrics"}
+```
+
+Add a variable with the following:
+
+```
+Name: jobs
+Label: Jobs
+Query: label_values(up, job)
+```
+
+Which will produce `container-metrics` and `node-metrics` and in your dasboard query you can select them using:
+
+```
+up{job=~"$job"}
+```
+
+**Filtered**
+
+Lets say you only want the variable results to display jobs from `cluster-b`:
+
+```
+label_values(up{cluster_name="cluster-b"}, job)
+```
+
+### Queries for Prometheus
