@@ -13,6 +13,17 @@ My Bash Cheatsheet Index:
 * [Redirecting Outputs](#redirecting-outputs)
   * [Stdout, Stderr](#stdout-stderr)
 
+## Commands
+
+### tr command
+
+Remove whitespace:
+
+```
+$ echo 'foo - bar' | tr -d '[:space:]'
+foo-bar
+```
+
 ## One Liners
 
 ### Block Bad IPs
