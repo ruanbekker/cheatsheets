@@ -123,6 +123,13 @@ Type: `Query`
 Datasource: `MySQL`
 Query: `SELECT status FROM mytable`
 
+To use a regex to filter out any NULLs:
+
+```
+# this will only return results with letters/numbers
+/([a-zA-Z0-9\.]+)/  
+```
+
 ### Queries for MySQL
 
 Gauge:
