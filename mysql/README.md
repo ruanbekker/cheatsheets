@@ -127,6 +127,22 @@ mysql> select name, IF(matriculated, 'yes', 'no') matriculated from myusers wher
 # you can use it without the if
 ```
 
+To view unique values:
+
+```
+mysql> select distinct country from people;
++---------+
+| country |
++---------+
+| MOZ     |
+| NGA     |
+| KEN     |
+| ZWE     |
+| IND     |
+| GHA     |
++---------+
+```
+
 ## Changing Tables
 
 Changing the column length:
