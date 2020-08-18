@@ -42,6 +42,12 @@ Exclude labels:
 sum without(job) (up * on(instance)  group_left(nodename)  (node_uname_info))
 ```
 
+Count targets per job:
+
+```
+count by (job) (up)
+```
+
 Amount of Memory Available:
 
 ```
