@@ -203,6 +203,12 @@ node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_i
 {cloud_provider="amazon",instance="x.x.x.x:9100",job="node_n1",my_hostname="n1.x.x",nodename="n1.x.x"}
 ```
 
+Container CPU Average for 5m:
+
+```
+(sum by(instance, container_label_com_amazonaws_ecs_container_name, container_label_com_amazonaws_ecs_cluster) (rate(container_cpu_usage_seconds_total[5m])) * 100) 
+```
+
 Container Memory Usage: Total:
 
 ```
@@ -225,6 +231,12 @@ Memory Usage per Stack:
 
 ```
 sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"}) BY (container_label_com_docker_stack_namespace)
+```
+
+Remove metrics from results that does not contain a specific label:
+
+```
+container_cpu_usage_seconds_total{container_label_com_amazonaws_ecs_cluster!=""}
 ```
 
 Remove labels from a metric:
