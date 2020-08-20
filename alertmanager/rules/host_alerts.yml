@@ -1,0 +1,16 @@
+groups:
+- name: host_alerts.yml
+  rules:
+  
+  # alert when disk has 10% of availlable space left
+  - alert: host_disk_space_low
+    expr: (node_filesystem_avail_bytes{mountpoint="/"}  * 100) / node_filesystem_size_bytes{mountpoint="/"} < 10
+    for: 1m
+    labels:
+      severity: warning
+      alert_channel: slack
+      team: devops
+    annotations:
+      title: "Disk Usage is Low in {{ $labels.instance }}"
+      description: "Instance {{ $labels.instance }} disk usage for {{ $labels.mountpoint }} is at {{ humanize $value}}%."
+      summary: "\n- Node: {{ $labels.instance }} \n- Disk Usage: {{ humanize $value}}%"
