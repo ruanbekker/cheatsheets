@@ -22,6 +22,10 @@
 - [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 
+Setups:
+
+- [Simulating AWS Tags in Local Prometheus](https://ops.tips/blog/simulating-aws-tags-in-local-prometheus/)
+
 ## Example Queries
 
 How many nodes are up?
