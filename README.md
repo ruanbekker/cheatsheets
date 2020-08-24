@@ -21,3 +21,7 @@ Busy moving from: https://github.com/ruanbekker/awesome-list/tree/master/cheatsh
   * [IAM](aws-cli/iam/README.md)
   * [SSM](aws-cli/ssm/README.md)
 * [Bash](bash/README.md)
+* [Elasticsearch](elasticsearch/README.md)
+* [Grafana](grafana/README.md)
+* [JQ](jq/README.md)
+* [Prometheus](prometheus/README.md)
