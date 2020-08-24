@@ -76,6 +76,17 @@ $ wget https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py
 $ sudo python ps_mem.py
 ```
 
+## Permissions
+
+### Permissions for Directories and Files
+
+```
+$ sudo chmod 755 /disk
+$ sudo chown -R ubuntu:ubuntu /disk
+$ sudo find /disk/2/htpc -type f -print -exec chmod 644 {} \;
+$ sudo find /disk/2/htpc -type d -print -exec chmod 755 {} \;
+```
+
 ### External Resources
 
 - https://www.tummy.com/articles/isolating-heavy-load/
