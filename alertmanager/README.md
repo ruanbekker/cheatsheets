@@ -16,3 +16,12 @@ Routing:
 
 Setups:
 - [Setup Alertmanager with Ansible](https://itnext.io/prometheus-with-alertmanager-f2a1f7efabd6)
+
+
+## API Calls
+
+Manual trigger alert:
+
+```
+$ curl -H "Content-Type: application/json" -d '[{"status": "firing", "labels":{"alertname":"TestAlert1"}}]' localhost:9093/alertmanager/api/v1/alerts
+```
