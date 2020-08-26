@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ['alertname', 'cluster', 'job', 'env']
+  repeat_interval: 24h
+  group_interval: 5m
+  receiver: 'default'
+
+receivers:
+  - name: 'default'
+    pushover_configs:
+      - token: x
+        user_key: x
+        #title: '{{ template "pushover.default.title" . }}'
+        title: '{{ if eq .Status "firing" }}ALARM{{ else }}OK{{ end }} [{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        message: '{{ template "pushover.default.message" . }}'
+        url: '{{ template "pushover.default.url" . }}'
+        priority: '{{ if eq .Status "firing" }}2{{ else }}0{{ end }}'
