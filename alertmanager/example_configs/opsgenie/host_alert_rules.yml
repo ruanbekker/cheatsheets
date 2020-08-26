@@ -1,0 +1,19 @@
+groups:
+- name: host_alert_rules.yml
+  rules:
+
+  # Alert for any node that is unreachable for > 1 minute.
+  - alert: node_down
+    expr: up{job="node-exporter"} == 0
+    for: 1m
+    labels:
+      severity: critical
+      environment: foobar-production
+    annotations:
+      summary: "Job {{ $labels.job }} is down on {{ $labels.instance }}"
+      description: "Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 1 minute. Node might be down."
+      impact: "Any metrics from {{ $labels.job }} on {{ $labels.instance }} will be missing"
+      action: "Check on {{ $labels.instance }} if {{ $labels.job }} is running"
+      dashboard: https://grafana.localdns.xyz/d/pdfrTcGnQ/host-metrics
+      runbook: https://mydocs.localdns.xyz/wiki/runbooks/1
+      priority: P2
