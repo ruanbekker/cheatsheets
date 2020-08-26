@@ -1,0 +1,81 @@
+# example showing how to route alerts based on severity labels
+# if severity label is critical and environment is not -staging or -dev
+# it routes to slack and opsgenie
+
+global:
+  resolve_timeout: 5m
+  slack_api_url: 'https://hooks.slack.com/services/x/x/x'
+  
+route:
+  group_by: ['alertname', 'cluster', 'job', 'env']
+  repeat_interval: 24h
+  group_interval: 5m
+  # capture everything to default
+  receiver: 'default'
+  routes:
+    # match and group severity=critical to the critical receiver
+    # this will be sent to slack and opsgenie
+    - match:
+        severity: critical
+      receiver: critical
+      routes:
+      # match then environment=*-staging to warning
+      - match_re:
+          environment: .*(-staging).*
+        receiver: warning
+      # match then environment=*-dev to default
+      - match_re:
+          environment: .*(-dev).*
+        receiver: default
+
+receivers:
+  - name: 'default'
+    slack_configs:
+      - send_resolved: true
+        title_link: 'http://alertmanager.homedns.xyz/prometheus/alerts'
+        title: '{{ if eq .Status "firing" }}:confused:{{ else }}:sunglasses:{{ end }} [{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        text: "{{ range .Alerts }}*Description*: {{ .Annotations.description }}\n*Priority*: `{{ .Labels.severity | toUpper }}`\n{{ end }}"
+
+  - name: 'warning'
+    slack_configs:
+      - send_resolved: true
+        title_link: 'http://alertmanager.localdns.xyz/prometheus/alerts'
+        title: '{{ if eq .Status "firing" }}:flushed:{{ else }}:sunglasses:{{ end }} [{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        text: "{{ range .Alerts }}*Description*: {{ .Annotations.description }}\n*Priority*: `{{ .Labels.severity | toUpper }}`\n{{ end }}"
+
+  - name: 'critical'
+    slack_configs:
+      - send_resolved: true
+        title_link: 'http://alertmanager.localdns.xyz/prometheus/alerts'
+        title: '{{ if eq .Status "firing" }}:scream:{{ else }}:sunglasses:{{ end }} [{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        text: "{{ range .Alerts }}*Description*: {{ .Annotations.description }}\n*Priority*: `{{ .Labels.severity | toUpper }}`\n{{ end }}"
+    opsgenie_configs:
+      - send_resolved: true
+        http_config: {}
+        api_key: xx
+        api_url: https://api.eu.opsgenie.com/
+        message: '[{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        description: "{{ .CommonAnnotations.description }}\nMore Info:\n- Impact: {{ .CommonAnnotations.impact }}\n- Action: {{ .CommonAnnotations.action }}\n- Dashboard: {{ .CommonAnnotations.dashboard }}\n- Runbook: {{ .CommonAnnotations.runbook }}"
+        source: '{{ template "opsgenie.default.source" . }}'
+        responders:
+        - name: DevOps
+          type: team
+        priority: '{{ if .CommonAnnotations.priority }}{{ .CommonAnnotations.priority }}{{ else }}P3{{ end }}'
+        tags: 'monitoring, exporters, prometheus'
+        note: 'test-note'
+
+  - name: 'default-opsgenie'
+    opsgenie_configs:
+      - send_resolved: true
+        http_config: {}
+        api_key: xx
+        api_url: https://api.eu.opsgenie.com/
+        message: '{{ template "opsgenie.default.message" . }}'
+        description: '{{ template "opsgenie.default.description" . }}'
+        source: '{{ template "opsgenie.default.source" . }}'
+        responders:
+        - name: DevOps
+          type: team
+        priority: '{{ if .CommonAnnotations.priority }}{{ .CommonAnnotations.priority }}{{ else }}P3{{ end }}'
+        tags: 'test-tag, devops'
+        note: 'test-note'
