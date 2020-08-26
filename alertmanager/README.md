@@ -9,10 +9,14 @@ Alerts:
 - [Better alerts for Slack](https://medium.com/quiq-blog/better-slack-alerts-from-prometheus-49125c8c672b)
 - [Graph in Slack](https://stackoverflow.com/questions/52918312/customizing-prometheus-alertmanager-notifications-in-slack)
 
+Configs:
+
+- [Webhook config example](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861)
+
 Routing:
 
 - [Routing Alerts based on Severity Levels and Tags](https://rtfm.co.ua/en/prometheus-alertmanagers-alerts-receivers-and-routing-based-on-severity-level-and-tags/)
-
+- [Routing Alerts based on Alert name](https://www.reddit.com/r/PrometheusMonitoring/comments/dmzm1k/alertmanager_notifications_how_to_notify_only_on/)
 
 Setups:
 - [Setup Alertmanager with Ansible](https://itnext.io/prometheus-with-alertmanager-f2a1f7efabd6)
