@@ -13,7 +13,7 @@ Configs:
 
 - [Basic getting started example with Slack](https://gist.github.com/l13t/d432b63641b6972b1f58d7c037eec88f)
 - [Webhook config example](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861)
-
+- [Setup DeadManSwitch alert](https://www.noqcks.io/notes/2018/01/29/prometheus-alertmanager-deadmansswitch/)
 
 Routing:
 
