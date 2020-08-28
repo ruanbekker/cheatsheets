@@ -21,6 +21,7 @@
 - [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
 - [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
+- [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
 
 Setups:
 
