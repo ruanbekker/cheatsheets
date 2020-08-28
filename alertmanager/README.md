@@ -11,7 +11,9 @@ Alerts:
 
 Configs:
 
+- [Basic getting started example with Slack](https://gist.github.com/l13t/d432b63641b6972b1f58d7c037eec88f)
 - [Webhook config example](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861)
+
 
 Routing:
 
@@ -19,6 +21,7 @@ Routing:
 - [Routing Alerts based on Alert name](https://www.reddit.com/r/PrometheusMonitoring/comments/dmzm1k/alertmanager_notifications_how_to_notify_only_on/)
 
 Setups:
+- [Setup Alertmanager with manual call example](https://daenney.github.io/2018/04/21/setting-up-alertmanager)
 - [Setup Alertmanager with Ansible](https://itnext.io/prometheus-with-alertmanager-f2a1f7efabd6)
 
 
