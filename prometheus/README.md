@@ -249,6 +249,18 @@ Remove labels from a metric:
 sum without (age, country) (people_metrics)
 ```
 
+View top 10 biggest metrics by name:
+
+```
+topk(10, count by (__name__)({__name__=~".+"}))
+```
+
+View top 10 biggest metrics by name, job:
+
+```
+topk(10, count by (__name__, job)({__name__=~".+"}))
+```
+
 Remove / Replace:
 
 - https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
