@@ -1,5 +1,7 @@
 # Github Actions
 
+My scratchpad test repo for github actions is located at [ruanbekker/test-actions](https://github.com/ruanbekker/test-actions)
+
 ## Documentation
 
 - [Environment Variables](https://docs.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables)
