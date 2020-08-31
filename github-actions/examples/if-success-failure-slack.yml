@@ -1,0 +1,50 @@
+# this workflow will only trigger when the alertmanager directory is modified
+# and will only be trigger when merged to master
+name: alertmanager-deploys
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - 'alertmanager/*'
+
+jobs:
+  master:
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: run a single line
+        run: echo "${GITHUB_RUN_ID}"
+        env:
+          DUMMY_SECRET: ${{ secrets.DUMMY_SECRET }}
+
+      - name: run a multi line
+        run: |
+          echo "starting"
+          echo "finished"
+      
+      # https://github.com/marketplace/actions/github-action-for-slack
+      - name: Slack Notification on Success
+        # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions
+        # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
+        if: ${{ success() }}
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: AlertManager
+          SLACK_CHANNEL: builds-notifications
+          SLACK_AVATAR: repository # Optional. can be (repository, sender, an URL) (defaults to webhook app avatar)
+          SLACK_CUSTOM_PAYLOAD: '{"text":"[*SUCCESS*] Alertmanager from was deployed\n *Repo*: [{{ GITHUB_REPOSITORY }}]({{ GITHUB_REPOSITORY }})\n *User*: `{{ GITHUB_ACTOR }}`","username": "{{ GITHUB_ACTOR }}"}'
+        uses: Ilshidur/action-slack@master
+        
+      - name: Slack Notification on Failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: AlertManager
+          SLACK_CHANNEL: builds-notifications
+          SLACK_AVATAR: repository # Optional. can be (repository, sender, an URL) (defaults to webhook app avatar)
+          SLACK_CUSTOM_PAYLOAD: '{"text":"[*FAILURE*] Alertmanager from was not deployed\n *Repo*: [{{ GITHUB_REPOSITORY }}]({{ GITHUB_REPOSITORY }})\n *User*: `{{ GITHUB_ACTOR }}`","username": "{{ GITHUB_ACTOR }}"}'
+        uses: Ilshidur/action-slack@master
