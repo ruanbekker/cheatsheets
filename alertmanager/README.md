@@ -13,7 +13,7 @@ Configs:
 
 - [Basic getting started example with Slack](https://gist.github.com/l13t/d432b63641b6972b1f58d7c037eec88f)
 - [Webhook config example](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861)
-- [Setup DeadManSwitch alert](https://www.noqcks.io/notes/2018/01/29/prometheus-alertmanager-deadmansswitch/) and [DeadManSwitch Webhook Config](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861)
+- [Setup DeadManSwitch alert](https://www.noqcks.io/notes/2018/01/29/prometheus-alertmanager-deadmansswitch/) and [DeadManSwitch Webhook Config](https://github.com/prometheus/alertmanager/pull/444#issuecomment-428493861) and [Golang Webhook Example](https://medium.com/@zhimin.wen/custom-notifications-with-alert-managers-webhook-receiver-in-kubernetes-8e1152ba2c31)
 
 Routing:
 
