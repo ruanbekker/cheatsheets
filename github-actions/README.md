@@ -20,3 +20,4 @@ My scratchpad test repo for github actions is located at [ruanbekker/test-action
 - [github-actions-for-slack](https://github.com/marketplace/actions/github-action-for-slack)
 - [slack-action](https://github.com/abinoda/slack-action)
 - [actionable-notifications](https://github.com/slackapi/template-actionable-notifications)
+- [slack-pr-notifications](https://github.com/marketplace/actions/slack-pr-open-notification)
