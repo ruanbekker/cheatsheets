@@ -12,6 +12,14 @@ My Cheatsheet Repository - [https://blog.ruanbekker.com/cheatsheets/](https://bl
 
 Busy moving from: https://github.com/ruanbekker/awesome-list/tree/master/cheatsheets
 
+## Notes
+
+If you can't find what you are looking for, have a look at my other content:
+
+* [wiki.ruanbekker.com](https://wiki.ruanbekker.com)
+* [blog.ruanbekker.com](https://blog.ruanbekker.com)
+* [sysadmins.co.za](https://sysadmins.co.za)
+
 ## Index
 
 * [Alertmanager](alertmanager/README.md)
