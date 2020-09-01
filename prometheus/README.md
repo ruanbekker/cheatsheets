@@ -22,6 +22,7 @@
 - [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 - [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
+- [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
 
 Setups:
 
