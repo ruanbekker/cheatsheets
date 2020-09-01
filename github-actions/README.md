@@ -2,6 +2,10 @@
 
 My scratchpad test repo for github actions is located at [ruanbekker/test-actions](https://github.com/ruanbekker/test-actions)
 
+## External Repos
+
+- [@sdras awesome-actions](https://github.com/sdras/awesome-actions)
+
 ## Documentation
 
 - [Environment Variables](https://docs.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables)
