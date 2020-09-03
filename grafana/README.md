@@ -205,4 +205,52 @@ Lets say you only want the variable results to display jobs from `cluster-b`:
 label_values(up{cluster_name="cluster-b"}, job)
 ```
 
+**Regex**
+
+Let's say you have the following results for jobs:
+
+```
+qa/nginx
+qa/app
+qa/app-syslog
+qa/app-deploy
+prod/app
+prod/app-syslog
+prod/app-deploy
+```
+
+and you only want to display {env}/app,
+
+The query: 
+```
+label_values(labels, job)
+```
+
+The regex: 
+
+```
+/^(.*app)/
+```
+
+which results in:
+
+```
+qa/app
+prod/app
+```
+
+If you wanted everything after the `/`:
+
+```
+/.*(.*app.*).*/
+```
+
+which will result in:
+
+```
+app
+app-syslog 
+app-deploy
+```
+
 ### Queries for Prometheus
