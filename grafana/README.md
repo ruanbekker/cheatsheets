@@ -1,5 +1,6 @@
 # Grafana Cheatsheet
 
+- [Dashboards](#dashboards)
 - [CloudWatch](#datasource-cloudwatch)
   - [CloudWatch Datasource](#datasource-cloudwatch)
   - [CloudWatch Variables](#variables-for-cloudWatch)
@@ -15,6 +16,10 @@
   - [Prometheus Variables](#prometheus-variables)
   - [Prometheus Queries](#prometheus-queries)
 
+
+## Dashboards
+
+- [Loki](https://grafana.com/grafana/dashboards/12019)
 
 ## Datasource: CloudWatch
 
