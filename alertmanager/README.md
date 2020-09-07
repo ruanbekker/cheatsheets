@@ -8,6 +8,7 @@ Alerts:
 - [Basic Prometheus Alerts](https://alex.dzyoba.com/blog/prometheus-alerts/)
 - [Better alerts for Slack](https://medium.com/quiq-blog/better-slack-alerts-from-prometheus-49125c8c672b)
 - [Graph in Slack](https://stackoverflow.com/questions/52918312/customizing-prometheus-alertmanager-notifications-in-slack)
+- [Example Alerts 1](https://github.com/prometheus/alertmanager/issues/2220#issuecomment-612099644) | [Example Alerts 2](https://gist.github.com/Cellane/7ee4d8cb4b54eb245701605814350021)
 
 Configs:
 
