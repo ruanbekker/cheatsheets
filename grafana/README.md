@@ -253,4 +253,24 @@ app-syslog
 app-deploy
 ```
 
+For a example where you want to return everything up until the numbers, example:
+
+```
+ecs-prod-app-10-container-12345
+ecs-dev-app-12-container-12345
+```
+
+you can use:
+
+```
+/^(.*?)-[0-9]/
+```
+
+which will result in:
+
+```
+ecs-prod-app
+ecs-dev-app
+```
+
 ### Queries for Prometheus
