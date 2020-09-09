@@ -90,3 +90,15 @@ using positive lookbehind:
 this is [foo] bar
 (?<=\[)[\w+.-]*
 ```
+
+Match everything up until `abc` but dont include it:
+
+```
+/^(.*?)abc/
+```
+
+Or numbers:
+
+```
+/^(.*?)[0-9]/
+```
