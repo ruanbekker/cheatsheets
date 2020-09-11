@@ -1,5 +1,9 @@
 # nginx cheatsheet
 
+## External
+
+- https://rtfm.co.ua/en/http-redirects-post-and-get-requests-and-lost-data/
+
 ## Configs
 
 Bare bones website:
