@@ -11,7 +11,7 @@ i-xxxxxxxxxxx
 
 Get the private ipv4 address:
 
-``
+```
 $ curl -s http://169.254.169.254/latest/meta-data/local-ipv4
 172.31.50.37
 ```
