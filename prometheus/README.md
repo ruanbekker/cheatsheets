@@ -32,6 +32,12 @@ Setups:
 
 - [Simulating AWS Tags in Local Prometheus](https://ops.tips/blog/simulating-aws-tags-in-local-prometheus/)
 
+## Curated Examples
+
+Example queries per exporter / service:
+
+- [Node Metrics](metric_examples/NODE_METRICS.md)
+
 ## Example Queries
 
 How many nodes are up?
