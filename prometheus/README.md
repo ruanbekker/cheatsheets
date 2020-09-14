@@ -1,36 +1,9 @@
 # Prometheus Cheatsheets
 
+- [Curated Examples](#curated-examples)
 - [Example Queries](#example-queries)
 - [Scrape Configs](#scrape-config)
-
-## External Sources:
-
-- [Prometheus](https://prometheus.io/docs/querying/basics/)
-- [PromQL for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
-- [Prometheus 101](https://medianetlab.gr/prometheus-101/)
-- [Biggest Metrics](https://www.robustperception.io/which-are-my-biggest-metrics)
-- [Top Metrics](https://github.com/grafana/grafana/issues/6561)
-- [Ordina-Jworks](https://ordina-jworks.github.io/monitoring/2016/09/23/Monitoring-with-Prometheus.html)
-- [Infinity Works](https://github.com/infinityworks/prometheus-example-queries)
-- [Prometheus Relabeling Tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
-- [@Valyala: PromQL Tutorial for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
-- [@Jitendra: PromQL Cheat Sheet](https://github.com/jitendra-1217/promql.cheat.sheet)
-- [InfinityWorks: Prometheus Example Queries](https://github.com/infinityworks/prometheus-example-queries/blob/master/README.md)
-- [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/)
-- [SectionIO: Prometheus Querying](https://www.section.io/blog/prometheus-querying/)
-- [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
-- [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
-- [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
-- [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
-- [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
-
-Dashboarding:
-
-- [@devconnected Disk IO Dashboarding](https://devconnected.com/monitoring-disk-i-o-on-linux-with-the-node-exporter/)
-
-Setups:
-
-- [Simulating AWS Tags in Local Prometheus](https://ops.tips/blog/simulating-aws-tags-in-local-prometheus/)
+- [Extarnal Sources](#external-sources)
 
 ## Curated Examples
 
@@ -418,3 +391,31 @@ query:
 label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)
 ```
 
+## External Sources
+
+- [Prometheus](https://prometheus.io/docs/querying/basics/)
+- [PromQL for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
+- [Prometheus 101](https://medianetlab.gr/prometheus-101/)
+- [Biggest Metrics](https://www.robustperception.io/which-are-my-biggest-metrics)
+- [Top Metrics](https://github.com/grafana/grafana/issues/6561)
+- [Ordina-Jworks](https://ordina-jworks.github.io/monitoring/2016/09/23/Monitoring-with-Prometheus.html)
+- [Infinity Works](https://github.com/infinityworks/prometheus-example-queries)
+- [Prometheus Relabeling Tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
+- [@Valyala: PromQL Tutorial for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
+- [@Jitendra: PromQL Cheat Sheet](https://github.com/jitendra-1217/promql.cheat.sheet)
+- [InfinityWorks: Prometheus Example Queries](https://github.com/infinityworks/prometheus-example-queries/blob/master/README.md)
+- [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/)
+- [SectionIO: Prometheus Querying](https://www.section.io/blog/prometheus-querying/)
+- [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
+- [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
+- [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
+- [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
+- [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
+
+Dashboarding:
+
+- [@devconnected Disk IO Dashboarding](https://devconnected.com/monitoring-disk-i-o-on-linux-with-the-node-exporter/)
+
+Setups:
+
+- [Simulating AWS Tags in Local Prometheus](https://ops.tips/blog/simulating-aws-tags-in-local-prometheus/)
