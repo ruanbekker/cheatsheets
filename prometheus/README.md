@@ -3,7 +3,7 @@
 - [Curated Examples](#curated-examples)
 - [Example Queries](#example-queries)
 - [Scrape Configs](#scrape-config)
-- [Extarnal Sources](#external-sources)
+- [External Sources](#external-sources)
 
 ## Curated Examples
 
