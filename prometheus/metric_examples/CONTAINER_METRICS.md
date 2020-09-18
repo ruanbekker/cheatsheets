@@ -6,7 +6,7 @@ Examples for Prometheus focused on Container Level Metrics, scraped from cadviso
 
 This is used on a ECS Cluster with the following:
 
-1. cadvisor running on the cluster
+1. cadvisor running on the cluster with this [cadvisor_taskdef.json](https://github.com/ruanbekker/cheatsheets/blob/master/ecs/task-definitions/cadvisor_taskdef.json)
 2. prometheus scrape config with:
 
 ```
