@@ -30,3 +30,11 @@ Label: Service Name
 Type: Query
 Values: label_values(container_cpu_load_average_10s{cluster_name=~"$cluster_name"}, container_label_com_amazonaws_ecs_container_name)
 ```
+
+## Memory
+
+Used memory per container:
+
+```
+sum(container_memory_rss{name=~".+", cluster_name=~"$cluster_name", container_label_com_amazonaws_ecs_container_name=~"$service_name"}) by (name, container_label_com_amazonaws_ecs_container_name, container_label_com_amazonaws_ecs_cluster)
+```
