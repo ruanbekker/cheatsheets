@@ -2,7 +2,36 @@
 
 Examples for Prometheus focused on Container Level Metrics, scraped from cadvisor.
 
-## Variables
+## Requirements
+
+This is used on a ECS Cluster with the following:
+
+1. cadvisor running on the cluster
+2. prometheus scrape config with:
+
+```
+  # cadvisor
+  - job_name: container-metrics
+    scrape_interval: 15s
+    ec2_sd_configs:
+    - region: eu-west-1
+      role_arn: 'arn:aws:iam::xxxxxxxxxxxx:role/prometheus-ec2-role'
+      port: 9100
+      filters:
+        - name: tag:PrometheusContainerScrape
+          values:
+            - Enabled
+    relabel_configs:
+    - source_labels: [__meta_ec2_private_ip]
+      replacement: '${1}:8080'
+      target_label: __address__
+    - source_labels: [__meta_ec2_tag_Name]
+      target_label: instance
+    - source_labels: [__meta_ec2_tag_ECSClusterName]
+      target_label: cluster_name
+```
+
+## Grafana Variables
 
 Interval:
 
@@ -31,7 +60,11 @@ Type: Query
 Values: label_values(container_cpu_load_average_10s{cluster_name=~"$cluster_name"}, container_label_com_amazonaws_ecs_container_name)
 ```
 
-## CPU
+## Example Prometheus Queries
+
+Queries used in Grafana
+
+### CPU
 
 Used CPU Utilization per container (graph):
 
@@ -45,7 +78,7 @@ Used CPU Utilization aggregated by service (guage):
 sum(sum(rate(container_cpu_usage_seconds_total{name=~".+", cluster_name=~"$cluster_name", container_label_com_amazonaws_ecs_container_name=~"$service_name"}[$interval])) by ( container_label_com_amazonaws_ecs_container_name) * 100)
 ```
 
-## Memory
+### Memory
 
 Used memory per container (graph):
 
@@ -59,7 +92,7 @@ Used memory aggregated by service (guage):
 sum(sum(container_memory_rss{name=~".+", cluster_name=~"$cluster_name", container_label_com_amazonaws_ecs_container_name=~"$service_name"}) by (name, container_label_com_amazonaws_ecs_container_name, container_label_com_amazonaws_ecs_cluster))
 ```
 
-## Network
+### Network
 
 Incoming Network Traffic per Container (graph):
 
