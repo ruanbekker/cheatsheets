@@ -26,6 +26,18 @@ rate(node_vmstat_pgmajfault{instance="my-instance-name"}[1m])
 
 ## Disk
 
+Disk Space Available in bytes:
+
+```
+node_filesystem_avail_bytes{instance=~"my-ec2-instance",job=~"node-exporter",mountpoint="/"}
+```
+
+Disk Space Available in Percentage:
+
+```
+(node_filesystem_avail_bytes{mountpoint="/", instance=~"my-ec2-instance"}  * 100) / node_filesystem_size_bytes{mountpoint="/", instance=~"my-ec2-instance"} 
+```
+
 Disk Latencies:
 
 ```
