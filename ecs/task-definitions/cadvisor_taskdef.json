@@ -1,0 +1,89 @@
+{
+  "family": "cadvisor",
+  "containerDefinitions": [
+    {
+      "name": "cadvisor",
+      "image": "google/cadvisor",
+      "memoryReservation": 256,
+      "portMappings":[
+        {
+          "protocol":"tcp",
+          "containerPort":8080,
+          "hostPort":8080
+        }
+      ],
+      "essential": true,
+      "privileged": true,
+      "mountPoints": [
+        {
+          "sourceVolume": "root",
+          "containerPath": "/rootfs",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "var_run",
+          "containerPath": "/var/run",
+          "readOnly": false
+        },
+        {
+          "sourceVolume": "sys",
+          "containerPath": "/sys",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "var_lib_docker",
+          "containerPath": "/var/lib/docker",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "dev_disk",
+          "containerPath": "/dev/disk",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "cgroup",
+          "containerPath": "/sys/fs/cgroup",
+          "readOnly": true
+        }
+      ]
+    }
+  ],
+  "volumes": [
+    {
+      "host" : {
+        "sourcePath" : "/"
+      },
+      "name" : "root"
+    },
+    {
+      "host" : {
+        "sourcePath" : "/var/run"
+      },
+      "name" : "var_run"
+    },
+    {
+      "host" : {
+        "sourcePath" : "/sys"
+      },
+      "name" : "sys"
+    },
+    {
+      "host" : {
+        "sourcePath" : "/var/lib/docker"
+      },
+      "name" : "var_lib_docker"
+    },
+    {
+      "host" : {
+        "sourcePath" : "/dev_disk"
+      },
+      "name" : "dev_disk"
+    },
+    {
+      "host" : {
+        "sourcePath" : "/cgroup"
+      },
+      "name" : "cgroup"
+    }
+  ]
+}
