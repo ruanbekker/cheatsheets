@@ -252,6 +252,14 @@ View all metrics for a specific job:
 {__name__=~".+", job="node-exporter"}
 ```
 
+Website uptime with blackbox-exporter:
+
+```
+# https://www.robustperception.io/what-percentage-of-time-is-my-service-down-for
+
+avg_over_time(probe_success{job="node"}[15m]) * 100
+```
+
 Remove / Replace:
 
 - https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
