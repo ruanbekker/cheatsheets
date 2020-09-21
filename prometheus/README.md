@@ -421,7 +421,7 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 - [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
 - [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
-
+- [Prometheus AWS Cross Account ec2_sd_config](https://jarodw.com/posts/prometheus-ec2-sd-multiple-aws-accounts/)
 Dashboarding:
 
 - [@devconnected Disk IO Dashboarding](https://devconnected.com/monitoring-disk-i-o-on-linux-with-the-node-exporter/)
