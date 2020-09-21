@@ -53,3 +53,11 @@ Network Trhoughput
 irate(node_network_receive_bytes_total{instance="my-instance-name"}[5m]) * 8
 irate(node_network_transmit_bytes_total{instance="my-instance-name}[5m]) * 8
 ```
+
+## Uptime
+
+Node Uptime:
+
+```
+node_time_seconds{instance="my-ec2-instance",job="node-exporter"} - node_boot_time_seconds{instance="my-ec2-instance",job="node-exporter"}
+```
