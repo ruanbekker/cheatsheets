@@ -7,6 +7,8 @@
 - https://www.gitmemory.com/issue/grafana/loki/748/534945463 (drop logs from something)
 - https://github.com/cyriltovena/loki/blob/master/docs/clients/promtail/stages/match.md#example (drop logs from match)
 - https://www.youtube.com/watch?v=bIAC0uQee0k (using promtail with loki)
+- https://grafana.com/docs/loki/latest/clients/promtail/scraping/
+- https://grafana.com/blog/2020/07/13/loki-tutorial-how-to-set-up-promtail-on-aws-ec2-to-find-and-analyze-your-logs/
 
 ## Current Issues
 
