@@ -1,4 +1,5 @@
 ## Examples
+- https://sbcode.net/grafana/install-promtail-service/
 - https://www.bookstack.cn/read/loki/clients-promtail-pipelines.md
 - https://github.com/grafana/loki/issues/333#issuecomment-570651075 (parsing labels from log tag)
 - https://docs.docker.com/config/containers/logging/configure/      (^ related) 
