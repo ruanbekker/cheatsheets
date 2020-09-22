@@ -100,3 +100,9 @@ Last 10 lines:
 ```
 $ logcli query '{job="dev/dockerlogs"}' --last 10
 ```
+
+Piping:
+
+```
+$ logcli query '{job="dev/dockerlogs"} |= "error"' | grep -i message
+```
