@@ -7,7 +7,13 @@
 ## Dashboards for Grafana
 - https://grafana.com/grafana/dashboards/12019
 
-## Usage
+## Get Started
+
+You can refer to the following to get your loki stack up and running:
+- https://blog.ruanbekker.com/blog/2020/08/13/getting-started-on-logging-with-loki-using-docker/
+- https://grafana.com/docs/loki/latest/installation/
+
+## Logging Clients
 
 Install the [loki docker driver](https://grafana.com/docs/loki/latest/clients/docker-driver/):
 
@@ -15,7 +21,32 @@ Install the [loki docker driver](https://grafana.com/docs/loki/latest/clients/do
 $ sudo docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 ```
 
-Configure the daemon.json
+### Using it in your compose
+
+To use it in your `docker-compose.yml`
+
+```
+version: '3.7'
+services:
+  website:
+    image: nginx
+    container_name: website
+    restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: http://192.168.0.4:3100/loki/api/v1/push
+        loki-external-labels: job=dockerlogs,stack=nginx
+        loki-pipeline-stages: |
+          - regex:
+              expression: '(level|lvl|severity)=(?P<level>\w+)'
+          - labels:
+              level:
+```
+
+### Default Log Driver
+
+Or if you want to have all the containers log to loki by default, configure the daemon.json
 
 ```
 $ cat /etc/docker/daemon.json
@@ -35,3 +66,7 @@ Restart the service:
 ```
 $ sudo systemctl restart docker
 ```
+
+## LogCLI
+
+View the [logcli](logcli/README.md) cheatsheet to use the terminal to view your logs
