@@ -108,3 +108,7 @@ Piping:
 ```
 $ logcli query '{job="dev/dockerlogs"} |= "error"' | grep -i message
 ```
+
+## More
+
+For more detailed tutorials have a look at my blog at [blog.ruanbekker.com](https://blog.ruanbekker.com/blog/archives/)
