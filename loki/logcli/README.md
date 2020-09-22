@@ -1,5 +1,7 @@
 # LogCLI
 
+Go [here](../README.md) to setup Loki
+
 ## Install
 
 Install the binary:
