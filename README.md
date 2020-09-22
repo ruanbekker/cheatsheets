@@ -50,6 +50,7 @@ If you can't find what you are looking for, have a look at my other content:
 * [JQ](jq/README.md)
 * [Kubernetes](kubernetes/README.md)
 * [Loki](loki/README.md)
+  * [LogCLI](loki/logcli/README.md)
 * [MongoDB](mongodb/README.md)
 * [MySQL](mysql/README.md)
 * [Neo4j-Cypher](neo4j-cypher/README.md)
