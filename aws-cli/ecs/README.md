@@ -6,6 +6,14 @@
 $ aws --profile default ecs register-task-definition --cli-input-json file://taskdef.json
 ```
 
+## Describe ECS Service
+
+Get the running count of containers for a given service:
+
+```
+$ aws --profile default ecs describe-services --cluster $cluster_name --services $service_name | jq -r '.services[].runningCount'
+```
+
 ## Update ECS Service
 
 Update ECS Service to the latest task definition revision:
