@@ -6,12 +6,34 @@
 $ aws --profile default ecs register-task-definition --cli-input-json file://taskdef.json
 ```
 
+## List ECS Clusters
+
+List ECS Clusters for a given profile:
+
+```
+$ aws --profile default ecs list-clusters
+```
+
+## List ECS Services
+
+List ECS Services for a given ECS Cluster:
+
+```
+$ aws --profile default ecs list-services --cluster $cluster_name
+```
+
 ## Describe ECS Service
 
 Get the running count of containers for a given service:
 
 ```
 $ aws --profile default ecs describe-services --cluster $cluster_name --services $service_name | jq -r '.services[].runningCount'
+```
+
+Get the task definition revision for a given service:
+
+```
+$ aws --profile default ecs describe-services --cluster $cluster_name --services $service_name | jq -r '.services[].taskDefinition'
 ```
 
 ## Update ECS Service
