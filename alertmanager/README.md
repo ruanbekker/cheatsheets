@@ -2,6 +2,10 @@
 
 ## External References
 
+Tools:
+
+- [Slack Alert Builder](https://juliusv.com/promslack/)
+
 Alerts:
 
 - [Awesome Prometheus Rules for Alertmanager](https://awesome-prometheus-alerts.grep.to/rules.html)
@@ -9,7 +13,7 @@ Alerts:
 - [Better alerts for Slack](https://medium.com/quiq-blog/better-slack-alerts-from-prometheus-49125c8c672b)
 - [Graph in Slack](https://stackoverflow.com/questions/52918312/customizing-prometheus-alertmanager-notifications-in-slack)
 - [Example Config, Alert, Template](https://gist.github.com/Cellane/7ee4d8cb4b54eb245701605814350021)
-- [Example Alerts 1](https://github.com/prometheus/alertmanager/issues/2220#issuecomment-612099644) | [Example Alerts 2](https://gist.github.com/Cellane/7ee4d8cb4b54eb245701605814350021) | [Example Alert 3 (context switches)](https://stackoverflow.com/a/56735484)
+- [Example Alerts 1](https://github.com/prometheus/alertmanager/issues/2220#issuecomment-612099644) | [Example Alerts 2](https://gist.github.com/Cellane/7ee4d8cb4b54eb245701605814350021) | [Example Alert 3 (context switches)](https://stackoverflow.com/a/56735484) | [Example Alert 4 (slack)](https://infinityworks.com/insights/slack-prometheus-alertmanager/)
 
 Configs:
 
