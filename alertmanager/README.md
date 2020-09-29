@@ -25,6 +25,7 @@ Routing:
 
 - [Routing Alerts based on Severity Levels and Tags](https://rtfm.co.ua/en/prometheus-alertmanagers-alerts-receivers-and-routing-based-on-severity-level-and-tags/)
 - [Routing Alerts based on Alert name](https://www.reddit.com/r/PrometheusMonitoring/comments/dmzm1k/alertmanager_notifications_how_to_notify_only_on/)
+- [Route Alerts to Multiple Destinations](https://www.robustperception.io/sending-alert-notifications-to-multiple-destinations)
 
 Setups:
 - [Setup Alertmanager with manual call example](https://daenney.github.io/2018/04/21/setting-up-alertmanager)
