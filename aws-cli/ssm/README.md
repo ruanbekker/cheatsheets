@@ -1,5 +1,11 @@
 ## SSM AWS CLI Cheatsheet
 
+Put SSM Parameter:
+
+```
+$ aws --profile dev ssm put-parameter --type 'String' --name "/my-service/dev/DATABASE_NAME" --value "test"
+```
+
 Get SSM Parameters by Path:
 
 ```
