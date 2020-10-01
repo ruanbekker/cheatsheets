@@ -1,0 +1,64 @@
+{
+  "family": "app-with-sidecar-container",
+  "taskRoleArn": "arn:aws:iam::000000000000:role/aws-dev-ecs-task-role",
+  "executionRoleArn": "arn:aws:iam::000000000000:role/aws-dev-ecs-exec-role",
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "containerDefinitions": [
+    {
+      "name": "proxy",
+      "image": "proxy-image:latest",
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "environment": [
+        {
+          "name": "APP_URL",
+          "value": "http://app:5000"
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/app-with-sidecar-container/dev/APP_SECRET",
+          "name": "APP_SECRET"
+        }
+      ],
+      "memoryReservation": 256,
+      "stopTimeout": 30,
+      "startTimeout": 30,
+      "essential": true,
+      "links": [
+        "app"
+      ]
+    },
+    {
+      "name": "app",
+      "image": "app-image:latest",
+      "memoryReservation": 128,
+      "essential": true,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/app-with-sidecar-container/dev/DB_DATABASE",
+          "name": "DB_DATABASE"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/app-with-sidecar-container/dev/DB_HOST",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/app-with-sidecar-container/dev/DB_PASSWORD",
+          "name": "DB_PASSWORD"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/app-with-sidecar-container/dev/DB_USERNAME",
+          "name": "DB_USERNAME"
+        }
+      ]
+    }
+  ]
+}
