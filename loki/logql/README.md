@@ -23,3 +23,7 @@ sum by (query) (avg_over_time({job="dev/app"} |= "caller=metrics.go" | logfmt | 
 ```
 {compose_service="loki", job="dockerlogs"} | logfmt | read >= 0
 ```
+
+```
+{compose_service="loki",job="dockerlogs"} | logfmt | read >= 0 | line_format "{{.level}}"
+```
