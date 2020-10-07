@@ -10,6 +10,11 @@ Terraform Examples:
 - [Kulasangar - AWS with IAM Policies Example](https://github.com/Kulasangar/terraform-demo)
 - [AWS with IAM Policy Exampe #2](https://gist.github.com/ruanbekker/63ec1871ec3c6051a0d0cb75156e93bd)
 
+Terraform with Ansible Examples:
+
+- [Terraform with Ansible Example #1](https://github.com/ramitsurana/terraform-ansible-setup)
+- [Terraform with Ansible Example #2](https://github.com/insight-infrastructure/terraform-ansible-playbook)
+
 Terraform States:
 
 - [gruntwork.io - Manage Terraform State](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa)
