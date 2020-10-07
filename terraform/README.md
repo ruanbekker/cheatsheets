@@ -14,6 +14,7 @@ Terraform with Ansible Examples:
 
 - [Terraform with Ansible Example #1](https://github.com/ramitsurana/terraform-ansible-setup)
 - [Terraform with Ansible Example #2](https://github.com/insight-infrastructure/terraform-ansible-playbook)
+- [Using a JumpHost in Ansible with Terraform](https://leftasexercise.com/2019/12/23/using-ansible-with-a-jump-host/)
 
 Terraform States:
 
