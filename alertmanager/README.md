@@ -31,6 +31,7 @@ Routing:
 Setups:
 - [Setup Alertmanager with manual call example](https://daenney.github.io/2018/04/21/setting-up-alertmanager)
 - [Setup Alertmanager with Ansible](https://itnext.io/prometheus-with-alertmanager-f2a1f7efabd6)
+- [Log Monitoring and Alerting with Loki](https://www.infracloud.io/blogs/grafana-loki-log-monitoring-alerting/)
 
 Tooling:
 - [Webhook for Alertmanager](https://github.com/bakins/alertmanager-webhook-example)
