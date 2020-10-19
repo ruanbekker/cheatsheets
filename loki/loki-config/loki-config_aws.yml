@@ -2,7 +2,7 @@ auth_enabled: false
 
 server:
   http_listen_port: 3100
-  http_listen_address: 0.0.0.0
+  http_listen_address: 127.0.0.1
   http_server_read_timeout: 1000s
   http_server_write_timeout: 1000s
   http_server_idle_timeout: 1000s
