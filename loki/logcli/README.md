@@ -109,6 +109,18 @@ Piping:
 $ logcli query '{job="dev/dockerlogs"} |= "error"' | grep -i message
 ```
 
+Suppress log labels:
+
+```
+$ logcli query -q '{job="dev/dockerlogs"}'
+```
+
+Change output:
+
+```
+$ logcli query -o raw '{job="dev/dockerlogs"}'
+```
+
 ## More
 
 For more detailed tutorials have a look at my blog at [blog.ruanbekker.com](https://blog.ruanbekker.com/blog/archives/)
