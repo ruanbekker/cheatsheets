@@ -32,6 +32,8 @@ Setups:
 - [Setup Alertmanager with manual call example](https://daenney.github.io/2018/04/21/setting-up-alertmanager)
 - [Setup Alertmanager with Ansible](https://itnext.io/prometheus-with-alertmanager-f2a1f7efabd6)
 
+Tooling:
+- [Webhook for Alertmanager](https://github.com/bakins/alertmanager-webhook-example)
 
 ## API Calls
 
