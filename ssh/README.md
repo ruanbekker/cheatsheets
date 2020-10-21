@@ -51,6 +51,14 @@ Host target-b
     ProxyCommand ssh -o 'ForwardAgent yes' jump-host 'ssh-add && nc %h %p'
 ```
 
+### Method 3
+
+One liner:
+
+```
+ssh -i ~/.ssh/target.pem -o ProxyCommand="ssh -W %h:%p -i ~/.ssh/id_rsa -q ubuntu@bastion.domain" ubuntu@target.domain
+```
+
 ### Resources
 
 - [Bastion ProxyJump](https://www.redhat.com/sysadmin/ssh-proxy-bastion-proxyjump)
