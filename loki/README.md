@@ -68,6 +68,12 @@ Restart the service:
 $ sudo systemctl restart docker
 ```
 
+To test with a container:
+
+```
+$ docker run --rm -it --log-driver loki --log-opt loki-url="https://x:x@loki.domain.com/loki/api/v1/push" --log-opt loki-external-labels="job=debug/dockerlogs" hello-world
+```
+
 ## LogCLI
 
 View the [logcli](logcli/README.md) cheatsheet to use the terminal to view your logs
