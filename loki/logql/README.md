@@ -4,6 +4,14 @@
 
 - https://github.com/grafana/loki/blob/master/docs/logql.md#filter-expression
 
+## logql examples
+
+Log events per container_name:
+
+```
+sum by(container_name) (rate({job="prod/dockerlogs"}[1m]))
+```
+
 ## logql-parser
 
 From [ctovena/loki:logql-parser-5e0238e](https://hub.docker.com/layers/ctovena/loki/logql-parser-5e0238e/images/sha256-a326d3329c25729b111216bdb0bddb4b8e976a40954c8be4c5396f36a5fb4f23?context=explore)
