@@ -35,3 +35,10 @@ sum by (query) (avg_over_time({job="dev/app"} |= "caller=metrics.go" | logfmt | 
 ```
 {compose_service="loki",job="dockerlogs"} | logfmt | read >= 0 | line_format "{{.level}}"
 ```
+
+```
+{container_name=~"ecs-.*-nginx-.*"} 
+| json 
+| status=~"(200|4..)" and request_length>250 and request_method!="POST" and xff=~"(54.*|34.*)" 
+| line_format "ReqMethod: {{.request_method}}, Status: {{.status}}, UserAgent: {{.http_user_agent}} Args: {{.args}} , ResponseTime: {{.responsetime}}"
+```
