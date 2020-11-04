@@ -418,6 +418,7 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
   - [RobustPerception: Understanding Machine CPU Usage](https://www.robustperception.io/understanding-machine-cpu-usage)
   - [RobustPerception: Common Query Patterns](https://www.robustperception.io/common-query-patterns-in-promql)
   - [RobustPerception: Website Uptime](https://www.robustperception.io/what-percentage-of-time-is-my-service-down-for)
+  - [RobustPerception: Prometheus Histogram](https://www.robustperception.io/how-does-a-prometheus-histogram-work)
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 - [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
 - [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
