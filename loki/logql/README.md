@@ -3,6 +3,7 @@
 ## Other Examples
 
 - https://github.com/grafana/loki/blob/master/docs/logql.md#filter-expression
+- https://medium.com/grafana-tutorials/logql-in-grafana-loki-ffc822a65f59
 
 ## logql examples
 
