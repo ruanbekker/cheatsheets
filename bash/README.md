@@ -91,6 +91,19 @@ else
 fi
 ```
 
+or:
+
+```
+NAME=${1}
+if [ -z ${NAME} ]
+  then
+    echo NAME is undefined
+    exit 1
+  else
+    echo "Hi ${NAME}"
+fi
+```
+
 ## Check if environment variables exists
 
 ```
