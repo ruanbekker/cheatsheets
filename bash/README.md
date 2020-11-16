@@ -137,6 +137,23 @@ kill $!
 sleep 2
 ```
 
+## Functions
+
+```
+message(){
+    NAME=${1}
+    echo "Hi ${NAME}"
+}
+```
+
+or pass all args:
+
+```
+message(){
+    echo "Hi $@"
+}
+```
+
 ## Redirecting Outputs
 
 ### Stdout, Stderr 
