@@ -1,0 +1,48 @@
+{
+  "family": "nginx-loki-logs",
+  "executionRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecs-task-role",
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "nginx:latest",
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "memoryReservation": 256,
+      "stopTimeout": 30,
+      "startTimeout": 60,
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awsfirelens",
+        "options": {
+          "RemoveKeys": "container_id,ecs_task_arn",
+          "LineFormat": "key_value",
+          "Labels": "{job=\"prod/dockerlogs\", service=\"nginx-web\", environment=\"prod\"}",
+          "LabelKeys": "container_name,ecs_task_definition,source,ecs_cluster",
+          "Url": "https://x:x@loki.mydomain.com/loki/api/v1/push",
+          "Name": "loki"
+        }
+      }
+    },
+    {
+      "name": "log_router",
+      "memoryReservation": 50,
+      "image": "grafana/fluent-bit-plugin-loki:latest",
+      "firelensConfiguration": {
+        "type": "fluentbit",
+        "options": {
+          "enable-ecs-log-metadata": "true"
+        }
+      },
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "EC2"
+  ]
+}
