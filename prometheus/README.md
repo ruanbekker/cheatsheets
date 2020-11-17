@@ -416,6 +416,7 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
 - [Prometheus](https://prometheus.io/docs/querying/basics/)
 - [PromQL for Beginners](https://medium.com/@valyala/promql-tutorial-for-beginners-9ab455142085)
 - [Prometheus 101](https://medianetlab.gr/prometheus-101/)
+- [Section.io: Prometheus Querying](https://www.section.io/blog/prometheus-querying/)
 - [Biggest Metrics](https://www.robustperception.io/which-are-my-biggest-metrics)
 - [Top Metrics](https://github.com/grafana/grafana/issues/6561)
 - [Ordina-Jworks](https://ordina-jworks.github.io/monitoring/2016/09/23/Monitoring-with-Prometheus.html)
