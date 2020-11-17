@@ -182,3 +182,22 @@ Redirect both to a file:
 grep -irl faker . &> file.log
 ```
 
+## Manipulating Text
+
+### Remove first 3 characters
+
+```
+$ STRING="abcdefghij"
+$ echo ${STRING:3}
+defghij
+```
+
+### Only show last 3 characters
+
+With tail to only show the last 3 characters:
+
+```
+$ STRING="abcdefghij"
+$ echo ${STRING} | tail -c 4
+hij
+```
