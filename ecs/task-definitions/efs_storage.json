@@ -1,0 +1,47 @@
+{
+    "family": "nginx-with-efs",
+    "executionRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecs-exec-role",
+    "taskRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecs-task-role",
+    "requiresCompatibilities":[
+        "EC2"
+    ],
+    "containerDefinitions": [
+        {
+            "name": "nginx-json",
+            "image": "ruanbekker/nginx-demo:json",
+            "memory": 128,
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 0,
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "mountPoints": [
+                {
+                    "containerPath": "/usr/share/nginx/html",
+                    "sourceVolume": "efs-html"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/tools/efs-nginx-json",
+                    "awslogs-region": "eu-west-1",
+                    "awslogs-stream-prefix": "logs",
+                    "awslogs-create-group": "true"
+                }
+            }
+        }
+    ],
+    "volumes": [
+        {
+            "name": "efs-html",
+            "efsVolumeConfiguration": {
+                "fileSystemId": "fs-xxxxxxxx",
+                "rootDirectory": "/efs-html"
+            }
+        }
+    ]
+}
