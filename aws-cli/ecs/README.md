@@ -85,3 +85,8 @@ Update ECS Service to 3 replicas:
 $ aws --profile default ecs update-service --cluster $cluster_name --service $service_name --desired-count 3
 ```
 
+Update ECS Service to use Capacity Providers:
+
+```
+$ aws --profile default ecs update-service --cluster $cluster_name --service $service_name --capacity-provider-strategy='[{"capacityProvider": "ondemand-capacity", "weight": 0, "base": 1},{"capacityProvider": "spot-capacity", "weight": 100, "base": 0}]' --force-new-deployment
+```
