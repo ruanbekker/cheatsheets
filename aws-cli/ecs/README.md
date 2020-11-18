@@ -71,6 +71,14 @@ $ aws --profile default ecs describe-tasks --tasks 00000000-0000-0000-0000-00000
 Fetching secret data from SSM Parameter Store in eu-west-1: invalid parameters: /demo/dev/MY_INVALID_PARAMETER
 ```
 
+## Create ECS Service
+
+Create a ECS Service and specifying a Capacity Provider:
+
+```
+$ aws --profile default ecs create-service --cluster $cluster_name --service-name $service_name --task-definition mytaskdef:1 --desired-count 1 --scheduling-strategy "REPLICA" --capacity-provider-strategy='[{"capacityProvider": "ondemand-capacity","weight": 0, "base": 1},{"capacityProvider": "spot-capacity", "weight": 100, "base": 0}]'
+```
+
 ## Update ECS Service
 
 Update ECS Service to the latest task definition revision:
