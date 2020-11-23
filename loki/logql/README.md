@@ -43,3 +43,15 @@ sum by (query) (avg_over_time({job="dev/app"} |= "caller=metrics.go" | logfmt | 
 | status=~"(200|4..)" and request_length>250 and request_method!="POST" and xff=~"(54.*|34.*)" 
 | line_format "ReqMethod: {{.request_method}}, Status: {{.status}}, UserAgent: {{.http_user_agent}} Args: {{.args}} , ResponseTime: {{.responsetime}}"
 ```
+
+Using regex, this line:
+
+```
+1.2.3.4 - - [23/Nov/2020:17:31:00 +0200] "POST /foo/bar?token=x.x HTTP/1.1" 201 83 "http://localhost/" "Mozilla/5.0 (Linux; Android 10; Nokia 6.1 Build/x.x.x; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/x.0.x.110 Mobile Safari/537.36" "1.2.3.4"
+```
+
+With regex:
+
+```
+{job="prod/logs"} |~ "foo" | regexp "(?P<ip>\\d+.\\d+.\\d+.\\d+) (.*) (.*) (?P<date>\\[(.*)\\]) (\")(?P<verb>(\\w+)) (?P<request_path>([^\"]*)) (?P<http_ver>([^\"]*))(\") (?P<status_code>\\d+) (?P<bytes>\\d+) (\")(?P<referrer>(([^\"]*)))(\") (\")(?P<user_agent>(([^\"]*)))(\")"
+```
