@@ -7,6 +7,42 @@
 
 ## logql examples
 
+View all logs for dev/logs:
+
+```
+{job="dev/logs"}
+```
+
+View loglines for a specific filename for dev/logs:
+
+```
+{job="dev/logs", filename="/var/log/app.log"}
+```
+
+Search for logs that has the exact match "This is a test":
+
+```
+{job="dev/logs"} |= "This is a test"
+```
+
+Similar as above, but dont include exact match "testerId=123":
+
+```
+{job="dev/logs"} |= "This is a test" != "testerId=123"
+```
+
+Similar as above, and include a contains match for anything starting with "accountId=000":
+
+```
+{job="dev/logs"} |= "This is a test" != "testerId=123" |~ "accountId=000"
+```
+
+Similar as above, but exclude test with deviceId=001 and deviceId=209:
+
+```
+{job="dev/logs"} |= "This is a test" |= "accountId=000" !~ "deviceId=(001|209)"
+```
+
 Log events per container_name:
 
 ```
@@ -43,6 +79,8 @@ sum by (query) (avg_over_time({job="dev/app"} |= "caller=metrics.go" | logfmt | 
 | status=~"(200|4..)" and request_length>250 and request_method!="POST" and xff=~"(54.*|34.*)" 
 | line_format "ReqMethod: {{.request_method}}, Status: {{.status}}, UserAgent: {{.http_user_agent}} Args: {{.args}} , ResponseTime: {{.responsetime}}"
 ```
+
+## Regex
 
 Using regex, this line:
 
