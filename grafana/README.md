@@ -199,11 +199,16 @@ up{job=~"$job"}
 
 **Filtered**
 
-Lets say you only want the variable results to display jobs from `cluster-b`:
+Lets say you only want the variable results to display jobs from `cluster-b` and call it `cluster_b_jobs`:
 
 ```
+label: cluster_b_jobs
 label_values(up{cluster_name="cluster-b"}, job)
 ```
+
+Now we can also use that variable for something else to filter more, like `label_values(metric{jobs=~"$cluster_b_jobs"}, some_label)`
+
+You can use this to get environments, then filter on resources as example.
 
 **Regex**
 
