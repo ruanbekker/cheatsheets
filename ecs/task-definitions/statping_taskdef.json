@@ -1,0 +1,81 @@
+{
+  "family": "statping",
+  "executionRoleArn":"arn:aws:iam::000000000000:role/ecs-exec-role",
+  "taskRoleArn":"arn:aws:iam::000000000000:role/ecs-task-role",
+  "containerDefinitions": [
+    {
+      "name": "statping",
+      "image": "statping/statping:latest",
+      "memoryReservation": 256,
+      "portMappings":[
+        {
+          "protocol":"tcp",
+          "containerPort":8080,
+          "hostPort":0
+        }
+      ],
+      "environment": [
+        {
+          "name": "DB_CONN",
+          "value": "mysql"
+        },
+        {
+          "name": "SAMPLE_DATA",
+          "value": "false"
+        },
+        {
+          "name": "IS_DOCKER",
+          "value": "true"
+        },
+        {
+          "name": "STATPING_DIR",
+          "value": "/app"
+        },
+        {
+          "name": "PORT",
+          "value": "8080"
+        },
+        {
+          "name": "SASS",
+          "value": "/usr/local/bin/sassc"
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/statping/prod/DATABASE_HOSTNAME",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/statping/prod/DATABASE_USERNAME",
+          "name": "DB_USER"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/statping/prod/DATABASE_NAME",
+          "name": "DB_DATABASE"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/statping/prod/DATABASE_PASSWORD",
+          "name": "DB_PASS"
+        }
+      ],
+      "essential": true,
+      "privileged": true,
+      "mountPoints": [
+        {
+          "containerPath": "/app",
+          "sourceVolume": "statping-data",
+          "readOnly": false
+        }
+      ]
+    }
+  ],
+  "volumes": [
+    {
+      "name": "statping-data",
+      "efsVolumeConfiguration": {
+         "fileSystemId": "fs-00000000",
+         "rootDirectory": "/statping/data"
+      }
+    }
+  ]
+}
