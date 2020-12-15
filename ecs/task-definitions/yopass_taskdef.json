@@ -1,0 +1,34 @@
+{
+  "family": "yopass",
+  "executionRoleArn":"arn:aws:iam::000000000000:role/ecs-exec-role",
+  "taskRoleArn":"arn:aws:iam::000000000000:role/ecs-task-role",
+  "containerDefinitions": [
+    {
+      "name": "yopass-ui",
+      "image": "jhaals/yopass:latest",
+      "memoryReservation": 256,
+      "portMappings":[
+        {
+          "protocol":"tcp",
+          "containerPort":1337,
+          "hostPort":0
+        }
+      ],
+      "essential": true,
+      "privileged": true,
+      "links": [
+        "yopass-cache"
+      ],
+      "command": [
+        "--memcached=yopass-cache:11211"
+      ]
+    },
+    {
+      "name": "yopass-cache",
+      "image": "memcached:latest",
+      "memoryReservation": 256,
+      "essential": true,
+      "privileged": true
+    }
+  ]
+}
