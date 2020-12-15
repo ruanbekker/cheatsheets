@@ -1,0 +1,101 @@
+{
+  "family": "grafana",
+  "executionRoleArn":"arn:aws:iam::000000000000:role/ecs-exec-role",
+  "taskRoleArn":"arn:aws:iam::000000000000:role/ecs-task-role",
+  "containerDefinitions": [
+    {
+      "name": "grafana",
+      "image": "grafana/grafana:7.3.4",
+      "memoryReservation": 512,
+      "portMappings":[
+        {
+          "protocol":"tcp",
+          "containerPort":3000,
+          "hostPort":0
+        }
+      ],
+      "environment": [
+        {
+          "name": "AWS_DEFAULT_REGION",
+          "value": "eu-west-1"
+        },
+        {
+          "name": "GF_AWS_PROFILES",
+          "value": "default"
+        },
+        {
+          "name": "GF_AWS_default_REGION",
+          "value": "eu-west-1"
+        },
+        {
+          "name": "GF_PATHS_PROVISIONING",
+          "value": "/etc/grafana/provisioning"
+        },
+        {
+          "name": "GF_INSTALL_PLUGINS",
+          "value": "grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,camptocamp-prometheus-alertmanager-datasource"
+        },
+        {
+          "name": "GF_SERVER_ROOT_URL",
+          "value": "https://grafana.domain.com"
+        },
+        {
+          "name": "GF_SERVER_DOMAIN",
+          "value": "domain.com"
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/grafana/prod/AWS_ACCESS_KEY_ID",
+          "name": "GF_AWS_default_ACCESS_KEY_ID"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:000000000000:parameter/grafana/prod/AWS_SECRET_ACCESS_KEY",
+          "name": "GF_AWS_default_SECRET_ACCESS_KEY"
+        }
+      ],
+      "essential": true,
+      "privileged": true,
+      "mountPoints": [
+        {
+          "containerPath": "/var/lib/grafana",
+          "sourceVolume": "grafana-data",
+          "readOnly": false
+        },
+        {
+          "containerPath": "/etc/grafana/provisioning",
+          "sourceVolume": "grafana-provisioning",
+          "readOnly": false
+        },
+        {
+          "containerPath": "/etc/grafana/dashboards",
+          "sourceVolume": "grafana-dashboards",
+          "readOnly": false
+        }
+      ]
+    }
+  ],
+  "volumes": [
+    {
+      "name": "grafana-data",
+      "efsVolumeConfiguration": {
+         "fileSystemId": "fs-00000000",
+         "rootDirectory": "/grafana/data"
+      }
+    },
+    {
+      "name": "grafana-provisioning",
+      "efsVolumeConfiguration": {
+         "fileSystemId": "fs-00000000",
+         "rootDirectory": "/grafana/provisioning"
+      }
+    },
+    {
+      "name": "grafana-dashboards",
+      "efsVolumeConfiguration": {
+         "fileSystemId": "fs-00000000",
+         "rootDirectory": "/grafana/dashboards"
+      }
+    }
+  ]
+}
