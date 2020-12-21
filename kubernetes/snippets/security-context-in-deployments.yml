@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dind
+  labels:
+    app: dind
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dind
+  template:
+    metadata:
+      labels:
+        app: dind
+    spec:
+      containers:
+      - name: dind-daemon
+        image: docker:stable-dind
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: 500m
+            memory: "128Mi"
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - name: docker-graph-storage
+            mountPath: /var/lib/docker
+          - name: docker-socket-dir
+            mountPath: /var/run
+      volumes:
+        - name: docker-graph-storage
+          emptyDir: {}
+        - name: docker-socket-dir
+          emptyDir: {}
