@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dind
+  labels:
+    app: dind
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dind
+  template:
+    metadata:
+      labels:
+        app: dind
+    spec:
+      containers:
+      - name: docker-cmds
+        image: docker:19.03.14
+        command: ['docker', 'run', 'alpine', 'tail', '-f', '/dev/null']
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "256Mi"
+        env:
+          - name: DOCKER_HOST
+            value: unix:///var/run/docker.sock
+          - name: DOCKER_TLS_CERTDIR
+            value: ""
+        volumeMounts:
+          - name: docker-socket-dir
+            mountPath: /var/run
+      - name: dind-daemon
+        image: docker:stable-dind
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: 500m
+            memory: "128Mi"
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - name: docker-graph-storage
+            mountPath: /var/lib/docker
+          - name: docker-socket-dir
+            mountPath: /var/run
+      volumes:
+        - name: docker-graph-storage
+          emptyDir: {}
+        - name: docker-socket-dir
+          emptyDir: {}
