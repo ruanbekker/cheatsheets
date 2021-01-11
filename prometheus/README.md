@@ -11,7 +11,7 @@
 - Counter: A counter metric always increases
 - Gauge: A gauge metric can increase or decrease
 - Histogram: A histogram metric can increase or descrease
-- [source](https://opensource.com/article/18/4/metrics-monitoring-and-python)
+- [Source and Statistics 101](https://opensource.com/article/18/4/metrics-monitoring-and-python)
 
 ## Curated Examples
 
