@@ -1,9 +1,17 @@
 # Prometheus Cheatsheets
 
+- [Basics](#basics)
 - [Curated Examples](#curated-examples)
 - [Example Queries](#example-queries)
 - [Scrape Configs](#scrape-config)
 - [External Sources](#external-sources)
+
+## Basics
+
+- Counter: A counter metric always increases
+- Gauge: A gauge metric can increase or decrease
+- Histogram: A histogram metric can increase or descrease
+- [source](https://opensource.com/article/18/4/metrics-monitoring-and-python)
 
 ## Curated Examples
 
