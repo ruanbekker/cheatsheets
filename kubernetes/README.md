@@ -1,3 +1,13 @@
+# Kubernetes Cheatsheet
+
+
+- [Components](#components)
+- [Nodes](#nodes)
+- [Pods](#pods)
+- [Deployments](#deployments)
+- [Logs](#logs)
+- [Troubleshooting](#troubleshooting)
+
 ### Components
 
 |Name|Description|
@@ -266,6 +276,66 @@ Show pods, sort output by restarts:
 
 ```
 kubectl get pods --sort-by="{.status.containerStatuses[:1].restartCount}"
+```
+
+### Troubleshooting
+
+Let's look at a pod:
+
+```
+$ kubectl get pods -o wide
+pistack-blog-7cddc5b979-grbv4              0/1     ContainerCreating   0          4m47s   <none>        rpi-03   <none>           <none>
+```
+
+We can see it's been in a `ContainerCreating` state for some time, we can have a look at the logs:
+
+```
+$ kubectl logs -f pod/pistack-blog-7cddc5b979-grbv4
+Error from server (BadRequest): container "ghost" in pod "pistack-blog-7cddc5b979-grbv4" is waiting to start: ContainerCreating
+```
+
+Let's describe the pod to see whats currently happening:
+
+```
+$ kubectl describe pod/pistack-blog-7cddc5b979-grbv4
+Name:         pistack-blog-7cddc5b979-grbv4
+Namespace:    default
+...
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  8m21s  default-scheduler  Successfully assigned default/pistack-blog-7cddc5b979-grbv4 to rpi-03
+  Normal  Pulling    8m20s  kubelet            Pulling image "alexellis2/ghost-on-docker:armv6"
+```
+
+We can see that the it's currently pulling the image from the registry, let's try again after a minute or so:
+
+```
+$ kubectl describe pod/pistack-blog-7cddc5b979-grbv4
+Name:         pistack-blog-7cddc5b979-grbv4
+Namespace:    default
+...
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  8m21s  default-scheduler  Successfully assigned default/pistack-blog-7cddc5b979-grbv4 to rpi-03
+  Normal  Pulling    8m20s  kubelet            Pulling image "alexellis2/ghost-on-docker:armv6"
+  Normal  Pulled     10s    kubelet            Successfully pulled image "alexellis2/ghost-on-docker:armv6"
+  Normal  Created    6s     kubelet            Created container ghost
+  Normal  Started    4s     kubelet            Started container ghost
+```
+
+We can also look at our nodes utilization, should we thought it was resource related:
+
+```
+$ kubectl top nodes
+NAME     CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+rpi-01   163m         4%     303Mi           32%
+rpi-02   229m         5%     318Mi           34%
+rpi-03   276m         6%     330Mi           35%
+rpi-05   1107m        27%    2222Mi          57%
+rpi-06   298m         7%     467Mi           12%
+rpi-07   238m         5%     416Mi           10%
 ```
 
 ### Resources:
