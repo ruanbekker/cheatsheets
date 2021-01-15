@@ -419,6 +419,12 @@ query:
 label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)
 ```
 
+## Application Instrumentation
+
+### Python Flask
+
+- [@ramdesh flask-prometheus-grafana-example](https://github.com/ramdesh/flask-prometheus-grafana-example)
+
 ## External Sources
 
 - [Prometheus](https://prometheus.io/docs/querying/basics/)
