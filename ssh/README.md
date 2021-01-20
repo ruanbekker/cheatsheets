@@ -113,7 +113,7 @@ Now when you try to access port 8080 locally, you will see that we can reach por
 
 ```
 $ nc -vz localhost 8080
-Connection to localhost port 9100 [tcp/*] succeeded!
+Connection to localhost port 8080 [tcp/*] succeeded!
 ```
 
 ### Resources
