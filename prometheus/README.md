@@ -81,6 +81,12 @@ CPU Utilization offset with 24hours ago:
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle", instance="my-instance"}[5m] offset 24h)) * 100 )
 ```
 
+CPU Utilization per Core:
+
+```
+( (1 - rate(node_cpu_seconds_total{job="node-exporter", mode="idle", instance="$instance"}[$__interval])) / ignoring(cpu) group_left count without (cpu)( node_cpu_seconds_total{job="node-exporter", mode="idle", instance="$instance"}) ) 
+```
+
 CPU Utilization by Node:
 
 ```
