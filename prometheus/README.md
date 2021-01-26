@@ -290,6 +290,19 @@ Remove / Replace:
 
 - https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
 
+Client Request Counts:
+
+```
+irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m])
+```
+
+Client Response Time:
+
+```
+irate(http_client_requests_seconds_sum{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m]) / 
+irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m])
+```
+
 ## Scrape Config
 
 Relabel configs:
