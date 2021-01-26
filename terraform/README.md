@@ -2,6 +2,10 @@
 
 ## Resources
 
+Terraform Tutorials:
+
+- [@codeaprendiz terraform-kitchen](https://github.com/codeaprendiz/terraform-kitchen)
+
 Terraform Examples:
 
 - [rtfm.co.ua - AWS Examples](https://rtfm.co.ua/en/terraform-main-commands-state-files-backend-storages-and-modules-in-examples-on-aws/)
