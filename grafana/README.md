@@ -20,6 +20,7 @@
 ## Dashboards
 
 - [Loki](https://grafana.com/grafana/dashboards/12019)
+- [JVM Micrometer](https://grafana.com/grafana/dashboards/4701)
 
 ## Datasource: CloudWatch
 
