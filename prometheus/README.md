@@ -99,6 +99,12 @@ Memory Available by Node:
 node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_info)
 ```
 
+Load Average in percentage:
+
+```
+avg(node_load1{instance=~"$name", job=~"$job"}) /  count(count(node_cpu_seconds_total{instance=~"$name", job=~"$job"}) by (cpu)) * 100
+```
+
 Disk Available by Node:
 
 ```
