@@ -105,6 +105,14 @@ Load Average in percentage:
 avg(node_load1{instance=~"$name", job=~"$job"}) /  count(count(node_cpu_seconds_total{instance=~"$name", job=~"$job"}) by (cpu)) * 100
 ```
 
+Load Average (average per instance_id: lets say the metric has 2 identical label values but are different):
+
+```
+avg by (instance_id, instance) (node_load1{job=~"node-exporter", aws_environment="dev", instance="debug-dev"})
+# {instance="debug-dev",instance_id="i-aaaaaaaaaaaaaaaaa"}
+# {instance="debug-dev",instance_id="i-bbbbbbbbbbbbbbbbb"}
+```
+
 Disk Available by Node:
 
 ```
