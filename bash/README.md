@@ -137,6 +137,40 @@ kill $!
 sleep 2
 ```
 
+### Run until state changes within ttl
+
+```
+UPDATE_COMPLETE=false
+UPDATE_STATUS=running
+COUNT=0
+while [ ${UPDATE_COMPLETE} == false ]
+    do
+        if [ $count -gt 10 ]
+            then
+                echo "timed out"
+                exit 1
+        fi
+
+        if [ ${UPDATE_STATUS} == running ] 
+            then
+                echo "still running"
+                sleep 1
+                COUNT=$((COUNT+1))
+                if [ $count == 7 ]
+                    then
+                        UPDATE_COMPLETE=true
+                fi
+        elif [ ${UPDATE_STATUS} == successful ]
+            then
+                UPDATE_COMPLETE=successful
+        else
+            echo "unexpected update response"
+            exit 1
+        fi
+    done
+echo "complete"
+```
+
 ## Functions
 
 ```
