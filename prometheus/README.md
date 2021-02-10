@@ -292,6 +292,12 @@ View all metrics for a specific job:
 {__name__=~".+", job="node-exporter"}
 ```
 
+View all metrics for more than one job using vector selectors
+
+```
+{__name__=~".+", job=~"traefik|cadvisor|prometheus"}
+```
+
 Website uptime with blackbox-exporter:
 
 ```
