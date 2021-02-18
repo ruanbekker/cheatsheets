@@ -24,6 +24,13 @@ $ echo 'foo - bar' | tr -d '[:space:]'
 foo-bar
 ```
 
+Convert to uppercase:
+
+```
+$ echo 'HeLLo' | tr '[:lower:]' '[:upper:]'
+HELLO
+```
+
 ## One Liners
 
 ### Block Bad IPs
