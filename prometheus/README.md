@@ -138,6 +138,12 @@ sum(rate(node_network_receive_bytes_total[1m])) by (device, instance) * on(insta
 sum(rate(node_network_transmit_bytes_total[1m])) by (device, instance) * on(instance) group_left(nodename) (node_uname_info)
 ```
 
+Process Restarts:
+
+```
+changes(process_start_time_seconds{job=~".+"}[15m])
+```
+
 Histogram:
 
 ```
