@@ -144,6 +144,12 @@ Process Restarts:
 changes(process_start_time_seconds{job=~".+"}[15m])
 ```
 
+Container Cycling:
+
+```
+(time() - container_start_time_seconds{job=~".+"}) < 60
+```
+
 Histogram:
 
 ```
