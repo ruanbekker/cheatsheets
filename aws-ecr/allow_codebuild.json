@@ -1,0 +1,20 @@
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "CodeBuildAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::xxxxxxxxxxxx:root"
+        ],
+        "Service": "codebuild.amazonaws.com"
+      },
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+      ]
+    }
+  ]
+}
