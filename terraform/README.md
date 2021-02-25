@@ -13,6 +13,7 @@ Terraform Examples:
 - [Jeff Geerling - Mac Playbook Examples](https://github.com/geerlingguy/mac-dev-playbook)
 - [Kulasangar - AWS with IAM Policies Example](https://github.com/Kulasangar/terraform-demo)
 - [AWS with IAM Policy Exampe #2](https://gist.github.com/ruanbekker/63ec1871ec3c6051a0d0cb75156e93bd)
+- [phillipsj.net Terraform Blogposts](https://www.phillipsj.net/tags/terraform/)
 
 Terraform with Ansible Examples:
 
