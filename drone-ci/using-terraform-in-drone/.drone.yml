@@ -1,0 +1,56 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: setup-aws-credentials
+  image: busybox 
+  environment:
+    AWS_CREDENTIALS:
+      from_secret: AWS_CREDENTIALS
+  commands:
+  - mkdir -p $$DRONE_WORKSPACE/.aws
+  - echo $${AWS_CREDENTIALS} | base64 -d > $$DRONE_WORKSPACE/.aws/credentials
+  - chmod 0400 $$DRONE_WORKSPACE/.aws/credentials
+  volumes:
+  - name: cache
+    path: /tmp
+
+- name: create-test-file
+  image: busybox
+  commands:
+  - echo $$DRONE_COMMIT > infra/test.txt
+  volumes:
+  - name: cache
+    path: /tmp
+
+- name: terraform-init
+  image: hashicorp/terraform:light 
+  commands:
+  - terraform -chdir=./infra init
+  volumes:
+  - name: cache
+    path: /tmp
+
+- name: terraform-plan
+  image: hashicorp/terraform:light 
+  commands:
+  - terraform -chdir=./infra plan
+  volumes:
+  - name: cache
+    path: /tmp
+
+# to promote step see:
+# https://vitobotta.com/2019/10/09/ci-cd-with-drone-for-deployment-to-kubernetes-with-helm/
+- name: terraform-apply
+  image: hashicorp/terraform:light 
+  commands:
+  - terraform -chdir=./infra apply -input=false -auto-approve
+  volumes:
+  - name: cache
+    path: /tmp
+
+volumes:
+- name: cache
+  temp: {}
