@@ -1,0 +1,28 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "RequiredSQS",
+            "Effect": "Allow",
+            "Action": [
+                "sqs:GetQueueUrl",
+                "sqs:ChangeMessageVisibility",
+                "sqs:ReceiveMessage",
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes"
+            ],
+            "Resource": [
+                "arn:aws:sqs:eu-west-1:xxxxxxxxxxxx:dev-request-queue",
+                "arn:aws:sqs:eu-west-1:xxxxxxxxxxxx:dev-response-queue"
+            ]
+        },
+        {
+            "Sid": "ListQueues",
+            "Effect": "Allow",
+            "Action": [
+                "sqs:ListQueues"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
