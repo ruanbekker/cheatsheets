@@ -85,8 +85,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./docker-example/configs/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./docker-example/configs/rules/host_alert_rules.yml:/etc/prometheus/rules/host_alert_rules.yml
-      - ./docker-example/configs/rules/healtcheck_alert.rules:/etc/prometheus/rules/healtcheck_alert_rules.yml
+      - ./docker-example/configs/host_alert_rules.yml:/etc/prometheus/rules/host_alert_rules.yml
       - ./data/prometheus:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
