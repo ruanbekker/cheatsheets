@@ -173,6 +173,7 @@ services:
     volumes:
       - ./data/loki:/tmp/loki
       - ./docker-example/configs/loki.yml:/mnt/loki-local-config.yaml
+      - ./docker-example/configs/loki-rules.yml:/etc/loki/rules/fake/loki-rule.yaml
     ports:
       - 3100:3100
     labels:
