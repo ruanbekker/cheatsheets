@@ -15,6 +15,7 @@ Terraform Examples:
 - [AWS with IAM Policy Exampe #2](https://gist.github.com/ruanbekker/63ec1871ec3c6051a0d0cb75156e93bd)
 - [phillipsj.net Terraform Blogposts](https://www.phillipsj.net/tags/terraform/)
 - [Deploy EKS with Terraform](https://medium.com/4th-coffee/the-real-eks-anywhere-in-terraform-51fdf4a2ab59)
+- [ECS with Terraform](https://github.com/alex/ecs-terraform)
 
 Terraform with Ansible Examples:
 
