@@ -7,6 +7,7 @@
 - [Deployments](#deployments)
 - [Logs](#logs)
 - [Troubleshooting](#troubleshooting)
+- [Resources](#resources)
 
 ### Components
 
