@@ -4,6 +4,7 @@
 - [Curated Examples](#curated-examples)
 - [Example Queries](#example-queries)
 - [Scrape Configs](#scrape-config)
+- [Recording Rules](#recording-rules)
 - [External Sources](#external-sources)
 
 ## Basics
@@ -470,6 +471,10 @@ query:
 label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$manager_node_id"},container_label_com_docker_stack_namespace)
 ```
 
+## Recording Rules
+
+- [@deploy.live's Recording Rules Post](https://deploy.live/blog/today-i-learned-prometheus-recording-rules/)
+
 ## Application Instrumentation
 
 ### Python Flask
@@ -511,6 +516,7 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
 Dashboarding:
 - [Alerting on Missing Labels and Metrics](https://niravshah2705.medium.com/prometheus-alert-for-missing-metrics-and-labels-afd4b8f12b1)
 - [@devconnected Disk IO Dashboarding](https://devconnected.com/monitoring-disk-i-o-on-linux-with-the-node-exporter/)
+- [@deploy.live recording rules](https://deploy.live/blog/today-i-learned-prometheus-recording-rules/)
 
 Setups:
 
