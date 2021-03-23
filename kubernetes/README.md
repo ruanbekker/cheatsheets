@@ -345,3 +345,7 @@ Kubectl Output Formatting:
 
 Kubernetes Cheatsheet:
 - https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+CI/CD with Kubernets:
+- https://platform9.com/blog/kubernetes-for-ci-cd-at-scale/
+- https://www.weave.works/technologies/cicd-tools/
