@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Effect": "Allow",
+        "Action": [
+          "ecr:GetAuthorizationToken",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:PutImage"
+        ],
+        "Resource": [
+          "arn:aws:ecr:eu-west-1:xxxxxxxxxxxx:repository/myrepo"
+        ]
+      }
+    ]
+}
