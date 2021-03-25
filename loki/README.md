@@ -68,7 +68,17 @@ Restart the service:
 $ sudo systemctl restart docker
 ```
 
-To test with a container:
+To test with a container, you dont need to set the log driver, as it will be the default:
+
+```
+$ docker run --rm -it --name foobar12 alpine echo hi
+```
+
+And the logs in loki:
+
+![image](https://user-images.githubusercontent.com/567298/112482859-279f9700-8d81-11eb-8a23-19a1b447c2c9.png)
+
+If the `daemon.json` is left as default, to specify the docker logging driver:
 
 ```
 $ docker run --rm -it --log-driver loki --log-opt loki-url="https://x:x@loki.domain.com/loki/api/v1/push" --log-opt loki-external-labels="job=debug/dockerlogs" hello-world
