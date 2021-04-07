@@ -19,12 +19,15 @@ Terraform Examples:
 - [Cross Account VPC Peering](https://chandarachea.medium.com/vpc-peering-connetion-with-terraform-c4522a24bf3e)
 - [VPC Peering with AWS](https://medium.com/tensult/vpc-peering-using-terraform-105d554ed04d)
 - [Multiple AWS Examples](https://github.com/tensult/terraform/tree/master/aws)
+- [AWS API Gateway](https://github.com/comtravo/terraform-aws-api-gateway)
+- [API GW: Moving from Serverless Framework](https://sysgears.com/articles/moving-lambda-function-from-serverless-to-terraform/)
+- [Nodejs API GW with Lambda](https://github.com/TailorDev/hello-lambda)
 
 Terraform with Ansible Examples:
 
 - [Terraform with Ansible Example #1](https://github.com/ramitsurana/terraform-ansible-setup)
 - [Terraform with Ansible Example #2](https://github.com/insight-infrastructure/terraform-ansible-playbook)
-- [Using a JumpHost in Ansible with Terraform](https://leftasexercise.com/2019/12/23/using-ansible-with-a-jump-host/)
+- [Using a JumpHost in Ansible with Terraform](https://leftasexercise.com/2019/12/23/using-ansible-with-a-jump-host/) | [Lambda Auto Package](https://github.com/nozaq/terraform-aws-lambda-auto-package)
 
 Terraform States:
 
