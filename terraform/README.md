@@ -16,6 +16,7 @@ Terraform Examples:
 - [phillipsj.net Terraform Blogposts](https://www.phillipsj.net/tags/terraform/)
 - [Deploy EKS with Terraform](https://medium.com/4th-coffee/the-real-eks-anywhere-in-terraform-51fdf4a2ab59)
 - [ECS with Terraform](https://github.com/alex/ecs-terraform)
+- [Cross Account VPC Peering](https://chandarachea.medium.com/vpc-peering-connetion-with-terraform-c4522a24bf3e)
 - [VPC Peering with AWS](https://medium.com/tensult/vpc-peering-using-terraform-105d554ed04d)
 - [Multiple AWS Examples](https://github.com/tensult/terraform/tree/master/aws)
 
