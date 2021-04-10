@@ -23,6 +23,10 @@ Terraform Examples:
 - [API GW: Moving from Serverless Framework](https://sysgears.com/articles/moving-lambda-function-from-serverless-to-terraform/)
 - [Nodejs API GW with Lambda](https://github.com/TailorDev/hello-lambda)
 
+Learn Guides:
+
+- [Hashicorp Terraform Modules](https://learn.hashicorp.com/collections/terraform/modules)
+
 Terraform with Ansible Examples:
 
 - [Terraform with Ansible Example #1](https://github.com/ramitsurana/terraform-ansible-setup)
