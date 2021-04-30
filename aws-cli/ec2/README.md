@@ -50,6 +50,13 @@ $ aws --profile dev ec2 describe-instances --query 'Reservations[*].Instances[?P
 ]
 ```
 
+Show the EC2 Instances Tag:Name value:
+
+```
+$ aws --region eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" --query 'Tags[?Key==`Name`].Value' --output text
+my-ec2-instance
+```
+
 ### Security Groups
 
 Describe Security Group:
