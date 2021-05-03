@@ -37,6 +37,14 @@ aws --profile default ec2 run-instances --image-id ${AWS_AMI_ID} --count 1 \
      --user-data file://userdata.txt
 ```
 
+#### AMI
+
+Create a AMI:
+
+```
+$ aws --profile dev ec2 create-image --instance-id $INSTANCE_ID --name "test-ami_$(date +%F)" --description "test ami created on $(date +%F)" --no-reboot
+```
+
 #### Query
 
 Get the EC2 InstanceID by Tag Name:
