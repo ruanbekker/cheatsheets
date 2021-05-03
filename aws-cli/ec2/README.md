@@ -43,6 +43,14 @@ Create a AMI:
 
 ```
 $ aws --profile dev ec2 create-image --instance-id $INSTANCE_ID --name "test-ami_$(date +%F)" --description "test ami created on $(date +%F)" --no-reboot
+ami-xxxxxxxx
+```
+
+Describe AMI Creation Status:
+
+```
+$ aws --profile dev ec2 describe-images --image-ids ami-xxxxxxxx --query "Images[*].{State:State}" --output text
+# pending (or available)
 ```
 
 #### Query
