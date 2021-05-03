@@ -39,6 +39,13 @@ aws --profile default ec2 run-instances --image-id ${AWS_AMI_ID} --count 1 \
 
 #### Query
 
+Get the EC2 InstanceID by Tag Name:
+
+```
+$ aws --profile dev ec2 describe-instances --filters "Name=tag:Name,Values=test-instance" --query "Reservations[*].Instances[*].{Instance:InstanceId}" --output text
+i-07043caxxxxxxxxxx
+```
+
 Show InstanceId, State, PrivateDnsName of a given PrivateDnsName:
 
 ```
