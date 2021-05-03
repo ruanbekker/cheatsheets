@@ -1,5 +1,22 @@
 # git cheatsheet
 
+## Config
+
+Set globals:
+
+```
+# git config --global --edit
+```
+
+Then your config should look like:
+
+```
+$ cat ~/.gitconfig
+[user]
+	name = Ruan Bekker
+	email = <user>@<domain>
+```
+
 ## Display branch
 
 Display branch for gitref:
