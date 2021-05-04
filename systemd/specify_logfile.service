@@ -1,0 +1,14 @@
+[Unit]
+Description=Promtail
+
+[Service]
+User=root
+WorkingDirectory=/opt/promtail/
+ExecStart=/opt/promtail/promtail-linux-amd64 --config.file=./ec2-promtail.yaml
+#StandardOutput=file:/var/log/service.log
+#StandardError=file:/var/log/service.err
+StandardOutput=append:/var/log/service.log
+StandardError=append:/var/log/service.err
+
+[Install]
+WantedBy=multi-user.target
