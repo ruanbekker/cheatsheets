@@ -41,6 +41,18 @@ CREATE TABLE fruits(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL)
 INSERT INTO fruits(id,name) VALUES(DEFAULT,'Apple');
 ```
 
+Backup Database:
+
+```
+pg_dump -h 127.0.0.1 -U postgres -p 5432 dbname > dbname.bak
+```
+
+Restore Database:
+
+```
+psql -h dbname.x.eu-west-1.rds.amazonaws.com -U postgres dbname < dbname.bak
+```
+
 Resources:
 
 - https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps--2
