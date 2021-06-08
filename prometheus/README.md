@@ -70,6 +70,12 @@ Average Memory Available for Last 5 Minutes:
 avg_over_time(node_memory_MemAvailable_bytes[5m])/1024/1024
 ```
 
+Memory Usage in Percent:
+
+```
+100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[10m]) + avg_over_time(node_memory_Cached_bytes[10m]) + avg_over_time(node_memory_Buffers_bytes[10m])) / avg_over_time(node_memory_MemTotal_bytes[10m])))
+```
+
 CPU Utilization:
 
 ```
