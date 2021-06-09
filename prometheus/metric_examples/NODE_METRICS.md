@@ -2,6 +2,14 @@
 
 Examples for Prometheus focused on Node Level Metrics.
 
+## System Load
+
+System Load in Percantage Value:
+
+```
+avg(node_load1{instance="my-instance-name",job="node-exporter"}) /  count(count(node_cpu_seconds_total{instance="my-instance-name",job="node-exporter"}) by (cpu)) * 100
+```
+
 ## CPU
 
 CPU Utilization:
