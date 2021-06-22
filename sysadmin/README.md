@@ -1,3 +1,30 @@
+## Command Line
+
+### mkdir
+
+To create sub directories even if the parent directories dont exist:
+
+```
+$ mkdir -p /tmp/foo/bar/this/dir
+```
+
+To create multiple directories with one command, to achieve:
+
+```
+/disk1/ebooks/category-tech
+/disk1/ebooks/category-motivation
+/disk2/ebooks/category-tech
+/disk2/ebooks/category-motivation
+/disk3/ebooks/category-tech
+/disk3/ebooks/category-motivation
+```
+
+You can do:
+
+```
+mkdir -p /disk{1..5}/ebooks/category-{tech,motivation}
+```
+
 ## Memory
 
 * **Free** memory is the amount of memory which is currently not used for anything. This number should be small, because memory which is not used is simply wasted.
