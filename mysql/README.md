@@ -257,6 +257,14 @@ Insert data into our domain table
 mysql> INSERT INTO domains (domain,owner,year_registered) VALUES("example.com", "John", 2019);
 ```
 
+## Update Data
+
+To update a students age and language where the student_id is something specific:
+
+```
+mysql> UPDATE students SET age = 30, language = 'english' WHERE student_id = 'fz9203493043';
+```
+
 ## Information Schema
 
 Show me idle connections:
