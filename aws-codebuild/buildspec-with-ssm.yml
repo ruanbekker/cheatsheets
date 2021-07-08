@@ -1,0 +1,36 @@
+version: 0.2
+
+env:
+  environment:
+    aws_region: "eu-west-1"
+    container_name: "test"
+    repository_url: "xxxxxxxxxxxx"
+  parameter-store:
+    dockerhub_username: "/devops/dev/DOCKERHUB_USERNAME"
+    dockerhub_password: "/devops/dev/DOCKERHUB_PASSWORD"
+
+phases:
+  pre_build:
+    commands:
+      - echo logging into Dockerhub as upstream not yet using gallery.ecr.aws
+      - docker login -u $dockerhub_username -p $dockerhub_password
+      - echo logging into ECR
+      - $(aws ecr get-login --region $aws_region --no-include-email)
+      - REPOSITORY_URI=${repository_url}
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+  build:
+    commands:
+      - echo build started on $(date)
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo build completed on $(date)
+      - echo pushing the docker images
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo writing image definitions file for deployment
+      - printf '[{"name":"$container_name","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+    
+artifacts:
+  files: imagedefinitions.json
