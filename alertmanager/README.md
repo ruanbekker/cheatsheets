@@ -17,6 +17,9 @@ Alerts:
 - [Deadmans Switch](https://jpweber.io/blog/taking-advantage-of-deadmans-switch-in-prometheus/)
 - [Continue Routes in Alertmanager](https://stackoverflow.com/a/62725594)
 - [Alert on Missing Labels and Metrics](https://niravshah2705.medium.com/prometheus-alert-for-missing-metrics-and-labels-afd4b8f12b1)
+- [Samber Awesome Prometheus Alerts](https://github.com/samber/awesome-prometheus-alerts/blob/master/_data/rules.yml)
+- [Increase Alert Example](https://stackoverflow.com/a/60697689)
+- [Dzyoba Prometheus Alerts](https://alex.dzyoba.com/blog/prometheus-alerts/)
 
 Configs:
 
