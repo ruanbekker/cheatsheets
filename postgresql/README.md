@@ -41,6 +41,25 @@ CREATE TABLE fruits(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL)
 INSERT INTO fruits(id,name) VALUES(DEFAULT,'Apple');
 ```
 
+List databases:
+
+```
+\l
+```
+
+Switch to database:
+
+```
+\c dbname
+```
+
+List tables:
+
+```
+\dt
+\dt+
+```
+
 Backup Database:
 
 ```
