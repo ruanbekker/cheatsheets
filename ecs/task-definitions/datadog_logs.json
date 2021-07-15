@@ -1,0 +1,130 @@
+{
+  "family": "my-service",
+  "executionRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecs-my-service-execution-role",
+  "taskRoleArn": "arn:aws:iam::xxxxxxxxxxxx:role/ecs-my-service-task-role",
+  "cpu": "512",
+  "memory": "1024",
+  "containerDefinitions": [
+    {
+      "name": "eng-my-service-api",
+      "image": "xxxxxxxxxxxx.dkr.ecr.eu-west-1.amazonaws.com/my-service-api:latest",
+      "essential": true,
+      "cpu": 0,
+      "memoryReservation": 128,
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "containerPort": 8080
+        }
+      ],
+      "environment": [
+        {
+          "name": "AWS_REGION",
+          "value": "eu-west-1"
+        },
+        {
+          "name": "DD_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "DD_HOST",
+          "value": "https://api.datadoghq.eu"
+        },
+        {
+          "name": "DD_TAGS",
+          "value": "env:dev"
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/my-service-api/dev/DD_API_KEY",
+          "name": "DD_API_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/my-service-api/dev/DD_APP_KEY",
+          "name": "DD_APP_KEY"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awsfirelens",
+        "secretOptions": [
+          {
+            "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/my-service-api/dev/DD_API_KEY",
+            "name": "apikey"
+          }
+        ],
+        "options": {
+          "Name": "datadog",
+          "Host": "http-intake.logs.datadoghq.eu",
+          "provider": "ecs",
+          "dd_message_key": "log",
+          "dd_service": "my-service-api",
+          "dd_source": "fargate",
+          "dd_tags": "project:my-service-api"
+
+        }
+      }
+    },
+    {
+      "name": "datadog",
+      "image": "datadog/agent:7",
+      "essential": true,
+      "cpu": 10,
+      "environment": [
+        {
+          "name": "DD_APM_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC",
+          "value": "true"
+        },
+        {
+          "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+          "value": "true"
+        },
+        {
+          "name": "DD_LOGS_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "DD_SITE",
+          "value": "datadoghq.eu"
+        },
+        {
+          "name": "ECS_FARGATE",
+          "value": "true"
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/my-service-api/dev/DD_API_KEY",
+          "name": "DD_API_KEY"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/datadog",
+          "awslogs-create-group": "true",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "my-service-api"
+        }
+      }
+    },
+    {
+      "name": "log_router",
+      "essential": true,
+      "cpu": 0,
+      "image": "906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest",
+      "firelensConfiguration": {
+        "type": "fluentbit"
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc"
+}
