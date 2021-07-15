@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowListBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::my-backups-bucket"
+            ]
+        },
+        {
+            "Sid": "AllowPutAndGet",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::my-backups-bucket/*"
+            ]
+        },
+        {
+            "Sid": "AllowEncryptionAndDecryption",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:Encrypt"
+            ],
+            "Resource": [
+                "arn:aws:kms:eu-west-1:xxxxxxxxxxxx:key/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            ]
+        }
+    ]
+}
