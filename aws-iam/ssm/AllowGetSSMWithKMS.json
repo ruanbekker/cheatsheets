@@ -1,0 +1,29 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowSSM",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters"
+            ],
+            "Resource": [
+                "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/my-application/dev/DATABASE_*",
+                "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/codebuild/dev/DOCKER_USER",
+                "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/codebuild/dev/DOCKER_PASSWORD"
+            ]
+        },
+        {
+            "Sid": "AllowKMSDecrypt",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:GenerateDataKey"
+            ],
+            "Resource": [
+                "arn:aws:kms:eu-west-1:xxxxxxxxxxxx:key/*"
+            ]
+        }
+    ]
+}
