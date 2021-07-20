@@ -146,3 +146,4 @@ Find documents older than a specific age:
 ## External Resources
 - [MongoDB Cheatsheet #1](https://gist.github.com/rbekker87/5b4cd9ef36b6ae092a6260ab9e621a43)
 - [@aponxi](https://gist.github.com/aponxi/4380516)
+- [@michaeltreat](https://gist.github.com/michaeltreat/d3bdc989b54cff969df86484e091fd0c)
