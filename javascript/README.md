@@ -87,3 +87,13 @@ The same as above, but adding OR:
 }
 true
 ```
+
+Or it can be written like this:
+
+```javascript
+> var event = {'name': 'ruan', 'surname': 'bekker', 'age': 34, 'severity': 'Low', 'skip': false}
+> if (!event.skip && (event.name == 'frank') || (event.age == 34)) {
+  console.log('true');
+}
+true
+```
