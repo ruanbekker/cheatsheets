@@ -56,7 +56,7 @@ my name is:
 
 If, else and else if:
 
-```
+```javascript
 > var x = 2;
 > if (x == 0) {
   console.log('x is 0');
