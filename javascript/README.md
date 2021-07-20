@@ -67,3 +67,23 @@ If, else and else if:
 }
 x is more than 1
 ```
+
+If statement using multiple conditions:
+
+```javascript
+> var event = {'name': 'ruan', 'surname': 'bekker', 'age': 34, 'severity': 'Low', 'skip': false}
+> if ((!event.skip && event.name == 'ruan')) {
+  console.log('true');
+}
+true
+```
+
+The same as above, but adding OR:
+
+```javascript
+> var event = {'name': 'ruan', 'surname': 'bekker', 'age': 34, 'severity': 'Low', 'skip': false}
+> if ((!event.skip && event.name == 'frank') || (!event.skip && event.age == 34)) {
+  console.log('true');
+}
+true
+```
