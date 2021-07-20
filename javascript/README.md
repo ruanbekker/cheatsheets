@@ -51,3 +51,19 @@ With new line characters:
 my name is:
 - ruan
 ```
+
+## IF Statements
+
+If, else and else if:
+
+```
+> var x = 2;
+> if (x == 0) {
+  console.log('x is 0');
+  } else if (x > 1) {
+  console.log('x is more than 1');
+  } else {
+  console.log('x is probably 1');
+}
+x is more than 1
+```
