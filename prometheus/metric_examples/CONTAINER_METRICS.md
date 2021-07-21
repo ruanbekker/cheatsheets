@@ -92,6 +92,18 @@ Used memory aggregated by service (guage):
 sum(sum(container_memory_rss{name=~".+", cluster_name=~"$cluster_name", container_label_com_amazonaws_ecs_container_name=~"$service_name"}) by (name, container_label_com_amazonaws_ecs_container_name, container_label_com_amazonaws_ecs_cluster))
 ```
 
+Used memory percentage:
+
+```
+avg((avg (container_memory_working_set_bytes{name=~".+"}) by (name, instance ))/ on (name, instance)(avg (container_spec_memory_limit_bytes>0 ) by (name, instance))*100)
+```
+
+Memory limits:
+
+```
+container_spec_memory_limit_bytes{container_label_com_docker_compose_service=~"$service_name", instance=~"$host"}
+```
+
 ### Network
 
 Incoming Network Traffic per Container (graph):
