@@ -1,6 +1,12 @@
 ## Environment Setup
 
-Go environment on Alpine:
+### Environment on Linux
+
+- [Setup Go Environment](https://www.callicoder.com/golang-installation-setup-gopath-workspace/)
+
+### Environment on Docker
+
+Go build environment on Alpine:
 
 ```
 $ docker run -it alpine sh
