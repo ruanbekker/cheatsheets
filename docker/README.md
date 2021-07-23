@@ -6,6 +6,86 @@ If you can't find what you are looking for try my other sources:
 * [blog.ruanbekker.com:docker](https://blog.ruanbekker.com/blog/categories/docker/)
 * [sysadmins.co.za:docker](https://sysadmins.co.za/tag/docker/)
 
+## Healthchecks
+
+To see how to use health checks for dependencies / conditions, look at the gist below:
+
+```
+services:
+  php:
+    build:
+      context: .
+      dockerfile: tests/Docker/Dockerfile-PHP
+      args:
+        version: cli
+    depends_on:
+      couchbase:
+        condition: service_healthy
+```
+
+Credit to:
+- [@phuysmans gist](https://gist.github.com/phuysmans/4f67a7fa1b0c6809a86f014694ac6c3a)
+
+HTTP Healthcheck:
+
+```
+version: '2.1'
+services:
+    depends_on:
+      couchbase:
+        condition: service_healthy
+  http-service:
+    image: nginx
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
+```
+
+MySQL Healthcheck:
+
+```
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=test
+    healthcheck:
+      test: ["CMD", "mysql" ,"-h", "mysql", "-P", "3306", "-u", "root", "-e", "SELECT 1", "test"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+```
+
+Postgres Healthcheck:
+
+```
+  postgresql:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=test
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+```
+
+Redis Healthcheck:
+
+```
+  redis:
+    image: redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+```
+
 ## Manipulating Output:
 
 Filter and specify the name that you are interested in:
