@@ -419,6 +419,39 @@ mysql> repair table x;
 mysql> optimize table x;
 ```
 
+## Scripting
+
+Basic script to create the database and tables and using a for loop to insert data into mysql:
+
+```
+#!/usr/bin/env bash
+
+user="root"
+password="rootpassword"
+database="my_db"
+
+mysql -h 127.0.0.1 -u"$user" -p"$password" "$database" <<EOF
+CREATE DATABASE IF NOT EXISTS foo;
+CREATE TABLE IF NOT EXISTS foo.hashes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  number INT(10) NOT NULL,
+  hash VARCHAR(50) NOT NULL
+);
+EOF
+
+for x in {1..10}
+  do
+    mysql -h 127.0.0.1 -u"$user" -p"$password" "$database" <<EOF
+      INSERT IGNORE INTO foo.hashes (id, number, hash) VALUES ('', $x, "$(openssl rand -hex 8)");
+    EOF
+  done
+
+
+mysql -h 127.0.0.1 -u"$user" -p"$password" "$database" <<EOF
+  SELECT * FROM foo.hashes;
+EOF
+```
+
 ## External Resources:
 
 - https://www.mysqltutorial.org/mysql-inner-join.aspx/
