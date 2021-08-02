@@ -16,6 +16,7 @@ Index:
 - [docker-compose](#docker-compose)
   - [build](#docker-compose-build)
   - [healthchecks](#docker-compose-healthchecks)
+  - [depends-on](#docker-compose-depends-on)
 
 ## Docker
 
@@ -229,4 +230,39 @@ Redis Healthcheck:
       interval: 1s
       timeout: 3s
       retries: 30
+```
+
+### Docker Compose Depends On
+
+Depends-On Defaults, which will be wait for the database to start, before starting the web container:
+
+```
+version: "3.8"
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+  db:
+    image: postgres
+```
+
+Depends-On Types, where you can specify if it should wait for the service to start or to be healthy before starting the web container:
+
+```
+version: "3.8"
+services:
+  web:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+  redis:
+    image: redis
+  db:
+    image: postgres
+    healthcheck:
+      test: "exit 0"
 ```
