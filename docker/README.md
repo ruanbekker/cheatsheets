@@ -266,3 +266,11 @@ services:
     healthcheck:
       test: "exit 0"
 ```
+
+Different types of depends on:
+
+```
+condition: service_started
+condition: service_healthy
+condition: service_completed_successfully
+```
