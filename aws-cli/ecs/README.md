@@ -6,6 +6,14 @@
 $ aws --profile default ecs register-task-definition --cli-input-json file://taskdef.json
 ```
 
+## Describe Task Definitions
+
+If your service has multiple containers, you can view one container's environment as:
+
+```
+aws --profile default ecs describe-task-definition --task-definition my-web-service | jq -r '.taskDefinition.containerDefinitions[] | select(.name == "web-container") | .environment'
+```
+
 ## List ECS Clusters
 
 List ECS Clusters for a given profile:
