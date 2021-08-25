@@ -251,6 +251,12 @@ node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_i
 {cloud_provider="amazon",instance="x.x.x.x:9100",job="node_n1",my_hostname="n1.x.x",nodename="n1.x.x"}
 ```
 
+Subtract two gauge metrics (exclude the label that dont match):
+
+```
+polkadot_block_height{instance="polkadot", chain=~"$chain", status="sync_target"} - ignoring(status) polkadot_block_height{instance="polkadot", chain=~"$chain", status="finalized"}
+```
+
 Container CPU Average for 5m:
 
 ```
