@@ -1,0 +1,46 @@
+---
+# https://docs.drone.io/pipeline/docker/syntax/trigger/
+# https://docs.drone.io/pipeline/docker/syntax/platform/
+# https://docs.drone.io/pipeline/docker/syntax/workspace/
+# https://docs.drone.io/pipeline/docker/syntax/steps/
+# http://plugins.drone.io/drone-plugins/drone-webhook/
+# https://github.com/drone-plugins/drone-webhook
+
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+platform:
+  os: linux
+  arch: amd64
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: greeting
+    image: busybox
+    environment:
+      OWNER: Ruan
+    commands:
+      - echo "Hi $AUTHOR"
+
+  - name: send-success
+    image: busybox
+    when:
+      status: [ success ]
+    commands:
+      - echo "build succeeded"
+
+  - name: send-failure
+    image: busybox
+    when:
+      status: [ failure ]
+    commands:
+      - echo "build failed"
