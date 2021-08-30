@@ -1,0 +1,33 @@
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - echo "::before script section::"
+
+after_script:
+  - echo "::fter script section::"
+
+build_job_a:
+  stage: build
+  script:
+    - echo "building job a"
+
+test_job_a:
+  stage: test
+  script:
+    - echo "testing job a"
+
+test_job_b:
+  stage: test
+  script:
+    - echo "testing job b"
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "deploy job"
+    - uname -a
+    - uptime
+    - docker ps
