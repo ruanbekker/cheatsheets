@@ -29,7 +29,7 @@ steps:
     environment:
       OWNER: Ruan
     commands:
-      - echo "Hi $AUTHOR"
+      - echo "Hi $OWNER"
 
   - name: send-success
     image: busybox
