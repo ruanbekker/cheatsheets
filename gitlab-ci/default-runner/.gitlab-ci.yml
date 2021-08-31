@@ -1,0 +1,11 @@
+default:
+  tags:
+    - shell-runner
+
+stages:
+  - test
+
+test_job:
+  stage: test
+  script:
+    - echo test
