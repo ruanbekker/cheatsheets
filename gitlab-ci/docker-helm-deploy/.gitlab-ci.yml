@@ -1,0 +1,31 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  CONTAINER_IMAGE: anaisurlichs/react-example-app:${CI_COMMIT_SHORT_SHA}
+
+build:
+  stage: build
+  script:
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} anaisurlichs/react-example-app:latest
+    - docker push ${CONTAINER_IMAGE}
+
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config set-cluster example-cluster --server="${SERVER}"
+    - kubectl config set-cluster example-cluster --embed-certs --certificate-authority=${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=example-cluster --user=gitlab
+    - kubectl config use-context default
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" manifests/deployment.yaml
+    - kubectl apply -f manifests/deployment.yaml
