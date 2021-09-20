@@ -22,10 +22,14 @@ Terraform Examples:
 - [AWS API Gateway](https://github.com/comtravo/terraform-aws-api-gateway)
 - [API GW: Moving from Serverless Framework](https://sysgears.com/articles/moving-lambda-function-from-serverless-to-terraform/)
 - [Nodejs API GW with Lambda](https://github.com/TailorDev/hello-lambda)
+- [Minimal Viable CICD with Terraform and AWS CodePipeline](https://alite-international.com/minimal-viable-ci-cd-with-terraform-aws-codepipeline/)
 
 Learn Guides:
 
 - [Hashicorp Terraform Modules](https://learn.hashicorp.com/collections/terraform/modules)
+
+Terraform AWS Workshops:
+- [Terraform EKS AWS Workshop](https://tf-eks-workshop.workshop.aws/000_workshop_introduction.html)
 
 Terraform with Ansible Examples:
 
