@@ -15,7 +15,7 @@ rsync -avz ./in-progress/ /final
 Sync the content from in-progress to final and exclude the contents from in-progress/junk/
 
 ```
-rsync -avz --exclude=./in-progress/junk/* ./in-progress/ /final
+rsync -avz --exclude=junk/* ./in-progress/ /final
 ```
 
 More examples:
