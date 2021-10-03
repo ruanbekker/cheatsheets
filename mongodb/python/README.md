@@ -200,3 +200,11 @@ We can find one document with the txid as the given one below as such:
 >>> [doc for doc in cursor]
 [{'_id': ObjectId('615982182cf3f371b507ce1a'), 'timestamp': datetime.datetime(2021, 10, 3, 10, 12, 41, 126000), 'crypto_symbol': 'DASH', 'crypto_name': 'Dash', 'balance': 3828.34261545, 'node_name': 'rpi-05', 'network_name': 'testnet', 'wallet_name': 'main', 'txid': '0b84a82c2e3506d8fbed3b7ed7a6a330c54eb13a383c338400fb01f6cb618d05'}]
 ```
+
+Insert a document, only when it don't exist already on the field `txid: 0b84a82c2e3506d8fbed3b7ed7a6a330c54eb13a383c338400fb01f6cb618d05` using upsert:
+
+```python
+>>> key = {'txid': '0b84a82c2e3506d8fbed3b7ed7a6a330c54eb13a383c338400fb01f6cb618d05'}
+>>> data = {'crypto_symbol': 'DASH', 'crypto_name': 'Dash', 'txid': '0b84a82c2e3506d8fbed3b7ed7a6a330c54eb13a383c338400fb01f6cb618d05'}
+>>> response = balances.update(doc_key, doc_data, upsert=True)
+```
