@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  mongodb-eph:
+    image: mongo:4.2
+    container_name: mongodb-eph
+    restart: unless-stopped
+    command: ["--bind_ip_all", "--port", "27017"]
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - ./data/db:/data/db
+      - ./data/backups:/dump
+    ports:
+     - 27017:27017
+    networks:
+      - public
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo -u root -p pass localhost:27017/admin --quiet
+      interval: 15s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
+networks:
+  public:
+    name: public
