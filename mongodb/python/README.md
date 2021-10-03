@@ -61,11 +61,43 @@ Create a client:
 >>> client = MongoClient(mongodb_uri)
 ```
 
+## New Database and New Collection
+
 List database names:
 
 ```python
 >>> client.list_database_names()
 ['admin', 'config', 'crypto_wallets', 'local', 'slack']
+```
+
+Define a new db and collection:
+
+```python
+>>> db = client.testdb
+>>> collection = db.test_collection
+```
+
+Write a document into the collection:
+
+```python
+>>> collection.insert_one({"name": "james", "country": "south africa"}).inserted_id
+ObjectId('615999c248185d3efbc55561')
+```
+
+## Existing Database and Existing Collection:
+
+List database names:
+
+```python
+>>> client.list_database_names()
+['admin', 'config', 'crypto_wallets', 'local', 'slack']
+```
+
+List Collections:
+
+```python
+>>> client.testdb.list_collection_names()
+['test_collection']
 ```
 
 List collections:
@@ -76,7 +108,7 @@ List collections:
 ['balances']
 ```
 
-
+Find all documents in the collection:
 
 ```
 >>> balances = db.balances
@@ -89,48 +121,79 @@ List collections:
 >>>
 ```
 
+Count all the documents:
+
 ```
 >>> balances.find({}).count()
 134
+```
+
+Find all documents with missing keys ('txid')
+
+```
 >>> balances.find({"txid": None}).count()
 33
 ```
 
+Or you can find missing keys like the following:
+
 ```
 >>> balances.find({"txid": {"$exists": False}}).count()
 33
 ```
 
+Resource:
 - https://docs.mongodb.com/manual/tutorial/query-for-null-fields/
 
-```
+Delete one document with a missing field 'txid':
+
+```python
 >>> balances.delete_one({"txid": {"$exists": False}})
 <pymongo.results.DeleteResult object at 0x7f6058086440>
+```
+
+When we search for all documents with missing txid as fields, we can see one less:
+
+```python
 >>> balances.find({"txid": {"$exists": False}}).count()
 32
 ```
 
-```
+Delete all documents with missing fields for txid:
+
+```python
 >>> result = balances.delete_many({"txid": {"$exists": False}})
+```
+
+We can access the deleted_count method to return the number of deleted documents:
+
+```python
 >>> result.deleted_count
 31
 ```
 
-```
+Now when we find the documents with missing fields of txid it should show zero:
+
+```python
 >>> balances.find({"txid": {"$exists": False}}).count()
 0
 ```
 
-```
+Now when we search for documents with txid as existing fields, it should show the same as all the documents:
+
+```python
 >>> balances.find({"txid": {"$exists": True}}).count()
 101
 >>> balances.find({}).count()
 101
 ```
 
-https://docs.mongodb.com/manual/tutorial/remove-documents/
+Resource:
+- https://docs.mongodb.com/manual/tutorial/remove-documents/
 
-```
+We can find one document with the txid as the given one below as such:
+
+```python
 >>> cursor = balances.find({"txid": "0b84a82c2e3506d8fbed3b7ed7a6a330c54eb13a383c338400fb01f6cb618d05"})
 >>> cursor
 <pymongo.cursor.Cursor object at 0x7f6052cf4970>
