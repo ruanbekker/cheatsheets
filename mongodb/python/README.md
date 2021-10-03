@@ -1,12 +1,19 @@
 # PyMongo Cheatsheet
 
+## Resources
+- https://pymongo.readthedocs.io/en/stable/examples/authentication.html
+
 WIP
 
-```
+Create a running environment:
+
+```bash
 docker run -it python:3.8 bash
 ```
 
-```
+Update the hostnames to the ip's of our mongodb (see `docker-compose-rs.yml`)
+
+```bash
 MONGO_IP=192.168.0.8
 cat >> /etc/hosts << EOF
 $MONGO_IP     mongodb-rs-0
@@ -15,7 +22,9 @@ $MONGO_IP     mongodb-rs-2
 EOF
 ```
 
-```
+For my use-case it looks like this:
+
+```bash
 cat /etc/hosts
 127.0.0.1       localhost
 ::1     localhost ip6-localhost ip6-loopback
@@ -29,27 +38,45 @@ ff02::2 ip6-allrouters
 192.168.0.8     mongodb-rs-2
 ```
 
-```
+Install pymongo
+
+```bash
 python3 -m pip install pymongo
 ```
 
-```
+Enter python
+
+```bash
 python3
 Python 3.8.12 (default, Sep 28 2021, 19:06:31)
 [GCC 10.2.1 20210110] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 ```
 
-```
+Create a client:
+
+```python
 >>> from pymongo import MongoClient
 >>> mongodb_uri = "mongodb://mongodb-rs-0:30001,mongodb-rs-1:30002,mongodb-rs-2:30003/?replicaSet=rs0"
 >>> client = MongoClient(mongodb_uri)
+```
+
+List database names:
+
+```python
 >>> client.list_database_names()
 ['admin', 'config', 'crypto_wallets', 'local', 'slack']
+```
+
+List collections:
+
+```python
 >>> db = client.crypto_wallets
 >>> db.list_collection_names()
 ['balances']
 ```
+
+
 
 ```
 >>> balances = db.balances
