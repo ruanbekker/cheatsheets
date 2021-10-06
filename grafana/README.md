@@ -35,6 +35,7 @@
 Docs: 
 
 - https://grafana.com/docs/grafana/latest/features/datasources/cloudwatch/
+- https://grafana.com/docs/grafana/latest/datasources/aws-cloudwatch/#query-variable
 
 Overview:
 
