@@ -5,6 +5,7 @@
 - [CloudWatch](#datasource-cloudwatch)
   - [CloudWatch Datasource](#datasource-cloudwatch)
   - [CloudWatch Variables](#variables-for-cloudWatch)
+  - [CloudWatch Queries](#cloudwatch-queries)
 - [Elasticsearch]()
   - [Elasticsearch Datasource](#datasource-elasticsearch)
   - [Elasticsearch Variables](#variables-for-elasticsearch)
@@ -94,6 +95,22 @@ RDS Instance Name:
 
 ```
 Query: dimension_values($region,AWS/RDS,CPUUtilization,DBInstanceIdentifier)
+```
+
+CloudWatch Logs, LogGroup Names:
+
+```
+Query: dimension_values($region,AWS/Logs, IncomingBytes,LogGroupName)
+```
+
+### CloudWatch Queries
+
+Using CloudWatch Logs [Query Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html):
+
+```
+fields @timestamp, @message, @log, @logStream
+| sort @timestamp desc
+| limit 30
 ```
 
 ## Datasource: Elasticsearch
