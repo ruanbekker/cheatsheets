@@ -1,0 +1,34 @@
+---
+stages:
+  - default
+  - shell
+  - docker
+
+default-run:
+  stage: default
+  script:
+     - echo $CI_PROJECT_DIR
+     - echo "Running on the default runner"
+     - date
+     - hostname
+
+shell-run:
+  stage: shell
+  tags:
+    - shell
+  script:
+     - echo $CI_PROJECT_DIR
+     - echo "Running on the shell runner"
+     - date
+     - hostname
+
+docker-run:
+  stage: docker
+  image: busybox:latest
+  tags:
+    - docker
+  script:
+     - echo $CI_PROJECT_DIR
+     - echo "Running on the docker runner"
+     - date
+     - hostname
