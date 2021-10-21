@@ -1,0 +1,30 @@
+---
+stages:
+  - healthcheck
+  - run
+
+services:
+- mysql:5.7
+
+variables:
+  # Configure mysql service (https://hub.docker.com/_/mysql/)
+  MYSQL_DATABASE: test
+  MYSQL_ROOT_PASSWORD: testpassword
+
+connect:
+  image: mysql:5.7
+  stage: healthcheck
+  tags:
+    - docker
+  script:
+  - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
+
+post:
+  image: mysql:5.7
+  stage: run
+  dependencies:
+    - connect
+  tags:
+    - docker
+  script:
+  - echo done
