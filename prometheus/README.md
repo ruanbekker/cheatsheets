@@ -112,6 +112,12 @@ Load Average in percentage:
 avg(node_load1{instance=~"$name", job=~"$job"}) /  count(count(node_cpu_seconds_total{instance=~"$name", job=~"$job"}) by (cpu)) * 100
 ```
 
+Load Average per Instance:
+
+```
+sum(node_load5{}) by (instance) / count(node_cpu_seconds_total{mode="user"}) by (instance) * 100
+```
+
 Load Average (average per instance_id: lets say the metric has 2 identical label values but are different):
 
 ```
@@ -520,6 +526,8 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
   - [RobustPerception: Prometheus Summary](https://www.robustperception.io/how-does-a-prometheus-summary-work)
 - [DevConnected: The Definitive Guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/)
 - [@showmax Prometheus Introduction](https://tech.showmax.com/2019/10/prometheus-introduction/)
+- [@rancher Cluster Monitoring](https://rancher.com/docs/rancher/v2.0-v2.4/en/cluster-admin/tools/cluster-monitoring/expression/)
+- [Prometheus CPU Stats](https://utcc.utoronto.ca/~cks/space/blog/sysadmin/PrometheusCPUStats)
 - [@aws Prometheus Rewrite Rules for k8s](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-configure.html#ContainerInsights-Prometheus-Setup-config-scrape)
 - [ec2_sd_configs]()
   - [Prometheus AWS Cross Account ec2_sd_config](https://jarodw.com/posts/prometheus-ec2-sd-multiple-aws-accounts/)
