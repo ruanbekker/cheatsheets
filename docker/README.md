@@ -232,6 +232,26 @@ Redis Healthcheck:
       retries: 30
 ```
 
+Docker in Docker Healthcheck:
+
+```
+  docker:
+    image: docker:19.03.12-dind
+    container_name: docker
+    privileged: true
+    environment:
+      DOCKER_HOST: tcp://docker:2375/
+      DOCKER_DRIVER: overlay2
+      DOCKER_TLS_CERTDIR: ""
+    networks:
+      - docker
+    healthcheck:
+      test: ["CMD", "docker" ,"ps"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+```
+
 ### Docker Compose Depends On
 
 Depends-On Defaults, which will be wait for the database to start, before starting the web container:
