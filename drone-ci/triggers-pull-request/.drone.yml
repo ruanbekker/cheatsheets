@@ -1,0 +1,40 @@
+---
+# https://docs.drone.io/pipeline/triggers/
+
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  event:
+    - pull_request
+
+platform:
+  os: linux
+  arch: amd64
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: greeting
+    image: busybox
+    environment:
+      OWNER: Ruan
+    commands:
+      - echo "dumps env"
+      - env
+
+  - name: send-success
+    image: busybox
+    when:
+      status: [ success ]
+    commands:
+      - echo "build succeeded"
+
+  - name: send-failure
+    image: busybox
+    when:
+      status: [ failure ]
+    commands:
+      - echo "build failed"
