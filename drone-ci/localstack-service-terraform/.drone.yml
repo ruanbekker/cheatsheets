@@ -1,0 +1,74 @@
+---
+kind: pipeline
+type: docker
+name: default
+trigger:
+  event:
+    - pull_request
+steps:
+- name: dumps-env
+  image: alpine
+  commands:
+  - env
+  
+- name: wait-for-localstack
+  image: ruanbekker/awscli
+  environment:
+    AWS_ACCESS_KEY_ID: 123
+    AWS_SECRET_ACCESS_KEY: xyz
+    AWS_DEFAULT_REGION: eu-west-1
+  commands:
+  - while ! aws --endpoint-url=http://localstack:4566 kinesis list-streams; do sleep 1; done
+  
+- name: pre-list-tables
+  image: ruanbekker/awscli
+  environment:
+    AWS_ACCESS_KEY_ID: 123
+    AWS_SECRET_ACCESS_KEY: xyz
+    AWS_DEFAULT_REGION: eu-west-1
+  commands:
+  - aws --endpoint-url=http://localstack:4566 dynamodb list-tables
+  
+- name: terraform-step
+  image: hashicorp/terraform:light
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: AWS_ACCESS_KEY_ID 
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: AWS_SECRET_ACCESS_KEY
+    AWS_DEFAULT_REGION: us-east-1
+  commands:
+  - sh init.sh
+  - terraform plan
+  - terraform apply -auto-approve
+  volumes:
+  - name: cache
+    path: /tmp
+    
+- name: post-list-tables
+  image: ruanbekker/awscli
+  environment:
+    AWS_ACCESS_KEY_ID: 123
+    AWS_SECRET_ACCESS_KEY: xyz
+    AWS_DEFAULT_REGION: eu-west-1
+  commands:
+  - aws --endpoint-url=http://localstack:4566 dynamodb list-tables
+  
+volumes:
+- name: cache
+  temp: {}
+- name: localstack-vol
+  host:
+    path: /tmp/localstack-vol
+
+services:
+  - name: localstack
+    image: localstack/localstack:0.12.17
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
+      EDGE_PORT: 4566
+    volumes:
+      - name: docker-socket
+        path: /var/run/docker.sock
+      - name: localstack-vol
+        path: /tmp/localstack
