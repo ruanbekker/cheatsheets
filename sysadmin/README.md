@@ -25,6 +25,32 @@ You can do:
 mkdir -p /disk{1..5}/ebooks/category-{tech,motivation}
 ```
 
+## Disk
+
+To check disk space:
+
+```bash
+$ df -h
+```
+
+To see the size of consumption per directory:
+
+```bash
+$ du -sh /path/to/dirs/*
+```
+
+To view disk and sata input mappings: (0 is port 1)
+
+```bash
+$ lsblk -o NAME,MODEL,SERIAL,WWN,HCTL
+NAME   MODEL              SERIAL   WWN                HCTL
+sda    ST4000D0000-000000 XXXXXXXX 0x5000c50000000000 0:0:0:0
+sdb    ST4000D0000-000000 XXXXXXXX 0x5000c50000000000 1:0:0:0
+└─sdb1                             0x5000c50000000000
+sdc    ST4000D0000-000000 XXXXXXXX 0x5000c50000000000 2:0:0:0
+└─sdc1                             0x5000c50000000000
+```
+
 ## Memory
 
 * **Free** memory is the amount of memory which is currently not used for anything. This number should be small, because memory which is not used is simply wasted.
