@@ -16,6 +16,7 @@ Index:
 - [docker-compose](#docker-compose)
   - [build](#docker-compose-build)
   - [healthchecks](#docker-compose-healthchecks)
+  - [logging](#docker-compose-logging)
   - [depends-on](#docker-compose-depends-on)
 
 ## Docker
@@ -250,6 +251,31 @@ Docker in Docker Healthcheck:
       interval: 5s
       timeout: 3s
       retries: 30
+```
+
+### Docker Compose Logging
+
+JSON File Logging:
+
+```yaml
+service:
+  myservice:
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+```
+
+Loki Logging:
+
+```yaml
+service:
+  myservice:
+    logging:
+      driver: loki
+      options:
+        loki-url: http://192.168.0.2:3100/loki/api/v1/push
+        loki-external-labels: job=dockerlogs
 ```
 
 ### Docker Compose Depends On
