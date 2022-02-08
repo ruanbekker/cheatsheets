@@ -17,6 +17,16 @@ A cheatsheet of MongoDB using the mongo shell
 - A field consist of a key and value
 - A operator like `gte` or `lt` can be used
 
+## Create a MongoDB Instance
+
+Create a instance with docker and connect to the shell
+
+```
+docker run --rm -itd --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=password -p 27017:27017 mongo:4.4
+docker exec -it mongodb mongo -u "root" -p "password" --authenticationDatabase "admin"
+> 
+```
+
 ## View Databases
 
 View existing databases:
