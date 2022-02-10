@@ -3,6 +3,7 @@
 ## External
 
 - https://rtfm.co.ua/en/http-redirects-post-and-get-requests-and-lost-data/
+- [Nginx Location Priority](https://stackoverflow.com/questions/5238377/nginx-location-priority)
 
 ## Configs
 
