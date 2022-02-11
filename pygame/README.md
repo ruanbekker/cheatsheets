@@ -50,3 +50,28 @@ while True:
     pygame.display.update()
     clock.tick(60)
 ```
+
+## Keyboard in Event Loop
+
+```python
+import pygame
+from sys import exit
+
+pygame.init()
+screen = pygame.display.set_mode((800,400))
+pygame.display.set_caption('My Game')
+clock = pygame.time.Clock()
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        if event.type == pygame.KEYDOWN:
+            print('key pressed') 
+        if event.type == pygame.KEYUP:
+            print('key was released')
+            
+    pygame.display.update()
+    clock.tick(60)
+```
