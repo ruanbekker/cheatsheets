@@ -18,5 +18,11 @@ Sync the content from in-progress to final and exclude the contents from in-prog
 rsync -avz --exclude=junk/* ./in-progress/ /final
 ```
 
+Rsync over SSH:
+
+```
+rsync -avz /var/www/ user@1.2.3.4:/var/www/
+```
+
 More examples:
 - [resource](https://devhints.io/rsync)
