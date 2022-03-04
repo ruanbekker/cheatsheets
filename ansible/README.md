@@ -299,6 +299,140 @@ For targeting multiple tags:
 $ ansible-playbook --tags "db,ubuntu" --ask-become-pass playbook.yml
 ```
 
+## Files
+
+Ansible playbook that uses files to copy to the targets.
+
+Our `files/default.html`:
+
+```html
+<html>
+  <body>ok</body>
+</html>
+```
+
+Our `playbook.yml`:
+
+```yaml
+---
+- hosts: all
+  become: true
+  pre_tasks:
+  
+    - name: Install updates for CentOS 
+      tags: always
+      dnf:
+        update_only: yes
+        update_cache: yes
+      when: ansible_distribution == "CentOS"
+      
+    - name: Install updates for Debian/Ubuntu
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: web_servers
+  become: true
+  tasks:
+  
+    - name: Install Nginx and utilities for CentOS 
+      tags: nginx,centos
+      dnf:
+        name:
+          - nginx
+          - httpd-tools
+      when: ansible_distribution == "CentOS"  
+  
+    - name: Install Nginx and utilities for Ubuntu
+      tags: nginx,ubuntu
+      apt:
+        name:
+          - nginx
+          - apache2-utils
+        state: latest
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+      
+    - name: Copy default html file for website
+      tags: nginx
+      copy:
+        src: default.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+```
+
+Execute the playbook to deploy the website file:
+
+```bash
+$ ansible-playbook --ask-become-pass playbook.yml
+```
+
+We can use another example to unzip a package:
+
+```
+---
+- hosts: all
+  become: true
+  pre_tasks:
+  
+    - name: Install updates for CentOS 
+      tags: always
+      dnf:
+        update_only: yes
+        update_cache: yes
+      when: ansible_distribution == "CentOS"
+      
+    - name: Install updates for Debian/Ubuntu
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: workstations
+  become: true
+  tasks:
+  
+  - name: Ensure unzip is installed
+    package:
+      name: unzip
+      
+  - name: Ensure terraform is installed
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+      owner: root
+      group: root
+```
+
+And then add the workstations group:
+
+```
+[web_servers]
+10.0.0.2
+10.0.0.3
+
+[db_servers]
+10.0.0.4
+
+[file_servers]
+10.0.0.5
+
+[workstations]
+localhost
+```
+
+Then run the playbook:
+
+```bash
+$ ansible-playbook --ask-become-pass playbook.yml
+```
+
 ## Resources
 
 - [Automating App Build and Deployment from a Github Repository](https://medium.com/@rossbulat/ansible-automating-app-build-and-deployment-from-a-github-repository-7d613985f686)
