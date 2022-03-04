@@ -302,4 +302,4 @@ $ ansible-playbook --tags "db,ubuntu" --ask-become-pass playbook.yml
 ## Resources
 
 - [Automating App Build and Deployment from a Github Repository](https://medium.com/@rossbulat/ansible-automating-app-build-and-deployment-from-a-github-repository-7d613985f686)
-- [Ansible Youtube Series @LearnLinuxTV](https://www.youtube.com/watch?v=EraC1AuWEF8)
+- [Ansible Youtube Series @LearnLinuxTV](https://www.youtube.com/watch?v=3RiVKs8GHYQ&list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70&index=1)
