@@ -8,6 +8,7 @@
   - [Search](#search)
   - [Reindex](#reindex-using-curl)
   - [Update Replica Shards](#update-replicas-curl)
+  - [Delete](#delete)
   - [Snapshots](#snapshots-with-curl)
   - [Restore Snapshots](#restore-snapshots-with-curl)
   - [Tasks API](#tasks)
@@ -243,6 +244,62 @@ Increase/Decrease the number of Replica Shards using the Settings API:
 ```
 curl -XPUT -H 'Content-Type: application/json' 'http://127.0.0.1:9200/my-index-2018.12.31/_settings' \
   -d '{"index": {"number_of_replicas": 1, "refresh_interval": "30s"}}'
+```
+
+### Delete
+
+References:
+
+- [Delete API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html)
+- [Delete by Query](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/docs-delete-by-query.html)
+
+### Delete Index:
+
+```
+$ curl -XDELETE http://127.0.0.1:9200/my-index-2018.12.31
+```
+
+### Delete Documents on Query:
+
+We would like to delete all documents that has `"os_name": "Windows 10"`
+
+```
+curl -XPOST 'http://elasticsearch:9200/weblogs/_delete_by_query?pretty' -d '
+{
+  "query": {
+    "match": {
+      "os_name": "Windows 10"
+    }
+  }
+}'
+```
+
+If routing is provided, then the routing is copied to the scroll query, limiting the process to the shards that match that routing value:
+
+```
+$ curl -XPOST 'http://elasticsearch:9200/people/_delete_by_query?routing=1
+{
+  "query": {
+    "range" : {
+        "age" : {
+           "gte" : 10
+        }
+    }
+  }
+}
+```
+
+By default _delete_by_query uses scroll batches of 1000. You can change the batch size with the scroll_size URL parameter:
+
+```
+$ curl -XPOST 'http://elasticsearch:9200/weblogs/_delete_by_query?scroll_size=5000
+{
+  "query": {
+    "term": {
+      "category": "docker"
+    }
+  }
+}
 ```
 
 ### Snapshots with Curl
