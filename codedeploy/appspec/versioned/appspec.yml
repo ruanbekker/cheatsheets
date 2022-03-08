@@ -1,0 +1,45 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/snake/_target
+hooks:
+  # This deployment lifecycle event occurs even before the application revision 
+  # is downloaded. You can specify scripts for this event to gracefully stop the 
+  # application or remove currently installed packages in preparation for a deployment. 
+  # The AppSpec file and scripts used for this deployment lifecycle event are from the 
+  # previous successfully deployed application revision.
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root
+  
+  # You can use this deployment lifecycle event for preinstall tasks, 
+  # such as decrypting files and creating a backup of the current version.
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+
+  # You can use this deployment lifecycle event for tasks such as configuring 
+  # your application or changing file permissions.
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  # You typically use this deployment lifecycle event to restart services that 
+  # were stopped during ApplicationStop
+  ApplicationStart:
+    - location: scripts/start_server.sh
+    #- location: scripts/notify_post_start.sh
+      timeout: 300
+      runas: root
+
+  #  This is the last deployment lifecycle event. It is used to verify the 
+  # deployment was completed successfully.
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 300
+      runas: root
+
