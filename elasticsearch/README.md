@@ -6,6 +6,7 @@
   - [Create Index](#create-index)
   - [Ingest](#ingest-data)
   - [Search](#search)
+    - [Using the Search API](#using-the-search-api)
   - [Reindex](#reindex-using-curl)
   - [Update Replica Shards](#update-replicas-curl)
   - [Delete](#delete)
@@ -132,6 +133,14 @@ Name = Michelle AND age < 30
 ```
 curl -XGET 'http://localhost:9200/myfirstindex/_search?q=name:michelle%20AND%20age:<30&pretty'
 ```
+
+#### Using the Search API
+
+Search for the latest ingested document
+
+```
+curl -H 'content-type: application/json' -XPOST http://localhost:9200/myfirstindex/_search?pretty -d '{"size": 1, "sort": { "@timestamp": "desc"}, "query": {"match_all": {} }}'
+ ```
 
 ### Reindex using Curl
 
