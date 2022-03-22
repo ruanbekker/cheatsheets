@@ -11,8 +11,8 @@ curl -s -u "user:pass" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddres
 
 ## Get Balance
 
-```
-$ curl -s -u "user:pass" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getbalance", "params": ["*", 6]}' -H 'content-type: text/plain;' http://127.0.0.1:22555/
+```bash
+curl -s -u "user:pass" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getbalance", "params": ["*", 6]}' -H 'content-type: text/plain;' http://127.0.0.1:22555/
 {"result":xx.xxxxxxxx,"error":null,"id":"curl"}
 ```
 
