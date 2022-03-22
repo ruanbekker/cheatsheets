@@ -10,7 +10,9 @@ A cheatsheet of MongoDB using the mongo shell
 - [Write to MongoDB](#write-to-mongodb)
 - [Read from MongoDB](#read-from-mongodb)
 - [External Resources](#external-resources)
- 
+- [Backups](#backups)
+- [Restores](#restores)
+
 ## Definitions
 
 - A field in mongodb : {`"key": "value"`}
@@ -151,6 +153,68 @@ Find documents older than a specific age:
 ```
 > db.mycol1.find({"age": {"$gt": 30}})
 { "_id" : ObjectId("5cc60c8ebdbf7f5dd3f7cdc3"), "name" : "ruan", "age" : 32, "hobbies" : [ "golf", "programming", "music" ] }
+```
+
+## Backups
+
+Mongodump with uri syntax:
+
+```
+mongodump --uri="mongodb://uberuser:passherd@localhost:27107/redbase?ssl=false&authSource=admin"
+```
+
+Mongodump with standard flags:
+
+```
+mongodump --user=uberuser --db=redbase --password=passherd --authenticationDatabase=admin
+```
+
+Specify the output directory:
+
+```
+mongodump --user=uberuser --db=redbase --password=passherd --authenticationDatabase=admin --out=dumbbase
+```
+
+Only one specific collection:
+
+```
+mongodump --user=ubersuser --db=redbase --password=passherd --authenticationDatabase=admin --out=dumbbase --collection=action_figures
+```
+
+The structure will look like this:
+
+```bash
+.
+ |_dumbbase
+   |_redbase
+     |_action_figures.metadata.json
+     |_action_figures.bson
+```
+
+Dump all databases into a archive:
+
+```
+mongodump --db=redbase --username=uberuser --password=passherd --authenticationDatabase=admin --archive=redbase.archive
+```
+
+## Restores
+
+With mongorestore we can point it to the path of the dump, and it wont overrite documents with the same id's:
+
+```
+mongorestore dump/
+```
+
+To only restore a specific collection:
+
+```
+mongorestore --db=newdb --collection=comic_books dump/mydb/product.bson
+```
+
+Bu a better approach is to use `-nsInclude`:
+
+```
+mongorestore --db=redbase --nsInclude="db1.*" dump/
 ```
 
 ## External Resources
