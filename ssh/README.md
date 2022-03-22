@@ -62,6 +62,22 @@ One liner:
 ssh -i ~/.ssh/target.pem -o ProxyCommand="ssh -W %h:%p -i ~/.ssh/id_rsa -q ubuntu@bastion.domain" ubuntu@target.domain
 ```
 
+## SOCKS5 SSH Tunnel
+
+To run a socks5 ssh tunnel in the foreground:
+
+```
+ssh -D 1337 -q -C -N jump-host
+```
+
+To run a forked socks5 ssh tunnel in the background:
+
+```
+ssh -D 1337 -q -C -N -f jump-host
+```
+
+[Credit](https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/)
+
 ## SSH Tunnel
 
 Setup a local tunnel accessible on port 8080 which will traverse via the tunnel to access port 9100 on target-a which is only accessible locally on the remote end.
