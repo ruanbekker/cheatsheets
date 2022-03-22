@@ -11,3 +11,9 @@ dogecoin-cli -conf=/blockchain/config/dogecoin.conf getbalance
 ```bash
 dogecoin-cli -conf=/blockchain/config/dogecoin.conf listtransactions
 ```
+
+## Send to Address
+
+```bash
+dogecoin-cli --conf=/blockchain/config/dogecoin.conf sendtoaddress "xxxxxxxxxxxx" 12.12345678 "donation" "james donation"
+```
