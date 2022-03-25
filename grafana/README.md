@@ -17,7 +17,10 @@
   - [Prometheus Datasource](#prometheus-datasource)
   - [Prometheus Variables](#prometheus-variables)
   - [Prometheus Queries](#prometheus-queries)
-
+- [Loki]()
+  - [Loki Datasource](#loki-datasource)
+  - [Loki Variables](#loki-variables)
+  - [Loki Queries](#loki-queries)
 
 ## Dashboards
 
@@ -213,6 +216,7 @@ Add a variable with the following:
 Name: jobs
 Label: Jobs
 Query: label_values(up, job)
+Datasource: Prometheus
 ```
 
 Which will produce `container-metrics` and `node-metrics` and in your dasboard query you can select them using:
@@ -303,3 +307,55 @@ ecs-dev-app
 ```
 
 ### Queries for Prometheus
+
+
+## Loki Datasource
+
+### Variables for Loki
+
+**Basics: Jobs**
+
+Lets say you want to have a variable defined `jobs` and the metric looks like:
+
+```
+label_values({job=~".+"}, job)
+```
+
+Add a variable with the following:
+
+```
+Name: job
+Label: Jobs
+Query: label_values({job=~".+"}, job)
+Datasource: Loki
+```
+
+Which in my case will produce `systemd-logs` and `server-logs` and in your dasboard query you can select them using:
+
+```
+{job=~"$job"}
+```
+
+**Basics: Name**
+
+Lets say you want to have a variable defined `name` and the metric looks like:
+
+```
+label_values({job="server-logs"}, name)
+```
+
+Add a variable with the following:
+
+```
+Name: name
+Label: Name
+Query: label_values({job="server-logs"}, name)
+Datasource: Loki
+```
+
+Which in my case will produce `web-server-01` and `web-server-02` and in your dasboard query you can select them using:
+
+```
+{name=~"$name"}
+```
+
