@@ -14,8 +14,14 @@ scrape_configs:
   - job_name: prod/ec2-logs
     ec2_sd_configs:
       - region: eu-west-1
-        role_arn: arn:aws:iam::000000000000:role/PrometheusEC2DynamicScrapeRole
+        #access_key: REDACTED
+        #secret_key: REDACTED
+        #role_arn: arn:aws:iam::000000000000:role/PrometheusEC2DynamicScrapeRole
     relabel_configs:
+      - source_labels: [__meta_ec2_architecture]
+        regex: "(.*)"
+        replacement: "prod/server-logs"
+        target_label: job
       - source_labels: [__meta_ec2_tag_Name]
         target_label: name
         action: replace
@@ -50,6 +56,7 @@ scrape_configs:
         target_label: syslog_identifier
 
 # prod/ec2-logs produces:
+#  job="prod/server-logs"
 #  instance="i-00000000000"
 #  name="my-ec2-instance"
 #  zone="eu-west-1a"
