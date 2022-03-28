@@ -1,9 +1,9 @@
 ## EC2 AWS CLI Cheatsheet
 
 - [EC2](#ec2)
-- [EBS](#ebs)
 - [AMI](#ami)
 - [Query](#query)
+- [EBS](#ebs)
 - [Security Groups](#security-groups)
 - [Subnets](#subnets)
 
