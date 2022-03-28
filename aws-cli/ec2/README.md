@@ -1,5 +1,12 @@
 ## EC2 AWS CLI Cheatsheet
 
+- [EC2](#ec2)
+- [EBS](#ebs)
+- [AMI](#ami)
+- [Query](#query)
+- [Security Groups](#security-groups)
+- [Subnets](#subnets)
+
 ### EC2
 
 #### Run Instances
@@ -78,6 +85,81 @@ Show the EC2 Instances Tag:Name value:
 ```
 $ aws --region eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" --query 'Tags[?Key==`Name`].Value' --output text
 my-ec2-instance
+```
+
+#### EBS
+
+Modify a EBS volume from GP2 to GP3:
+
+```
+$ aws ec2 modify-volume --volume-type gp3 --volume-id vol-0xxxxxxxxxxxxxxxx
+{
+    "VolumeModification": {
+        "VolumeId": "vol-0xxxxxxxxxxxxxxxx",
+        "ModificationState": "modifying",
+        "TargetSize": 8,
+        "TargetIops": 3000,
+        "TargetVolumeType": "gp3",
+        "TargetThroughput": 125,
+        "TargetMultiAttachEnabled": false,
+        "OriginalSize": 8,
+        "OriginalIops": 100,
+        "OriginalVolumeType": "gp2",
+        "OriginalMultiAttachEnabled": false,
+        "Progress": 0,
+        "StartTime": "2022-03-28T11:30:52+00:00"
+    }
+}
+```
+
+Describe Status of Modication:
+
+```
+$ aws ec2 describe-volumes --volume-id vol-0xxxxxxxxxxxxxxxx
+{
+    "Volumes": [
+        {
+            "Attachments": [
+                {
+                    "AttachTime": "2021-06-08T16:02:40+00:00",
+                    "Device": "/dev/sda1",
+                    "InstanceId": "i-089ef13267c44a4a9",
+                    "State": "attached",
+                    "VolumeId": "vol-0xxxxxxxxxxxxxxxx",
+                    "DeleteOnTermination": true
+                }
+            ],
+            "AvailabilityZone": "eu-west-1c",
+            "CreateTime": "2021-06-08T16:02:40.226000+00:00",
+            "Encrypted": false,
+            "Size": 8,
+            "SnapshotId": "snap-0xxxxxxxxxxxxxxxx",
+            "State": "in-use",
+            "VolumeId": "vol-0xxxxxxxxxxxxxxxx",
+            "Iops": 3000,
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "my-instance"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "dev"
+                }
+            ],
+            "VolumeType": "gp3",
+            "MultiAttachEnabled": false,
+            "Throughput": 125
+        }
+    ]
+}
+```
+
+To only see the status:
+
+```
+$ aws ec2 describe-volumes --volume-id vol-0xxxxxxxxxxxxxxxx | jq -r '.Volumes[].State'
+in-use
 ```
 
 ### Security Groups
