@@ -14,6 +14,9 @@ You can refer to the following to get your loki stack up and running:
 - https://blog.ruanbekker.com/blog/2020/08/13/getting-started-on-logging-with-loki-using-docker/
 - https://grafana.com/docs/loki/latest/installation/
 
+For a distributed loki stack (distributed components):
+- https://github.com/ruanbekker/docker-loki-distributed-minio
+
 ## Logging Clients
 
 Install the [loki docker driver](https://grafana.com/docs/loki/latest/clients/docker-driver/):
