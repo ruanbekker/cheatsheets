@@ -5,6 +5,7 @@
 
 ## External Resources:
 - https://cheatsheet.dennyzhang.com/cheatsheet-ssh-a4
+- https://docs.ycrc.yale.edu/clusters-at-yale/access/advanced-config/
 
 ## Proxy Jump
 
