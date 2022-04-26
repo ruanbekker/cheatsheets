@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  go-app:
+    build: .
+    container_name: go-app
+    ports:
+      - 8080:8080
+    networks:
+      - appnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
+networks:
+  appnet:
+    name: appnet
