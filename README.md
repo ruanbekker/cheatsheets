@@ -68,6 +68,7 @@ If you can't find what you are looking for, have a look at my other content:
 * [SystemD](systemd/README.md)
 * [Terraform](terraform/README.md)
 * [Vim](vim/README.md)
+* [Zipkin](zipkin/README.md)
 
 ## Stargazers over time
 
