@@ -65,7 +65,27 @@ AutoScaling Group:
 Query: dimension_values($region,AWS/EC2,CPUUtilization,AutoScalingGroupName)
 ```
 
-EC2 InstanceId from Tag Name:
+EC2 Instance Tag Names:
+
+```
+Name: instancename
+Query: ec2_instance_attribute($region, Tags.Name, {})
+```
+
+EC2 Instance ID from Tag Name:
+
+```
+Name: instanceid
+Query: ec2_instance_attribute($region, InstanceId, {"tag:Name": ["$instancename"]})
+```
+
+EC2 InstanceId from Tag Name (filtered):
+
+```
+Query: ec2_instance_attribute(eu-west-1, Tags.Name, {"tag:Name":["prod-*"]}) 
+```
+
+EC2 InstanceId from Tag Name (filtered):
 
 ```
 Query: ec2_instance_attribute(eu-west-1, InstanceId, {"tag:ASG":["my-app-asg"]}) 
