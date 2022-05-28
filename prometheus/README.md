@@ -356,14 +356,27 @@ irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", u
 
 ## Scrape Config
 
-Relabel configs:
+relabel configs:
 
-- https://gist.github.com/trastle/1aa205354577ef0b329d4b8cc84c674a
-- https://github.com/prometheus/docs/issues/341
-- https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda
-- https://blog.freshtracks.io/prometheus-relabel-rules-and-the-action-parameter-39c71959354a
-- https://www.robustperception.io/relabel_configs-vs-metric_relabel_configs
-- https://training.robustperception.io/courses/prometheus-configuration/lectures/3170347
+```
+# full example: https://gist.github.com/ruanbekker/72216bea59fc56af189f5a7b2e3a8002
+scrape_configs:
+  - job_name: 'multipass-nodes'
+    static_configs:
+    - targets: ['ip-192-168-64-29.multipass:9100']
+      labels:
+        env: test
+    - targets: ['ip-192-168-64-30.multipass:9100']
+      labels:
+        env: test
+    # https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/#internal-labels
+    relabel_configs:
+    - source_labels: [__address__]
+      separator: ':'
+      regex: '(.*):(.*)'
+      replacement: '${1}'
+      target_label: instance
+```
 
 static_configs:
 
@@ -394,6 +407,16 @@ scrape_configs:
       target_label: instance
       replacement: 'mysqld-exporter'
 ```
+
+Useful links:
+
+- https://gist.github.com/ruanbekker/72216bea59fc56af189f5a7b2e3a8002
+- https://gist.github.com/trastle/1aa205354577ef0b329d4b8cc84c674a
+- https://github.com/prometheus/docs/issues/341
+- https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda
+- https://blog.freshtracks.io/prometheus-relabel-rules-and-the-action-parameter-39c71959354a
+- https://www.robustperception.io/relabel_configs-vs-metric_relabel_configs
+- https://training.robustperception.io/courses/prometheus-configuration/lectures/3170347
 
 ## Grafana with Prometheus
 
