@@ -100,5 +100,13 @@ And filtering on `status_code=201`:
 {job="prod/logs"} |~ "doAPICall" | regexp "(?P<ip>\\d+.\\d+.\\d+.\\d+) (.*) (.*) (?P<date>\\[(.*)\\]) (\")(?P<verb>(\\w+)) (?P<request_path>([^\"]*)) (?P<http_ver>([^\"]*))(\") (?P<status_code>\\d+) (?P<bytes>\\d+) (\")(?P<referrer>(([^\"]*)))(\") (\")(?P<user_agent>(([^\"]*)))(\")" | status_code=201
 ```
 
+Metrix on a regex and sum by ip:
+
+```
+sum by (ip) (count_over_time({job="dev/nginx", host="localhost"}
+| regexp `(?P<ip>\S+) (?P<identd>\S+) (?P<user>\S+) \[(?P<timestamp>[\w:\/]+\s[+\\-]\d{4})\] "(?P<action>\S+)\s?(?P<path>\S+)\s?(?P<protocol>\S+)?" (?P<status>\d{3}|-) (?P<size>\d+|-)\s?"?(?P<referrer>[^\"]*)"?\s?"?(?P<useragent>[^\"]*)?"?`  
+| referrer=~"(http|https)://10.21.2.42:(80|443)/(.+)"[60s]))
+```
+
 - https://grafana.com/docs/loki/latest/logql/#label-filter-expression
 - https://gist.github.com/ruanbekker/cb4ebdc24331661ca120f20b4445ad75
