@@ -108,5 +108,28 @@ sum by (ip) (count_over_time({job="dev/nginx", host="localhost"}
 | referrer=~"(http|https)://10.21.2.42:(80|443)/(.+)"[60s]))
 ```
 
+More Regex examples:
+
+```
+# logline
+172.10.10.2 - - [10/Jun/2022:09:44:03 +0000] "GET /en/home HTTP/1.1" 200 5434 "https://example.com/en/direct/gohome" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36"
+
+# regex
+{job="prod/nginx"}
+| regexp `(?P<ip>\S+) (?P<identd>\S+) (?P<user>\S+) \[(?P<timestamp>[\w:\/]+\s[+\\-]\d{4})\] "(?P<action>\S+)\s?(?P<path>\S+)\s?(?P<protocol>\S+)?" (?P<status>\d{3}|-) (?P<size>\d+|-)\s?"?(?P<referrer>[^\"]*)"?\s?"?(?P<useragent>[^\"]*)?"?`
+```
+
+And another one:
+
+```
+# logline
+[2022-06-10 10:44:45] dev.INFO: {"logType":"Event","logTag":"SomeResponse","description":"SomeClientResponse: handleSomeRequest","attributes":{"foo":"bar"}}
+
+# regex
+{job="prod/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))`
+```
+
 - https://grafana.com/docs/loki/latest/logql/#label-filter-expression
 - https://gist.github.com/ruanbekker/cb4ebdc24331661ca120f20b4445ad75
+
+
