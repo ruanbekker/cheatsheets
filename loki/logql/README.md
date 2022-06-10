@@ -129,7 +129,34 @@ And another one:
 {job="prod/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))`
 ```
 
+- https://grafana.com/docs/loki/latest/logql/log_queries/
 - https://grafana.com/docs/loki/latest/logql/#label-filter-expression
 - https://gist.github.com/ruanbekker/cb4ebdc24331661ca120f20b4445ad75
 
+## Access Json Data
 
+If your log looks like this:
+
+```
+[2022-06-10 10:44:45] dev.INFO: {"logType":"Event","logTag":"SomeResponse","description":"SomeClientResponse: handleSomeRequest","attributes":{"foo":"bar"}}
+```
+
+And you want to parse the json after "dev.INFO:" you can do:
+
+```
+{job="dev/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))` | line_format "{{.jsonstring}}" | json | __error__ != "JSONParserErr"
+```
+
+If your json has specific data that you want to access, lets say a key {"logTag": "BalanceCheck", "balance": 9}, you can do:
+
+```
+{job="dev/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))` | line_format "{{.jsonstring}}" | json | __error__ != "JSONParserErr" | logTag="BalanceCheck"
+```
+
+And to see logs for balances more than 8:
+
+```
+{job="dev/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))` | line_format "{{.jsonstring}}" | json | __error__ != "JSONParserErr" | logTag="BalanceCheck" | balance > 100
+```
+
+- https://grafana.com/docs/loki/latest/logql/log_queries/
