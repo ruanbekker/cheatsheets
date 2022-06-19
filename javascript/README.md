@@ -52,6 +52,31 @@ my name is:
 - ruan
 ```
 
+## Arrays
+
+Define array:
+
+```javascript
+> var dict = [];
+```
+
+Append dictionary to array:
+
+```javascript
+> dict.push({
+    key:   "name",
+    value: "ruan"
+});
+```
+
+Print the array:
+
+```javascript
+> console.log(dict);
+[ { key: 'name', value: 'ruan' } ]
+```
+
+
 ## IF Statements
 
 If, else and else if:
@@ -96,4 +121,14 @@ Or it can be written like this:
   console.log('true');
 }
 true
+```
+
+## Read file contents
+
+```javascript
+> const fs = require('fs');
+> const fileName = "/tmp/foo-bar";
+> const myText = fs.readFileSync(fileName, "utf-8");
+> console.log(myText);
+hello
 ```

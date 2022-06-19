@@ -13,6 +13,11 @@ A cheatsheet of MongoDB using the mongo shell
 - [Backups](#backups)
 - [Restores](#restores)
 
+## External Resources:
+
+- [MongoDB Cheatsheet](https://gist.github.com/rbekker87/5b4cd9ef36b6ae092a6260ab9e621a43)
+- [@aponxi](https://gist.github.com/aponxi/4380516)
+
 ## Definitions
 
 - A field in mongodb : {`"key": "value"`}

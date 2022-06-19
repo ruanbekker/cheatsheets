@@ -1,3 +1,32 @@
+# postgresql cheatsheet
+
+## External Resources
+
+- https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb
+- https://www.tutorialspoint.com/postgresql/postgresql_schema.htm
+
+## Setting Up
+
+Install:
+
+```
+brew install postgresql
+```
+
+Start:
+
+```
+brew services start postgresql
+```
+
+Access Postgres:
+
+```
+psql postgres
+```
+
+## Cheatsheet
+
 Create database:
 
 ```
@@ -14,6 +43,18 @@ List roles:
 
 ```
 \du
+```
+
+Allow user to create databases:
+
+```
+ALTER ROLE user1 CREATEDB;
+```
+
+Exit with `\q` and logon with `user1`:
+
+```
+psql postgres -U user1
 ```
 
 Grant all privileges to database:
