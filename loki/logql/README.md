@@ -159,4 +159,16 @@ And to see logs for balances more than 8:
 {job="dev/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))` | line_format "{{.jsonstring}}" | json | __error__ != "JSONParserErr" | logTag="BalanceCheck" | balance > 100
 ```
 
+Line format:
+
+```
+{job="containerlogs"} | json | line_format "timestamp={{ .time }} source_ip={{ .req_headers_x_real_ip }} method={{ .req_method }} path={{ .req_url }} status_code={{ .res_statusCode }}"
+```
+
+Sum by:
+
+```
+sum by (res_statusCode) (rate({job="containerlogs"} | json | line_format "timestamp={{ .time }} source_ip={{ .req_headers_x_real_ip }} method={{ .req_method }} path={{ .req_url }} status_code={{ .res_statusCode }}"[60s])) 
+```
+
 - https://grafana.com/docs/loki/latest/logql/log_queries/
