@@ -6,6 +6,7 @@ Ensure you have a KMS key that you have permissions to use
 
 ```python
 import boto3
+import base64
 session = boto3.Session(region_name='us-east-1', profile_name='default')
 kms = session.client('kms')
 
@@ -18,6 +19,7 @@ result = encoded_ciphertext.decode('utf-8')
 
 ```python
 import boto3
+import base64
 session = boto3.Session(region_name='us-east-1', profile_name='default')
 kms = session.client('kms')
 
@@ -30,6 +32,7 @@ result = plaintext['Plaintext'].decode('utf-8')
 
 ```python
 import boto3
+import base64
 session = boto3.Session(region_name='us-east-1', profile_name='default')
 kms = session.client('kms')
 
