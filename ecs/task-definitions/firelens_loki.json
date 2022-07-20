@@ -25,7 +25,7 @@
           "Labels": "{job=\"prod/dockerlogs\", service=\"nginx-web\", environment=\"prod\"}",
           "LabelKeys": "container_name,ecs_task_definition,source,ecs_cluster",
           "Url": "https://x:x@loki.mydomain.com/loki/api/v1/push",
-          "Name": "loki"
+          "Name": "grafana-loki"
         }
       }
     },
