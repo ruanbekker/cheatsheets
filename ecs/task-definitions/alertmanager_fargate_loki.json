@@ -1,0 +1,87 @@
+{
+  "family": "alertmanager",
+  "executionRoleArn":"arn:aws:iam::xxxxxxxxxxxx:role/ecsTaskExecutionRole",
+  "taskRoleArn":"arn:aws:iam::xxxxxxxxxxxx:role/ecs-taskrole-tooling",
+  "cpu": "256",
+  "memory": "512",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "containerDefinitions": [
+    {
+      "name": "alertmanager",
+      "image": "xxxxxxxxxxxx.dkr.ecr.eu-west-1.amazonaws.com/alertmanager:0.24.0",
+      "memoryReservation": 64,
+      "portMappings":[
+        {
+          "protocol":"tcp",
+          "containerPort":9093,
+          "hostPort":9093
+        }
+      ],
+      "environment": [
+        {
+          "name": "SLACK_ICON",
+          "value": ":fire:"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "SLACK_WEBHOOK_URL",
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/prometheus/prod/SLACK_WEBHOOK_URL"
+        },
+        {
+          "name": "GENERAL_OPSGENIE_API_KEY",
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/prometheus/prod/GENERAL_OPSGENIE_API_KEY"
+        },
+        {
+          "name": "DEVOPS_OPSGENIE_API_KEY",
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/prometheus/prod/DEVOPS_OPSGENIE_API_KEY"
+        },
+        {
+          "name": "ALERTMANAGER_URL",
+          "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/prometheus/prod/ALERTMANAGER_URL"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awsfirelens",
+        "secretOptions": [
+          {
+            "name": "Url",
+            "valueFrom": "arn:aws:ssm:eu-west-1:xxxxxxxxxxxx:parameter/prometheus/prod/LOKI_LOG_URL"
+          }
+        ],
+        "options": {
+          "Name": "grafana-loki",
+          "Labels": "{job=\"container-logs\"}",
+          "RemoveKeys": "container_id,ecs_task_arn",
+          "LabelKeys": "container_name,ecs_task_definition,source,ecs_cluster",
+          "LineFormat": "key_value"
+        }
+      }
+    },
+    {
+      "essential": true,
+      "image": "grafana/fluent-bit-plugin-loki:2.5.0-amd64",
+      "name": "log_router",
+      "firelensConfiguration": {
+        "type": "fluentbit",
+        "options": {
+          "enable-ecs-log-metadata": "true"
+        }
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/devops-tools-cluster/sidecars",
+          "awslogs-region": "eu-west-1",
+          "awslogs-create-group": "true",
+          "awslogs-stream-prefix": "alertmanager-firelens"
+        }
+      },
+      "memoryReservation": 50
+    }
+  ]
+}
