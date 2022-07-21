@@ -1,0 +1,34 @@
+variables:
+  AWS_ACCOUNT_ID: $AWS_ACCOUNT_ID
+  ECR_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  ECR_REPO: devops-alertmanager
+  ALERTMANAGER_VERSION: 0.24.0
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - build
+
+publish:
+  stage: build
+  image:
+    name: amazon/aws-cli:2.3.2
+    entrypoint: [""]
+  tags:
+    - dind
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - amazon-linux-extras install docker -y
+    - aws --version
+    - docker --version
+  script:
+    - docker build --build-arg ALERTMANAGER_VERSION=$ALERTMANAGER_VERSION --build-arg GIT_COMMIT=$CI_COMMIT_SHA -t $ECR_REPO:$ALERTMANAGER_VERSION .
+    - docker tag $ECR_REPO:$ALERTMANAGER_VERSION $ECR_REGISTRY/$ECR_REPO:$ALERTMANAGER_VERSION
+    - docker tag $ECR_REPO:latest $ECR_REGISTRY/$ECR_REPO:$ALERTMANAGER_VERSION
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_REGISTRY
+    - docker push $ECR_REGISTRY/$ECR_REPO:$ALERTMANAGER_VERSION
+    - docker push $ECR_REGISTRY/$ECR_REPO:latest
+    - echo "pushed to $ECR_REGISTRY/$ECR_REPO:$ALERTMANAGER_VERSION and $ECR_REGISTRY/$ECR_REPO:latest"
+  only:
+    - master
