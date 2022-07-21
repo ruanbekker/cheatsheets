@@ -9,3 +9,4 @@
 - https://www.perforce.com/manuals/gitswarm/ci/yaml/README.html
 - https://docs.gitlab.com/ee/user/project/deploy_keys/
 - https://docs.gitlab.com/ee/ci/ssh_keys/
+- https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
