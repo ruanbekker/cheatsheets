@@ -1,4 +1,4 @@
-# Kubernetes Cheatsheet
+# Kubernetes Cheatsheet - kubectl
 
 
 - [Components](#components)
@@ -135,6 +135,12 @@ Show pod info from app selector
 
 ```
 kubectl get pods --selector app=svclb-traefik --namespace kube-system
+```
+
+To show only the pod name from the previous query:
+
+```
+kubectl get pods --selector app=svclb-traefik --output name --namespace kube-system
 ```
 
 Show all pods info from all ns	
