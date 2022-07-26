@@ -1,0 +1,46 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ECSReadAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:DescribeTaskDefinition"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "ECSWriteAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:RegisterTaskDefinition"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "ECSDeployAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:UpdateService"
+            ],
+            "Resource": [
+                "arn:aws:ecs:eu-west-1:xxxxxxxxxxxx:service/teamname-env-cluster/servicename"
+            ]
+        },
+        {
+            "Sid": "IAMPassRole",
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::xxxxxxxxxxxx:role/ecs-taskrole-teamname-clustername",
+                "arn:aws:iam::xxxxxxxxxxxx:role/ecsTaskExecutionRole"
+            ]
+        }
+    ]
+}
