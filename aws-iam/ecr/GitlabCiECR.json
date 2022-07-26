@@ -29,7 +29,8 @@
             "Sid": "ECRAllowPull",
             "Effect": "Allow",
             "Action": [
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ],
             "Resource": [
                 "arn:aws:ecr:eu-west-1:xxxxxxxxxxxx:repository/*"
