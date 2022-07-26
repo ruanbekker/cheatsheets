@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ECRAllowAuthToken",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "ECRAllowUploads",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:eu-west-1:xxxxxxxxxxxx:repository/*"
+            ]
+        },
+        {
+            "Sid": "ECRAllowPull",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:eu-west-1:xxxxxxxxxxxx:repository/*"
+            ]
+        }
+    ]
+}
