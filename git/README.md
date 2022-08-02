@@ -17,6 +17,20 @@ $ cat ~/.gitconfig
 	email = <user>@<domain>
 ```
 
+## Fetch Remote Branches
+
+Fetch all remote branches:
+
+```bash
+git fetch --all 
+```
+
+Fetch a single branch:
+
+```bash
+git fetch origin <branch-name>
+```
+
 ## Display branch
 
 Display branch for gitref:
