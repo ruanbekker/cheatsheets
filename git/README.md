@@ -28,7 +28,7 @@ git fetch --all
 Fetch a single branch:
 
 ```bash
-git fetch origin <branch-name>
+git fetch origin <local-branch-name>:<remote-branch-name>
 ```
 
 ## Display branch
