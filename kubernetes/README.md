@@ -7,9 +7,11 @@
 - [Deployments](#deployments)
 - [Logs](#logs)
 - [Troubleshooting](#troubleshooting)
+- [Snippets](#snippets)
+  - [Pod Snippet](#pods)
 - [Resources](#resources)
 
-### Components
+## Components
 
 |Name|Description|
 |----|-----------|
@@ -27,7 +29,7 @@ Components and Services running on Worker Nodes:
 |container runtime|	container runtimes supported by kubernets: (docker, rkt, runc, etc)|
 
 
-### Nodes
+## Nodes
 
 Show nodes in the cluster:
 
@@ -83,7 +85,7 @@ Get node resource information
 kubectl top node [node_name]
 ```
 
-### Pods
+## Pods
 
 - The single smallest interactable unit in Kubernetes.
 - a Pod can be comprimised of multiple containers that will form a unit deployed on a single node together
@@ -209,7 +211,7 @@ Run a debug pod:
 kubectl run --generator=run-pod/v1 -it --rm load-generator --image=busybox /bin/sh
 ```
 
-### Deployments
+## Deployments
 
 List deployments	
 
@@ -235,7 +237,7 @@ Run a Nginx Deployment with 2 Replicas
 kubectl run nginx01 --image=nginx --replicas=2 --port=80
 ```
 
-### Logs
+## Logs
 
 Tail logs from a pod:
 
@@ -285,7 +287,7 @@ Show pods, sort output by restarts:
 kubectl get pods --sort-by="{.status.containerStatuses[:1].restartCount}"
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 Let's look at a pod:
 
@@ -345,7 +347,148 @@ rpi-06   298m         7%     467Mi           12%
 rpi-07   238m         5%     416Mi           10%
 ```
 
-### Resources:
+## Snippets
+
+### Pods
+
+Example pod snippet:
+
+```yaml
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "myapp"
+  namespace: default
+  labels:
+    app: "myapp"
+spec:
+  containers:
+  - name: myapp
+    image: "debian-slim:latest"
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    env:
+    - name: DB_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: myapp
+          key: DB_HOST
+    ports:
+    - containerPort: 80
+      name:  http
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Tehran
+  restartPolicy: Always
+```
+
+### Deployment
+
+Example deployment snippet:
+
+```yaml
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  myjob
+  namespace: default
+  labels:
+    app: myjob
+spec:
+  selector:
+    matchLabels:
+      app: myjob
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: myjob
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  myjob
+        image:  myjob:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: myjob
+              key: DB_HOST
+        ports:
+        - containerPort:  80
+          name:  myjob
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Tehran
+      restartPolicy: Always
+```
+
+### Secret
+
+Example secret snippet:
+
+```yaml
+# https://kubernetes.io/docs/concepts/configuration/secret/
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+  namespace: default
+type: Opaque
+data:
+  password: cGFzc3dvcmQ=
+  # echo -n 'password' | base64
+```
+
+## Resources:
 
 Kubectl Output Formatting:
 - https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba
