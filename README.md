@@ -4,6 +4,26 @@
 
 ![GitHub followers](https://img.shields.io/github/followers/ruanbekker.svg?label=Follow&style=social) ![Twitter Follow](https://img.shields.io/twitter/follow/ruanbekker.svg?style=social) ![Twitter URL](https://img.shields.io/twitter/url/https/github.com/ruanbekker/cheatsheets.svg?label=Tweet%20Me&style=social)
 
+
+      <style>
+        .libutton {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 7px;
+          text-align: center;
+          outline: none;
+          text-decoration: none !important;
+          color: #ffffff !important;
+          width: 200px;
+          height: 32px;
+          border-radius: 16px;
+          background-color: #0A66C2;
+          font-family: "SF Pro Text", Helvetica, sans-serif;
+        }
+      </style>
+<a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ruanbekker" target="_blank">Follow on LinkedIn</a>
+
 My Cheatsheet Repository - [https://blog.ruanbekker.com/cheatsheets/](https://blog.ruanbekker.com/cheatsheets/) and the source [github.com/ruanbekker/cheatsheets](https://github.com/ruanbekker/cheatsheets)
 
 ## Repo Stats
