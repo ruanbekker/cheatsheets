@@ -8,7 +8,9 @@
 - [Logs](#logs)
 - [Troubleshooting](#troubleshooting)
 - [Snippets](#snippets)
-  - [Pod Snippet](#pods)
+  - [Pod Snippet](#pods-1)
+  - [Deployment Snippet](#deployment)
+  - [Secrets Snippet](#secret)
 - [Resources](#resources)
 
 ## Components
