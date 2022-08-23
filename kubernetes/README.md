@@ -57,6 +57,12 @@ Describe nodes:
 kubectl describe nodes
 ```
 
+Describe a specific node:
+
+```
+kubectl describe node/node-1
+```
+
 Show nodes in yaml format	
 
 ```
@@ -287,6 +293,26 @@ Show pods, sort output by restarts:
 
 ```
 kubectl get pods --sort-by="{.status.containerStatuses[:1].restartCount}"
+```
+
+## Secrets
+
+To view secrets:
+
+```
+kubectl get secrets
+```
+
+To view a specific secret:
+
+```
+kubectl get secret/my-secret -o yaml
+```
+
+As secrets are encoded with base64, we can decode and copy the value of our secret into our clipboard:
+
+```
+kubectl get secret/prometheus-operator-grafana --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
 ```
 
 ## Troubleshooting
