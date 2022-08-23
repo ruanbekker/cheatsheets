@@ -2,10 +2,12 @@
 
 
 - [Components](#components)
-- [Nodes](#nodes)
-- [Pods](#pods)
-- [Deployments](#deployments)
-- [Logs](#logs)
+- [Kubectl](#kubectl)
+  - [Nodes](#nodes)
+  - [Pods](#pods)
+  - [Deployments](#deployments)
+  - [Logs](#logs)
+  - [Secrets](#secrets)
 - [Troubleshooting](#troubleshooting)
 - [Snippets](#snippets)
   - [Pod Snippet](#pods-1)
@@ -30,8 +32,9 @@ Components and Services running on Worker Nodes:
 |kube-proxy	connection| forwarding|
 |container runtime|	container runtimes supported by kubernets: (docker, rkt, runc, etc)|
 
+## kubectl 
 
-## Nodes
+### Nodes
 
 Show nodes in the cluster:
 
@@ -93,7 +96,7 @@ Get node resource information
 kubectl top node [node_name]
 ```
 
-## Pods
+### Pods
 
 - The single smallest interactable unit in Kubernetes.
 - a Pod can be comprimised of multiple containers that will form a unit deployed on a single node together
@@ -219,7 +222,7 @@ Run a debug pod:
 kubectl run --generator=run-pod/v1 -it --rm load-generator --image=busybox /bin/sh
 ```
 
-## Deployments
+### Deployments
 
 List deployments	
 
@@ -245,7 +248,7 @@ Run a Nginx Deployment with 2 Replicas
 kubectl run nginx01 --image=nginx --replicas=2 --port=80
 ```
 
-## Logs
+### Logs
 
 Tail logs from a pod:
 
@@ -295,7 +298,7 @@ Show pods, sort output by restarts:
 kubectl get pods --sort-by="{.status.containerStatuses[:1].restartCount}"
 ```
 
-## Secrets
+### Secrets
 
 To view secrets:
 
