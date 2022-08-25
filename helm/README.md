@@ -25,3 +25,49 @@ wget https://get.helm.sh/helm-v3.9.4-darwin-amd64.tar.gz
 tar helm-v3.9.4-darwin-amd64.tar.gz
 mv darwin-amd64/helm /usr/local/bin
 ```
+
+## Global Flags
+
+List of global flags of version `v3.9.3`:
+
+```bash
+Global Flags:
+      --debug                       enable verbose output
+      --kube-apiserver string       the address and the port for the Kubernetes API server
+      --kube-as-group stringArray   group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --kube-as-user string         username to impersonate for the operation
+      --kube-ca-file string         the certificate authority file for the Kubernetes API server connection
+      --kube-context string         name of the kubeconfig context to use
+      --kube-token string           bearer token used for authentication
+      --kubeconfig string           path to the kubeconfig file
+  -n, --namespace string            namespace scope for this request
+      --registry-config string      path to the registry config file (default "~/Library/Preferences/helm/registry/config.json")
+      --repository-cache string     path to the file containing cached repository indexes (default "~/Library/Caches/helm/repository")
+      --repository-config string    path to the file containing repository names and URLs (default "~/Library/Preferences/helm/repositories.yaml")
+```
+
+## Repositories
+
+List repositories:
+
+```bash
+helm repo list
+```
+
+Add a repository:
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+
+Update repositories:
+
+```bash
+helm repo update
+```
+
+Remove a repository:
+
+```bash
+helm repo remove prometheus-community
+```
