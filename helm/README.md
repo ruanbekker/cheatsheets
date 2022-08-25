@@ -2,6 +2,13 @@
 
 Helm helps you manage Kubernetes applications
 
+## TOC
+
+- [Installing Helm](#installing-helm)
+- [Global Flags](#global-flags)
+- [Repositories](#repositories)
+- [Search](#search)
+
 ## Installing Helm
 
 - [Docs](https://helm.sh/docs/intro/install/)
@@ -70,4 +77,24 @@ Remove a repository:
 
 ```bash
 helm repo remove prometheus-community
+```
+
+## Search
+
+Search all release versions of a chart:
+
+```bash
+helm search repo prometheus-community/kube-prometheus-stack --versions
+```
+
+Search for release versions that starts with a specific number:
+
+```bash
+helm search repo prometheus-community/kube-prometheus-stack --versions --version "^31.0"
+```
+
+Search for release versions as a minimum and up:
+
+```bash
+helm search repo prometheus-community/kube-prometheus-stack --versions --version ">31.0"
 ```
