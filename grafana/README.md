@@ -326,6 +326,23 @@ ecs-prod-app
 ecs-dev-app
 ```
 
+For Kubernetes namespaces:
+
+Name: `container`
+Label: `container`
+Query: `kube_pod_container_info{namespace="$namespace"}`
+Regex: `/.*container="([^"]*).*/`
+Datasource: `Prometheus`
+
+For Kubernetes containers:
+
+Name: `namespace`
+Label: `namespace`
+Query: `query_result(kube_namespace_labels)`
+Regex: `/.*namespace="([^"]*).*/`
+Datasource: `Prometheus`
+
+
 ### Queries for Prometheus
 
 
