@@ -8,6 +8,7 @@ Helm helps you manage Kubernetes applications
 - [Global Flags](#global-flags)
 - [Repositories](#repositories)
 - [Search](#search)
+- [Show](#show)
 
 ## Installing Helm
 
@@ -97,4 +98,18 @@ Search for release versions as a minimum and up:
 
 ```bash
 helm search repo prometheus-community/kube-prometheus-stack --versions --version ">31.0"
+```
+
+## Show
+
+Show the chart's values:
+
+```bash
+helm show values prometheus-community/kube-prometheus-stack --version "39.0.0"
+```
+
+Dumpe the chart's values to a file:
+
+```bash
+helm show values prometheus-community/kube-prometheus-stack --version "39.0.0" > values.yaml
 ```
