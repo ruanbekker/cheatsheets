@@ -113,3 +113,19 @@ Dumpe the chart's values to a file:
 ```bash
 helm show values prometheus-community/kube-prometheus-stack --version "39.0.0" > values.yaml
 ```
+
+## Install
+
+Install a release with a local chart:
+
+```bash
+helm install my-hostname . -f values.yaml
+```
+
+## Upgrade
+
+Upgrade a release with a local chart and specify a timeout:
+
+```bash
+helm upgrade my-hostname . -f values.yaml --timeout 10s
+```
