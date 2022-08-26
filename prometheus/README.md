@@ -555,6 +555,8 @@ label_values(container_last_seen{container_label_com_docker_swarm_node_id=~"$man
 - [ec2_sd_configs]()
   - [Prometheus AWS Cross Account ec2_sd_config](https://jarodw.com/posts/prometheus-ec2-sd-multiple-aws-accounts/)
   - [Prometheus AWS ec2_sd_config role](https://medium.com/investing-in-tech/automatic-monitoring-for-all-new-aws-instances-using-prometheus-service-discovery-97d37a5b2ea2)
+- [kubernetes_sd_configs]()
+  - [fabianlee kubernetes configs](https://fabianlee.org/2022/07/08/prometheus-monitoring-services-using-additional-scrape-config-for-prometheus-operator/)
 - [@metricfire.com: Understanding the Rate Function](https://www.metricfire.com/blog/understanding-the-prometheus-rate-function/)
 Dashboarding:
 - [Alerting on Missing Labels and Metrics](https://niravshah2705.medium.com/prometheus-alert-for-missing-metrics-and-labels-afd4b8f12b1)
