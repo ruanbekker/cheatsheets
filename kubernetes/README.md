@@ -298,6 +298,20 @@ Show pods, sort output by restarts:
 kubectl get pods --sort-by="{.status.containerStatuses[:1].restartCount}"
 ```
 
+### Events
+
+View kube-system events:
+
+```bash
+kubectl get events -n kube-system
+```
+
+View kube-system events, sorted by date:
+
+```bash
+kubectl get events -n kube-system --sort-by='.metadata.creationTimestamp'
+```
+
 ### Secrets
 
 To view secrets:
