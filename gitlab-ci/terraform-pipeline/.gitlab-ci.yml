@@ -1,0 +1,67 @@
+# terraform pipeline to plan automatically and manual apply
+
+image:
+  name: hashicorp/terraform:1.2.5
+  entrypoint: [""]
+
+stages:
+  - validate
+  - plan
+  - apply
+
+.terraform:
+  artifacts:
+    paths:
+      - '**/deploy.tfplan'
+      - '**/.terraform.lock.hcl'
+
+before_script:
+  - cd environments/dev
+  - terraform --version
+  - terraform init
+
+validate:
+  stage: validate
+  script:
+    - terraform validate
+  only:
+    - branches
+  except:
+    - main
+
+plan-branch:
+  environment:
+    name: dev
+    action: prepare
+  extends: .terraform
+  stage: plan
+  script:
+    - terraform plan --var-file $TERRAFORM_VARS_FILE -input=false
+  only:
+    - branches
+  except:
+    - main
+
+plan-dev:
+  environment:
+    name: dev
+    action: prepare
+  extends: .terraform
+  stage: plan
+  script:
+    - terraform plan --var-file $TERRAFORM_VARS_FILE -input=false -out deploy.tfplan
+  only:
+    - main
+
+apply-dev:
+  extends: .terraform
+  environment:
+    name: dev
+    action: start
+  stage: apply
+  script:
+    - terraform apply -input=false -auto-approve deploy.tfplan
+  when: manual
+  allow_failure: false
+  only:
+    - main
