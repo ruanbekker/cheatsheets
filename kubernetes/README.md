@@ -314,22 +314,43 @@ kubectl get events -n kube-system --sort-by='.metadata.creationTimestamp'
 
 ### Secrets
 
+Create two files with the username and password:
+
+```bash
+echo -n 'admin' > ./username.txt
+echo -n '1f2d1e2e67df' > ./password.txt
+```
+
+Create the secret:
+
+```bash
+kubectl create secret generic db-user-pass --from-file=admin-user=./username.txt --from-file=password=./password.txt
+# or from literals
+kubectl create secret generic db-user-pass --from-literal=admin-user=admin --from-literal=password='1f2d1e2e67df'
+```
+
 To view secrets:
 
-```
+```bash
 kubectl get secrets
 ```
 
 To view a specific secret:
 
+```bash
+kubectl get secret/db-user-pass -o yaml
 ```
-kubectl get secret/my-secret -o yaml
+
+To view them in json format:
+
+```bash
+kubectl get secret/db-user-pass -o jsonpath='{.data}'
 ```
 
 As secrets are encoded with base64, we can decode and copy the value of our secret into our clipboard:
 
-```
-kubectl get secret/prometheus-operator-grafana --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
+```bash
+kubectl get secret/db-user-pass --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
 ```
 
 ## Troubleshooting
