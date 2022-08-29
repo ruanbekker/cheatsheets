@@ -7,3 +7,17 @@ Kafka is a distributed system consisting of servers and clients that communicate
 ```bash
 kafka-topics --list --zookeeper zookeeper.kafka.instance:2181
 ```
+
+## Consume Messages
+
+Read messages as they arrive:
+
+```bash
+kafka-console-consumer --bootstrap-server kafka-ops:9092 --topic system-logs
+```
+
+Reading messages from the beginning:
+
+```bash
+kafka-console-consumer --bootstrap-server kafka-ops:9092 --topic system-logs --from-beginning
+```
