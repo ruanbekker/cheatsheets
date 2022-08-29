@@ -8,6 +8,7 @@
   - [Deployments](#deployments)
   - [Logs](#logs)
   - [Secrets](#secrets)
+  - [Copy](#CP)
 - [Troubleshooting](#troubleshooting)
 - [Snippets](#snippets)
   - [Pod Snippet](#pods-1)
@@ -351,6 +352,14 @@ As secrets are encoded with base64, we can decode and copy the value of our secr
 
 ```bash
 kubectl get secret/db-user-pass --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
+```
+
+## CP
+
+Copy a remote file from a container in a pod to local filesystem:
+
+```bash
+kubectl cp monitoring/prometheus-operator-grafana-x-x:/tmp/dump/grafana-backup.tar.gz ~/backups/grafana-backup.tar.gz -c grafana
 ```
 
 ## Troubleshooting
