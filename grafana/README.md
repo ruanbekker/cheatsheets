@@ -17,6 +17,7 @@
   - [Prometheus Datasource](#prometheus-datasource)
   - [Prometheus Variables](#prometheus-variables)
   - [Prometheus Queries](#prometheus-queries)
+  - [Prometheus Tables](#tables-for-prometheus)
 - [Loki]()
   - [Loki Datasource](#loki-datasource)
   - [Loki Variables](#loki-variables)
@@ -345,6 +346,17 @@ Datasource: `Prometheus`
 
 ### Queries for Prometheus
 
+### Tables for Prometheus
+
+Using datalinks in grafana, to parse values in your url you can use `$__cell_0` and if you need to do some formatting you can use `${__cell_3:raw}`, like below:
+
+```
+https://gitlab.com/${__cell_3:raw}/-/pipelines/$__cell_7
+```
+
+Resources:
+- https://grafana.com/docs/grafana/next/panels/configure-data-links/
+- https://grafana.com/docs/grafana/latest/variables/advanced-variable-format-options/
 
 ## Loki Datasource
 
