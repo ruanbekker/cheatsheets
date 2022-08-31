@@ -106,6 +106,12 @@ Memory Available by Node:
 node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_info)
 ```
 
+Or if you rely on labels from other metrics:
+
+```
+(node_memory_MemTotal_bytes{job="node-exporter"} - node_memory_MemFree_bytes{job="node-exporter"} - node_memory_Buffers_bytes{job="node-exporter"} - node_memory_Cached_bytes{job="node-exporter"}) * on(instance) group_left(nodename) (node_uname_info{nodename=~"$nodename"})
+```
+
 Load Average in percentage:
 
 ```
