@@ -1,0 +1,16 @@
+variables:
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+
+services:
+  - docker:dind
+
+.docker:
+  image: docker:20.10.17-cli
+  before_script:
+    - docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD"
+    - docker --version
+    - docker context create ci-environment
+    - docker buildx create --name multi-arch --platform "linux/arm64,linux/amd64" --driver "docker-container" ci-environment
