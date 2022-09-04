@@ -129,3 +129,15 @@ Upgrade a release with a local chart and specify a timeout:
 ```bash
 helm upgrade my-hostname . -f values.yaml --timeout 10s
 ```
+
+## Chart Museum 
+
+```bash
+helm plugin install https://github.com/chartmuseum/helm-push
+helm repo add cm --username ${HELM_REPO_USERNAME} --password ${HELM_REPO_PASSWORD} https://chartmuseum.mydomain.com/
+helm create mychart
+# helm package mychart # or cd mychart; helm package .
+# helm dependency build -> if you are in the chart directory with dependency in the Chart.yaml
+cd mychart
+helm cm-push . -f --username ${HELM_REPO_USERNAME} --password ${HELM_REPO_PASSWORD} https://chartmuseum.mydomain.com/ # chart name will be the directory name
+```
