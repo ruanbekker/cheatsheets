@@ -362,6 +362,14 @@ Copy a remote file from a container in a pod to local filesystem:
 kubectl cp monitoring/prometheus-operator-grafana-x-x:/tmp/dump/grafana-backup.tar.gz ~/backups/grafana-backup.tar.gz -c grafana
 ```
 
+## Generate Manifests
+
+Deployments:
+
+```bash
+kubectl create deployment nginx --namespace default --replicas 2 --image registry.gitlab.com/ruanbekker/containers:nginx --port 80 --dry-run=client -o yaml > deployment.yaml
+```
+
 ## Troubleshooting
 
 Let's look at a pod:
