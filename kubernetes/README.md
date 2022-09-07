@@ -370,6 +370,12 @@ Deployments:
 kubectl create deployment nginx --namespace default --replicas 2 --image registry.gitlab.com/ruanbekker/containers:nginx --port 80 --dry-run=client -o yaml > deployment.yaml
 ```
 
+Services:
+
+```bash
+kubectl expose deployment nginx --port 80 --target-port 80 --dry-run=client -o yaml > service.yaml
+```
+
 ## Troubleshooting
 
 Let's look at a pod:
