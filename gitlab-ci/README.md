@@ -13,3 +13,4 @@
 - https://docs.gitlab.com/ee/ci/ssh_keys/
 - https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
 - https://docs.gitlab.com/ee/ci/yaml/
+- https://bag.org.tr/proje/help/ci/yaml/README.md
