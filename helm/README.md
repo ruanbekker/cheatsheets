@@ -130,6 +130,28 @@ Upgrade a release with a local chart and specify a timeout:
 helm upgrade my-hostname . -f values.yaml --timeout 10s
 ```
 
+## History
+
+View the deployment history:
+
+```bash
+helm history chart-name
+```
+
+## Rollbacks
+
+Rollback to most recent version:
+
+```bash
+helm rollback chart-name
+```
+
+Rollback to specific version:
+
+```bash
+helm rollback chart-name 2
+```
+
 ## Chart Museum 
 
 ```bash
