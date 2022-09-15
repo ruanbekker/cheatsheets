@@ -100,6 +100,12 @@ Search for release versions as a minimum and up:
 helm search repo prometheus-community/kube-prometheus-stack --versions --version ">31.0"
 ```
 
+Search for a repo with regular expressions:
+
+```bash
+helm search repo -r "bitnami/(re-).*"
+```
+
 ## Show
 
 Show the chart's values:
