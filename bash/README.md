@@ -178,6 +178,17 @@ while [ ${UPDATE_COMPLETE} == false ]
 echo "complete"
 ```
 
+## for Loops
+### Upload all docker image
+
+```bash
+for i in $(ls | grep .tar): do
+  docker load -i $i;
+done
+```
+
+
+
 ## Functions
 
 ```
