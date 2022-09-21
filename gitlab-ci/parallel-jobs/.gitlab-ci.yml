@@ -1,0 +1,76 @@
+variables:
+  RANDOM_WORD: hello
+
+image: busybox:latest
+
+stages:
+  - single-job
+  - parallel-jobs
+  - parallel-jobs-with-dependencies
+  - results
+
+job-one:
+  stage: single-job
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" > file.txt
+  artifacts:
+    paths:
+      - file.txt
+      
+job-two:
+  stage: parallel-jobs
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" >> file.txt
+  artifacts:
+    paths:
+      - file.txt
+
+job-three:
+  stage: parallel-jobs
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" >> file.txt
+  artifacts:
+    paths:
+      - file.txt
+
+job-four:
+  stage: parallel-jobs-with-dependencies
+  needs: [job-three]
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" >> file.txt
+  artifacts:
+    paths:
+      - file.txt
+
+job-five:
+  stage: parallel-jobs-with-dependencies
+  needs: [job-four]
+  dependencies:
+    - job-four
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" >> file.txt
+  artifacts:
+    paths:
+      - file.txt
+
+job-six:
+  stage: parallel-jobs-with-dependencies
+  needs: [job-four]
+  dependencies:
+    - job-four
+  script:
+    - HOSTNAME=$(hostname)
+    - echo "hostname=${HOSTNAME}, random-number=${RANDOM}, pipeline-id=${CI_PIPELINE_ID}" >> file.txt
+  artifacts:
+    paths:
+      - file.txt
+
+view-results:
+  stage: results
+  script:
+    - cat file.txt
