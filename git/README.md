@@ -47,6 +47,14 @@ $ git --no-pager  branch -a --contains 0000000000000000000000000000000000000 | r
 dev
 ```
 
+## Display directory path
+
+Show the current working directory:
+
+```bash
+$ git rev-parse --show-toplevel
+```
+
 ## External Cheatsheets
 
 - https://gist.github.com/mkhairi/405c4afa2fedb7328695a7a73ef49074
