@@ -6,6 +6,8 @@ Helm helps you manage Kubernetes applications
 
 - [Installing Helm](#installing-helm)
 - [Global Flags](#global-flags)
+- [Releases](#releases)
+- [Rollbacks](#rollbacks)
 - [Repositories](#repositories)
 - [Search](#search)
 - [Show](#show)
@@ -54,6 +56,20 @@ Global Flags:
       --repository-config string    path to the file containing repository names and URLs (default "~/Library/Preferences/helm/repositories.yaml")
 ```
 
+## Releases
+
+List a release:
+
+```bash
+helm ls --namespace <namespace>
+```
+
+View the history of releases:
+
+```bash
+helm history <release> --namespace <namespace>
+```
+
 ## Repositories
 
 List repositories:
@@ -78,6 +94,20 @@ Remove a repository:
 
 ```bash
 helm repo remove prometheus-community
+```
+
+## Rollbacks
+
+Rollback to a specific revision:
+
+```bash
+helm rollback <release> <revision> --namespace <namespace>
+```
+
+Rollback to the previous revision:
+
+```bash
+helm rollback <release> 0 --namespace <namespace>
 ```
 
 ## Search
