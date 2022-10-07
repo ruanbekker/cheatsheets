@@ -8,6 +8,14 @@ Create a file named `config`:
 New-Item config -type file
 ```
 
+## Delete
+
+Delete everything inside the folder and subfolders (equivalent to `rm -rf`):
+
+```powershell
+Remove-Item .\helm-charts\* -Recurse -Force
+```
+
 ## Environment Variables
 
 Show current path environment variable:
