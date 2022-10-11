@@ -14,6 +14,8 @@
   - [Pod Snippet](#pods-1)
   - [Deployment Snippet](#deployment)
   - [Secrets Snippet](#secret)
+- [Useful Aliases](#useful-aliases)
+- [Useful Tools](#useful-tools)
 - [Resources](#resources)
 
 ## Components
@@ -578,6 +580,20 @@ data:
   password: cGFzc3dvcmQ=
   # echo -n 'password' | base64
 ```
+
+## Useful Aliases
+
+```
+alias k=kubectl
+alias ktx=kubectx
+alias kns=kubens
+```
+
+## Useful Tools
+
+- [kubectx](https://github.com/ahmetb/kubectx) : lets you switch between contexts (clusters) on kubectl faster.
+- [kubens](https://github.com/ahmetb/kubectx) : lets you switch between Kubernetes namespaces (and configure them for kubectl) easily.
+- [stern](https://github.com/wercker/stern) : lets you to tail multiple pods on Kubernetes and multiple containers within the pod.
 
 ## Resources:
 
