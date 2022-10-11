@@ -16,6 +16,7 @@
   - [Secrets Snippet](#secret)
 - [Useful Aliases](#useful-aliases)
 - [Useful Tools](#useful-tools)
+- [External List of Tools](#external-list-of-tools)
 - [Resources](#resources)
 
 ## Components
@@ -595,6 +596,9 @@ alias krun="kubectl run debug-pod --rm -it --restart='Never' --image ruanbekker/
 - [kubectx](https://github.com/ahmetb/kubectx) : lets you switch between contexts (clusters) on kubectl faster.
 - [kubens](https://github.com/ahmetb/kubectx) : lets you switch between Kubernetes namespaces (and configure them for kubectl) easily.
 - [stern](https://github.com/wercker/stern) : lets you to tail multiple pods on Kubernetes and multiple containers within the pod.
+
+## External List of Tools
+- [collabnix.github.io/kubetools](https://collabnix.github.io/kubetools/)
 
 ## Resources:
 
