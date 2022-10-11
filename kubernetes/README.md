@@ -154,6 +154,12 @@ Show pod info from app selector
 kubectl get pods --selector app=svclb-traefik --namespace kube-system
 ```
 
+Show pod info from [multiple label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/):
+
+```
+kubectl get pods -n kube-system -l 'app in (app-blue, app-green)'
+```
+
 To show only the pod name from the previous query:
 
 ```
