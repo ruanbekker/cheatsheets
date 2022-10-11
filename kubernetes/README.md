@@ -587,6 +587,7 @@ data:
 alias k=kubectl
 alias ktx=kubectx
 alias kns=kubens
+alias krun="kubectl run debug-pod --rm -it --restart='Never' --image ruanbekker/containers:curl -- sh
 ```
 
 ## Useful Tools
