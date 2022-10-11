@@ -154,7 +154,9 @@ kubectl get pods --selector app=svclb-traefik --namespace kube-system
 To show only the pod name from the previous query:
 
 ```
-kubectl get pods --selector app=svclb-traefik --output name --namespace kube-system
+kubectl get pods --selector app=svclb-traefik --namespace kube-system --output name 
+# or
+kubectl get pods --selector app=svclb-traefik --namespace kube-system -o jsonpath="{.items[0].metadata.name}"
 ```
 
 Show all pods info from all ns	
