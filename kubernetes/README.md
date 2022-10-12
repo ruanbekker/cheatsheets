@@ -136,6 +136,12 @@ Show pods in yaml format
 kubectl get pods --output yaml
 ```
 
+Show pods per specific node:
+
+```
+kubectl get pods --field-selector spec.nodeName=node-1 --all-namespaces -o wide
+```
+
 Dont truncate output	
 
 ```
