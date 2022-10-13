@@ -248,7 +248,7 @@ List deployments
 kubectl get deployment
 ```
 
-List deployments from all namespaces	
+List deployments from all namespaces
 
 ```
 kubectl get deployments --all-namespaces
@@ -260,10 +260,46 @@ Show deployment info
 kubectl get deployment/myapp -o yaml
 ```
 
-Run a Nginx Deployment with 2 Replicas	
+Run a Nginx Deployment with 2 Replicas
 
 ```
-kubectl run nginx01 --image=nginx --replicas=2 --port=80
+kubectl run nginx-app --image=nginx --replicas=2 --port=80
+```
+
+Rolling update "www" containers of "hostname" deployment, updating the image
+
+```
+kubectl set image deployment/hostname www=image:v3
+```
+
+Check the history of deployments including the revision
+
+```
+kubectl rollout history deployment/hostname
+```
+
+Rollback to the previous deployment
+
+```
+kubectl rollout undo deployment/hostname
+```
+
+Rollback to a specific revision
+
+```
+kubectl rollout undo deployment/hostname --to-revision=2
+```
+
+Watch rolling update status of "hostname" deployment until completion
+
+```
+kubectl rollout status -w deployment/hostname
+```
+
+Rolling restart of the "hostname" deployment
+
+```
+kubectl rollout restart deployment/hostname
 ```
 
 ### Logs
