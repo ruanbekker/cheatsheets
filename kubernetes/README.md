@@ -653,6 +653,9 @@ alias krun="kubectl run debug-pod --rm -it --restart='Never' --image ruanbekker/
 Kubectl Output Formatting:
 - https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba
 
+Kubectl Comprehensive Guide:
+- https://www.civo.com/learn/kubectl-commands-a-comprehensive-guide#sort-results
+
 Kubernetes Cheatsheet:
 - https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
