@@ -20,6 +20,28 @@ scrape_configs:
         __path__: /var/log/nginx/access.log
 
     pipeline_stages:
+    # https://grafana.com/docs/loki/latest/clients/promtail/stages/drop/
+    - drop:
+        expression: "(.*/health-check.*)|(.*/health.*)"
+    - drop:
+        older_than: 24h
+        drop_counter_reason: "line_too_old"
+    - drop:
+        longer_than: 8kb
+        drop_counter_reason: "line_too_long"
+    # https://grafana.com/docs/loki/latest/clients/promtail/stages/match/
+    - match:
+        selector: '{app="promtail"} |~ ".*noisy error.*"'
+        action: drop
+        drop_counter_reason: promtail_noisy_error
+    - match:
+        selector: '{app="loki", component="gateway"}'
+        action: drop
+        drop_counter_reason: loki_gateway_logs
+    - match:
+        selector: '{app="loki", component="querier"} |= "level=info"'
+        action: drop
+        drop_counter_reason: loki_querier_info_logs
     # https://github.com/cyriltovena/loki/blob/master/docs/clients/promtail/stages/match.md#example
     # drop healthcheck logs
     - match:
