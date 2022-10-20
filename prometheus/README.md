@@ -241,6 +241,12 @@ Table - Top 5 (enable instant as well):
 sort(topk(5, aws_service_costs))
 ```
 
+Most metrics per job, sorted:
+
+```
+sort_desc (sum by (job) (count by (__name__, job)({job=~".+"})))
+```
+
 Group per Day (Table) - wip
 
 ```
