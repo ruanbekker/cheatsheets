@@ -6,6 +6,7 @@
   - [Nodes](#nodes)
   - [Pods](#pods)
   - [Deployments](#deployments)
+  - [Persistent Volumes](#persistent-volumes)
   - [Logs](#logs)
   - [Secrets](#secrets)
   - [Copy](#CP)
@@ -301,6 +302,10 @@ Rolling restart of the "hostname" deployment
 ```
 kubectl rollout restart deployment/hostname
 ```
+
+### Persistent Volumes
+
+- [Volume Basics - EmptyDir](https://www.alibabacloud.com/blog/kubernetes-volume-basics-emptydir-and-persistentvolume_594834)
 
 ### Logs
 
