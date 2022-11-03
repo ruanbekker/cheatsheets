@@ -297,6 +297,12 @@ Watch rolling update status of "hostname" deployment until completion
 kubectl rollout status -w deployment/hostname
 ```
 
+View the [deployment of a daemonset](https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/):
+
+```
+kubectl rollout status ds/promtail
+```
+
 Rolling restart of the "hostname" deployment
 
 ```
