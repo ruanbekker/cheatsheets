@@ -55,6 +55,18 @@ Show the current working directory:
 $ git rev-parse --show-toplevel
 ```
 
+## Merge master into your branch
+
+Sync your branch with the latest changes in master:
+
+```bash
+$ git checkout master
+$ git pull origin master
+$ git checkout feature/one
+$ git merge master
+$ git push origin feature/one
+```
+
 ## External Cheatsheets
 
 - https://gist.github.com/mkhairi/405c4afa2fedb7328695a7a73ef49074
