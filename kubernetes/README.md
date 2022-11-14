@@ -412,7 +412,19 @@ To view them in json format:
 kubectl get secret/db-user-pass -o jsonpath='{.data}'
 ```
 
-As secrets are encoded with base64, we can decode and copy the value of our secret into our clipboard:
+As secrets are encoded with base64, we can decode and output the value:
+
+```bash
+kubectl get secret/db-user-pass -o jsonpath='{.data.admin-user}' | base64 -d
+```
+
+Or using template with index for our key:
+
+```bash
+kubectl get secret/db-user-pass --template='{{index .data "admin-user"}}' | base64 --decode 
+```
+
+We can also redirect the output to `pbcopy` to copy it into your keyboard if you are using mac:
 
 ```bash
 kubectl get secret/db-user-pass --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
