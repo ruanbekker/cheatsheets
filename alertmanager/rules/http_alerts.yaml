@@ -1,0 +1,14 @@
+groups:
+- name: http_alerts.yaml
+  rules:
+  - alert: high_4xx_response_rate
+    expr: sum(rate(http_server_requests_seconds_count{status=~"^4.."}[1m])) by (service) / sum(rate(http_server_requests_seconds_count[1m])) by (service) * 100 > 90
+    for: 1m
+    labels:
+      severity: warning
+      alert_channel: slack
+      team: devops
+    annotations:
+      title: "High Rate of 4xx Response Status {{ $labels.service }}"
+      description: "Too many HTTP requests with status 4xx (> 90%)\n  VALUE = {{ humanize $value}}%\n  SERVICE = {{ $labels.service }}"
+      summary: "High HTTP 4xx error rate (instance {{ $labels.instance }})"      
