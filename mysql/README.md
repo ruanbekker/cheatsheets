@@ -43,6 +43,8 @@ Update password:
 mysql> UPDATE mysql.user SET authentication_string = PASSWORD('foobar') WHERE User = 'demo' and Host = '%';
 # or
 mysql> SET PASSWORD FOR 'demo'@'%' = PASSWORD('foobar');
+# or
+mysql> ALTER USER 'demo'@'%' IDENTIFIED BY 'foobar';
 ```
 
 Flush:
