@@ -11,4 +11,15 @@ groups:
     annotations:
       title: "High Rate of 4xx Response Status {{ $labels.service }}"
       description: "Too many HTTP requests with status 4xx (> 90%)\n  VALUE = {{ humanize $value}}%\n  SERVICE = {{ $labels.service }}"
-      summary: "High HTTP 4xx error rate (instance {{ $labels.instance }})"      
+      summary: "High HTTP 4xx error rate (instance {{ $labels.instance }})"  
+  - alert: high_actuator_rate
+    expr: sum(irate(http_server_requests_seconds_count{uri="/actuator/prometheus"}[1m])) > 60
+    for: 1m
+    labels:
+      severity: warning
+      alert_channel: slack
+      team: devops
+    annotations:
+      title: "High Rate of Actuator Scrapes {{ $labels.service }}"
+      description: "Too many HTTP requests against the actuator endpoint (> 1ps)\n  VALUE = {{ $value}}\n  SERVICE = {{ $labels.service }}"
+      summary: "High HTTP actuator endpoint rate (instance {{ $labels.instance }})" 
