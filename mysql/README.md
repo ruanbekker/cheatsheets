@@ -153,6 +153,24 @@ mysql> select distinct country from people;
 +---------+
 ```
 
+To create a boolean column with default value of false:
+
+```sql
+CREATE TABLE users ( 
+  active boolean not null default 0
+);
+```
+
+To create a timestamp column:
+
+```sql
+CREATE TABLE users ( 
+  time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Then create a entry with `now()`
+
 ## Changing Tables
 
 Changing the column length:
