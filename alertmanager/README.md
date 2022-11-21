@@ -39,6 +39,9 @@ Setups:
 - [Log Monitoring and Alerting with Loki](https://www.infracloud.io/blogs/grafana-loki-log-monitoring-alerting/)
 - [Alerta for Alertmanager](https://github.com/alerta/prometheus-config)
 
+- Blogposts:
+- [Custom Notifications with Alertmanagers Webhook Receiver in Kubernetes](https://zhimin-wen.medium.com/custom-notifications-with-alert-managers-webhook-receiver-in-kubernetes-8e1152ba2c31)
+
 Tooling:
 - [Webhook for Alertmanager](https://github.com/bakins/alertmanager-webhook-example)
 
