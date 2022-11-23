@@ -29,7 +29,7 @@ If you can't find what you are looking for, have a look at my other content:
 
 * [Alertmanager](alertmanager/README.md)
 * [Ansible](ansible/README.md)
-* [AWS CLI]()
+* [AWS CLI](aws-cli/)
   * [EC2](aws-cli/ec2/README.md)
   * [ECS](aws-cli/ecs/README.md)
   * [Elasticache](aws-cli/elasticache/README.md)
