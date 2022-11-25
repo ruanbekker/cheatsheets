@@ -47,6 +47,12 @@ $ git --no-pager  branch -a --contains 0000000000000000000000000000000000000 | r
 dev
 ```
 
+List local all branches:
+
+```bash
+$ git branch -a
+```
+
 ## Display directory path
 
 Show the current working directory:
@@ -65,6 +71,14 @@ $ git pull origin master
 $ git checkout feature/one
 $ git merge master
 $ git push origin feature/one
+```
+
+## Delete branches
+
+Delete a local branch:
+
+```bash
+$ git branch -D branch-name 
 ```
 
 ## External Cheatsheets
