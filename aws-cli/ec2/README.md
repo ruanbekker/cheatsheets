@@ -87,6 +87,15 @@ $ aws --region eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=$(
 my-ec2-instance
 ```
 
+Show EC2 instances in table format:
+
+```bash
+aws ec2 describe-instances \
+  --query "Reservations[*].Instances[*].{Name:Tags[?Key=='Name']|[0].Value,InstanceID:InstanceId,Status:State.Name}" \
+  --filters "Name=instance-state-name,Values=running" "Name=tag:Name,Values='*'" \
+  --output table
+```
+
 #### EBS
 
 Modify a EBS volume from GP2 to GP3:
