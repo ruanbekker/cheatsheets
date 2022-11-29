@@ -1,5 +1,43 @@
 # Terraform Cheatsheets
 
+## Cheatsheets
+
+Terraform Format:
+
+```bash
+terraform fmt
+```
+
+Validate terraform syntax:
+
+```bash
+terraform validate
+```
+
+Validate terraform syntax and skip backend validation:
+
+```bash
+terraform validate -backend=false
+```
+
+Initialize and download providers:
+
+```bash
+terraform init
+```
+
+Terraform plan to review what will be changed:
+
+```bash
+terraform plan
+```
+
+Terraform Apply to create/delete resources:
+
+```bash
+terraform apply
+```
+
 ## Resources
 
 Terraform Tutorials:
@@ -27,6 +65,9 @@ Terraform Examples:
 Learn Guides:
 
 - [Hashicorp Terraform Modules](https://learn.hashicorp.com/collections/terraform/modules)
+
+Terraform Cheatsheets
+- [acloudguru cheatsheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
 
 Terraform AWS Workshops:
 - [Terraform EKS AWS Workshop](https://tf-eks-workshop.workshop.aws/000_workshop_introduction.html)
