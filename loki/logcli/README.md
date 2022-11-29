@@ -7,17 +7,29 @@ Go [here](../README.md) to setup Loki
 Install the binary:
 
 ```
-$ wget https://github.com/grafana/loki/releases/download/v1.6.1/logcli-darwin-amd64.zip
+$ wget https://github.com/grafana/loki/releases/download/v2.7.0/logcli-darwin-amd64.zip
 $ unzip logcli-darwin-amd64.zip
 $ sudo mv logcli-darwin-amd64 /usr/local/bin/logcli
+$ sudo chmod +x /usr/local/bin/logcli
 ```
 
 Configure the environment:
 
 ```
-$ export LOKI_ADDR=https://loki.domain.com
+$ export LOKI_ADDR=https://localhost:3100
 $ export LOKI_USERNAME=x
 $ export LOKI_PASSWORD=x
+```
+
+Permamntly configure the environment:
+
+```
+$ echo -n "
+export LOKI_ADDR=https://localhost:3100
+export LOKI_USERNAME=admin
+export LOKI_PASSWORD=admin
+" >> ~/.bashrc
+$ . ~/.bashrc
 ```
 
 ## Discover Labels
@@ -31,7 +43,7 @@ environment
 job
 ```
 
-Vew all the job labels:
+View all the job labels:
 
 ```
 $ logcli labels job
