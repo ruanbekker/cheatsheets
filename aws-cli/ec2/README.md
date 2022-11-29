@@ -96,6 +96,9 @@ aws ec2 describe-instances \
   --output table
 ```
 
+More Examples:
+- https://ripon-banik.medium.com/top-10-examples-of-aws-cli-query-e717524dc346
+
 #### EBS
 
 Modify a EBS volume from GP2 to GP3:
