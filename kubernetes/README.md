@@ -430,6 +430,24 @@ We can also redirect the output to `pbcopy` to copy it into your keyboard if you
 kubectl get secret/db-user-pass --template='{{index .data "admin-user"}}' | base64 --decode | pbcopy
 ```
 
+To create multiple k/v in your secret from a file:
+
+```
+cat secrets.env
+
+USERNAME=ruan
+PASSWORD=foobar
+```
+
+Then generate the secret yaml:
+
+```
+kubectl -n default create secret generic app-secrets --from-env-file=secrets.env --type=Opaque --dry-run=client --output yaml > secrets.yaml
+```
+
+More resources:
+- https://towardsdatascience.com/multiple-ways-to-create-kubernetes-secrets-33f97feaa499
+
 ## CP
 
 Copy a remote file from a container in a pod to local filesystem:
