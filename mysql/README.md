@@ -75,7 +75,7 @@ mysql> CREATE TABLE domains (
   domain varchar(50) NOT NULL, 
   owner  varchar(50),
   year_registered int(4),
-  PRIMARY KEY (domain) 
+  PRIMARY KEY (id) 
 );
 ```
 
