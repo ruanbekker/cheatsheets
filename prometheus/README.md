@@ -366,6 +366,20 @@ irate(http_client_requests_seconds_sum{job="web-metrics", environment="dev", uri
 irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m])
 ```
 
+Requests per Second:
+
+```
+sum(increase(http_server_requests_seconds_count{service="my-service", env="dev"}[1m])) by (uri)
+```
+
+is the same as:
+
+```
+sum(rate(http_server_requests_seconds_count{service="my-service", env="dev"}[1m]) * 60 ) by (uri)
+```
+
+See this [SO thread](https://stackoverflow.com/questions/66282512/grafana-graphing-http-requests-per-minute-with-http-server-requests-seconds-coun) for more details
+
 ## Scrape Config
 
 relabel configs:
