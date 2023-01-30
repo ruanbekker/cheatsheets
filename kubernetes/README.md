@@ -530,6 +530,20 @@ rpi-06   298m         7%     467Mi           12%
 rpi-07   238m         5%     416Mi           10%
 ```
 
+## Taints
+
+To configure a node to not accept any more workloads but keep the existing pods running, you can set a taint to the node:
+
+```bash
+kubectl taint nodes ip-10-20-8-134.eu-west-1.compute.internal scheduling=enabled:NoSchedule
+```
+
+To remove the taint:
+
+```bash
+kubectl taint nodes ip-10-20-8-134.eu-west-1.compute.internal scheduling=enabled:NoSchedule-
+```
+
 ## Snippets
 
 ### Pods
