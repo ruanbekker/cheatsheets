@@ -2,6 +2,7 @@
 
 * [Changing Tables](#changing-tables)
 * [Check and Repair Tables](#check-and-repair-tables)
+* [Rename Users](#rename-users)
 * [Create Tables](#create-tables)
 * [Delete](#delete)
 * [Get Size in MB](#get-size-in-mb)
@@ -52,6 +53,12 @@ Flush:
 
 ```
 mysql> FLUSH PRIVILEGES;
+```
+
+## Rename Users
+
+```sql
+RENAME USER 'john12' TO 'john.permanent';
 ```
 
 ## Create Tables
