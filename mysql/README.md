@@ -5,6 +5,7 @@
 * [Create Tables](#create-tables)
 * [Delete](#delete)
 * [Get Size in MB](#get-size-in-mb)
+* [View Logged in Users](#view-logged-in-users)
 * [Indexes](#indexes)
 * [Insert Data](#insert-data)
 * [Performance Schema Metrics](#performance-schema-metrics)
@@ -247,6 +248,17 @@ sum( data_length + index_length ) / 1024 /
 sum( data_free )/ 1024 / 1024 "Free Space in MB" 
 FROM information_schema.TABLES 
 GROUP BY table_schema ;
+```
+
+## View Logged in Users
+
+```sql
+SELECT SUBSTRING_INDEX(host, ':', 1) AS host_short, 
+  GROUP_CONCAT(DISTINCT user) AS users, 
+  COUNT(*) AS threads 
+  FROM information_schema.processlist 
+  GROUP BY host_short 
+  ORDER BY COUNT(*), host_short;
 ```
 
 ## Indexes
