@@ -261,6 +261,12 @@ SELECT SUBSTRING_INDEX(host, ':', 1) AS host_short,
   ORDER BY COUNT(*), host_short;
 ```
 
+Or:
+
+```sql
+SELECT `USER`, COUNT(*) FROM information_schema.processlist GROUP BY `USER`;
+````
+
 ## Indexes
 
 Add a index to an existing table:
