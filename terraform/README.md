@@ -71,6 +71,7 @@ Terraform Cheatsheets
 
 Terraform AWS Workshops:
 - [Terraform EKS AWS Workshop](https://tf-eks-workshop.workshop.aws/000_workshop_introduction.html)
+- [Terraform Guru](https://terraformguru.com/terraform-certification-using-azure-cloud/01-Infrastructure-as-Code-IaC-Basics/)
 
 Terraform with Ansible Examples:
 
