@@ -199,3 +199,7 @@ helm create mychart
 cd mychart
 helm cm-push . -f --username ${HELM_REPO_USERNAME} --password ${HELM_REPO_PASSWORD} https://chartmuseum.mydomain.com/ # chart name will be the directory name
 ```
+
+## Helm Chart Resources
+
+- [Environment Variables in Charts](https://phoenixnap.com/kb/helm-environment-variables)
