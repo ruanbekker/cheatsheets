@@ -38,6 +38,21 @@ Terraform Apply to create/delete resources:
 terraform apply
 ```
 
+### Validations
+
+Regex match:
+
+```terraform
+variable "env_name" {
+  type = string
+  default = null
+  validation {
+    condition  = can(regex("^(dev|staging|production|ephemeral-.*)+$", var.env_name))
+    error_message = "For the env_name value only dev, staging, production and ephemeral-* are allowed."
+  }
+}
+```
+
 ## Resources
 
 Terraform Tutorials:
