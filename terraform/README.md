@@ -38,6 +38,31 @@ Terraform Apply to create/delete resources:
 terraform apply
 ```
 
+### Merge function
+
+In this scenario, you can have default tags, but if you want to replace `Environment`, you can define the `var.environment` and include it in the merge function.
+
+```terraform
+variable "default_tags" {
+  default = {
+    ManagedBy   = "terraform"
+    Environment = "local"
+  }
+}
+
+variable "name" {
+  default = "testing"
+}
+
+variable "environment" {
+  default = "dev"
+}
+
+output "merge_tags" {
+  value = "${merge(var.default_tags, tomap({"Name" = "prefix-${var.name}", "Environment" = "${var.environment}"}))}"
+}
+```
+
 ### Validations
 
 Length:
