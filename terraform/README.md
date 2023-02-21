@@ -40,6 +40,19 @@ terraform apply
 
 ### Validations
 
+Length:
+
+```terraform
+variable "service_name" {
+  type = string
+
+  validation {
+    condition     = length(var.service_name) < 40
+    error_message = "The service_name value cant be more than 40 characters."
+  }
+}
+```
+
 Regex match:
 
 ```terraform
