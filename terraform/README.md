@@ -80,6 +80,7 @@ Terraform Examples:
 Learn Guides:
 
 - [Hashicorp Terraform Modules](https://learn.hashicorp.com/collections/terraform/modules)
+- [Terraform Study Guide](https://github.com/ari-hacks/terraform-study-guide/)
 
 Terraform Cheatsheets
 - [acloudguru cheatsheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
