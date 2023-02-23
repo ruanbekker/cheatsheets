@@ -172,4 +172,10 @@ Sum by:
 sum by (res_statusCode) (rate({job="containerlogs"} | json | line_format "timestamp={{ .time }} source_ip={{ .req_headers_x_real_ip }} method={{ .req_method }} path={{ .req_url }} status_code={{ .res_statusCode }}"[60s])) 
 ```
 
+Access nested json:
+
+```
+{namespace=~"$namespace", app=~"$app", pod=~"$pod"} | json  | line_format "{{.log}}" | json raw_body="message" | line_format "m: {{.raw_body}}" | __error__!="JSONParserErr"
+```
+
 - https://grafana.com/docs/loki/latest/logql/log_queries/
