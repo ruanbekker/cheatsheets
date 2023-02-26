@@ -184,4 +184,14 @@ Filter out JSONParserErr:
 {container="my-service"} |= `` | json | __error__!="JSONParserErr" | line_format "{{.message}} {{.stacktrace}}"
 ```
 
+Access nested json and return k/v pairs:
+
+```
+{container="my-service"} 
+| pattern `<_entry>` 
+| json
+| line_format "{{ .message }}\n{{ range $k, $v := (fromJson ._entry)}}{{if ne $k \"message\"}}{{$k}}: {{$v}} {{ end }}{{ end }}"
+```
+
 - https://grafana.com/docs/loki/latest/logql/log_queries/
+- https://stackoverflow.com/questions/69761162/loki-display-log-message-and-extra-fields-separately/70000941#70000941
