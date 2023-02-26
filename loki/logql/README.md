@@ -178,4 +178,10 @@ Access nested json:
 {namespace=~"$namespace", app=~"$app", pod=~"$pod"} | json  | line_format "{{.log}}" | json raw_body="message" | line_format "m: {{.raw_body}}" | __error__!="JSONParserErr"
 ```
 
+Filter out JSONParserErr:
+
+```
+{container="my-service"} |= `` | json | __error__!="JSONParserErr" | line_format "{{.message}} {{.stacktrace}}"
+```
+
 - https://grafana.com/docs/loki/latest/logql/log_queries/
