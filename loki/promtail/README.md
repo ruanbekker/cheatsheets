@@ -171,3 +171,33 @@ scrape_configs:
     target_label: __path__
     replacement: /var/lib/docker/containers/$1*/*.log
 ```
+
+### JSON Nested Pipeline
+
+We want to extract the `info` key from the log line:
+
+```
+{"log": {\"level\": \"info\", \"timestamp\":\"2023-02-26 21:55:24.702\"}}
+```
+
+The config:
+
+```
+    pipelineStages:
+      - cri: {}
+      - multiline:
+          firstline: ^\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2},\d{3}
+          max_wait_time: 3s
+      - json:
+          expressions:
+            log:
+      - json:
+          expressions:
+            level:
+          source: log
+      - labels:
+          level:
+```
+
+Referenced from:
+- https://grafana.com/docs/loki/latest/clients/promtail/stages/json/#using-extracted-data
