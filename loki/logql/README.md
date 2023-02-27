@@ -195,3 +195,13 @@ Access nested json and return k/v pairs:
 
 - https://grafana.com/docs/loki/latest/logql/log_queries/
 - https://stackoverflow.com/questions/69761162/loki-display-log-message-and-extra-fields-separately/70000941#70000941
+
+## Line Format
+
+Include the stacktrace if the key is present
+
+```
+{container="my-service"} |= `` | json | line_format `{{.message}} {{if .stacktrace }} {{- .stacktrace -}} {{else}} {{- "-" -}} {{end}}`
+```
+
+- https://stackoverflow.com/a/69976898
