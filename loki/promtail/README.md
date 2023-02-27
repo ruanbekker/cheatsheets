@@ -10,6 +10,7 @@
 - https://www.youtube.com/watch?v=bIAC0uQee0k (using promtail with loki)
 - https://grafana.com/docs/loki/latest/clients/promtail/scraping/
 - https://grafana.com/blog/2020/07/13/loki-tutorial-how-to-set-up-promtail-on-aws-ec2-to-find-and-analyze-your-logs/
+- https://gist.github.com/cspinetta/41db2cc7f03a5af49e1b1cfe68d1fea4 (promtail pipeline templating)
 
 ## Current Issues
 
