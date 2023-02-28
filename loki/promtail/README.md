@@ -202,3 +202,6 @@ The config:
 
 Referenced from:
 - https://grafana.com/docs/loki/latest/clients/promtail/stages/json/#using-extracted-data
+
+Remap json values and set the output source:
+- https://stackoverflow.com/a/62228397
