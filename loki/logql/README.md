@@ -205,3 +205,11 @@ Include the stacktrace if the key is present
 ```
 
 - https://stackoverflow.com/a/69976898
+
+## Metric Queries
+
+Count log events over the given grafana timefilter and sum by pod:
+
+```
+sum by (app)(count_over_time({app=~"my-service"} | json | line_format "{{.log}}" |~ "Unable to acquire"[$__interval]))
+```
