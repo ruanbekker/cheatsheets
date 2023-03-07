@@ -11,6 +11,7 @@ Helm helps you manage Kubernetes applications
 - [Repositories](#repositories)
 - [Search](#search)
 - [Show](#show)
+- [Charts](#charts)
 
 ## Installing Helm
 
@@ -203,3 +204,13 @@ helm cm-push . -f --username ${HELM_REPO_USERNAME} --password ${HELM_REPO_PASSWO
 ## Helm Chart Resources
 
 - [Environment Variables in Charts](https://phoenixnap.com/kb/helm-environment-variables)
+
+## Charts
+
+### Access Values
+
+Access `--set env=dev` in a chart:
+
+```
+{{ .Values.env | quote }}
+```
