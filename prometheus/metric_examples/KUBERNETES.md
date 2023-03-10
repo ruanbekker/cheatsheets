@@ -24,6 +24,22 @@ Kubelet has disappeared from Prometheus target discovery.
 absent(up{job="kubelet"} == 1)
 ```
 
+### KubeAPIErrorsHigh
+
+API server is returning errors for `{{ $value | humanizePercentage }}` of requests for `{{ $labels.verb }} {{ $labels.resource }} {{ $labels.subresource }}`.
+
+```
+sum by(resource, subresource, verb) (rate(apiserver_request_total{code=~"5..",job="apiserver"}[5m])) / sum by(resource, subresource, verb) (rate(apiserver_request_total{job="apiserver"}[5m])) > 0.1
+```
+
+### KubeAPILatencyHigh
+
+The API server has an abnormal latency of `{{ $value }}` seconds for `{{ $labels.verb }} {{ $labels.resource }}`.
+
+```
+(cluster:apiserver_request_duration_seconds:mean5m{job="apiserver"} > on(verb) group_left() (avg by(verb) (cluster:apiserver_request_duration_seconds:mean5m{job="apiserver"} >= 0) + 2 * stddev by(verb) (cluster:apiserver_request_duration_seconds:mean5m{job="apiserver"} >= 0))) > on(verb) group_left() 1.2 * avg by(verb) (cluster:apiserver_request_duration_seconds:mean5m{job="apiserver"} >= 0) and on(verb, resource) cluster_quantile:apiserver_request_duration_seconds:histogram_quantile{job="apiserver",quantile="0.99"} > 1
+```
+
 ### KubeContainerWaiting
 
 Pod `{{ $labels.namespace }}` / `{{ $labels.pod }}` container `{{ $labels.container }}` has been in waiting state for longer than 1 hour.
@@ -46,6 +62,22 @@ StatefulSet `{{ $labels.namespace }}` / `{{ $labels.statefulset }}` has not matc
 
 ```
 (kube_statefulset_status_replicas_ready{job="kube-state-metrics",namespace=~".*"} != kube_statefulset_status_replicas{job="kube-state-metrics",namespace=~".*"}) and (changes(kube_statefulset_status_replicas_updated{job="kube-state-metrics",namespace=~".*"}[5m]) == 0)
+```
+
+### KubePersistentVolumeFillingUp
+
+The PersistentVolume claimed by `{{ $labels.persistentvolumeclaim }}` in Namespace `{{ $labels.namespace }}` is only `{{ $value | humanizePercentage }}` free.
+
+```
+kubelet_volume_stats_available_bytes{job="kubelet",metrics_path="/metrics",namespace=~".*"} / kubelet_volume_stats_capacity_bytes{job="kubelet",metrics_path="/metrics",namespace=~".*"} < 0.03
+```
+
+### KubePersistentVolumeErrors
+
+The persistent volume `{{ $labels.persistentvolume }}` has status `{{ $labels.phase }}`.
+
+```
+kube_persistentvolume_status_phase{job="kube-state-metrics",phase=~"Failed|Pending"} > 0
 ```
 
 ### KubePodCrashLooping
