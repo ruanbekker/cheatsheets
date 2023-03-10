@@ -1,5 +1,7 @@
 # kubernetes-prometheus-metrics
 
+## Container Metrics
+
 ### CPUThrottlingHigh
 
 `{{ $value | humanizePercentage }}` throttling of CPU in namespace `{{ $labels.namespace }}` for container `{{ $labels.container }}` in pod `{{ $labels.pod }}`.
@@ -100,4 +102,28 @@ Prometheus has disappeared from Prometheus target discovery.
 
 ```
 absent(up{job="prometheus-operator-prometheus",namespace="monitoring"} == 1)
+```
+
+## NodeMetrics
+
+### NodeFilesystemSpaceFillingUp
+
+Filesystem on `{{ $labels.device }}` at `{{ $labels.instance }}` has only `{{ printf "%.2f" $value }}%` available space left and is filling up.
+
+```
+(node_filesystem_avail_bytes{fstype!="",job="node-exporter"} / node_filesystem_size_bytes{fstype!="",job="node-exporter"} * 100 < 40 and predict_linear(node_filesystem_avail_bytes{fstype!="",job="node-exporter"}[6h], 24 * 60 * 60) < 0 and node_filesystem_readonly{fstype!="",job="node-exporter"} == 0)
+```
+
+### NodeFilesystemAlmostOutOfSpace
+
+Filesystem on `{{ $labels.device }}` at `{{ $labels.instance }}` has only `{{ printf "%.2f" $value }}%` available space left.
+
+```
+(node_filesystem_avail_bytes{fstype!="",job="node-exporter"} / node_filesystem_size_bytes{fstype!="",job="node-exporter"} * 100 < 5 and node_filesystem_readonly{fstype!="",job="node-exporter"} == 0)
+```
+
+### NodeCPUHigh
+
+```
+100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle", instance=~"(.*)"}[5m])) * 100) * on(instance) group_left(nodename) node_uname_info{} > 80
 ```
