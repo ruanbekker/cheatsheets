@@ -2,6 +2,8 @@
 
 ### CPUThrottlingHigh
 
+`{{ $value | humanizePercentage }}` throttling of CPU in namespace `{{ $labels.namespace }}` for container `{{ $labels.container }}` in pod `{{ $labels.pod }}`.
+
 ```
 sum by(container, pod, namespace) (increase(container_cpu_cfs_throttled_periods_total{container!=""}[5m])) / sum by(container, pod, namespace) (increase(container_cpu_cfs_periods_total[5m])) > (25 / 100)
 ```
