@@ -22,12 +22,28 @@ Kubelet has disappeared from Prometheus target discovery.
 absent(up{job="kubelet"} == 1)
 ```
 
+### KubeContainerWaiting
+
+Pod `{{ $labels.namespace }}` / `{{ $labels.pod }}` container `{{ $labels.container }}` has been in waiting state for longer than 1 hour.
+
+```
+sum by(namespace, pod, container) (kube_pod_container_status_waiting_reason{job="kube-state-metrics",namespace=~".*"}) > 0
+```
+
 ### KubeDeploymentReplicasMismatch
 
 Deployment `{{ $labels.namespace }}`/`{{ $labels.deployment }}` has not matched the expected number of replicas for longer than 15 minutes.
 
 ```
 (kube_deployment_spec_replicas{job="kube-state-metrics",namespace=~".*"} != kube_deployment_status_replicas_available{job="kube-state-metrics",namespace=~".*"}) and (changes(kube_deployment_status_replicas_updated{job="kube-state-metrics",namespace=~".*"}[5m]) == 0)
+```
+
+### KubeStatefulSetReplicasMismatch
+
+StatefulSet `{{ $labels.namespace }}` / `{{ $labels.statefulset }}` has not matched the expected number of replicas for longer than 15 minutes.
+
+```
+(kube_statefulset_status_replicas_ready{job="kube-state-metrics",namespace=~".*"} != kube_statefulset_status_replicas{job="kube-state-metrics",namespace=~".*"}) and (changes(kube_statefulset_status_replicas_updated{job="kube-state-metrics",namespace=~".*"}[5m]) == 0)
 ```
 
 ### KubePodCrashLooping
