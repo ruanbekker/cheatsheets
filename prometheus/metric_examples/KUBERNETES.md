@@ -22,6 +22,14 @@ Kubelet has disappeared from Prometheus target discovery.
 absent(up{job="kubelet"} == 1)
 ```
 
+### KubeDeploymentReplicasMismatch
+
+Deployment `{{ $labels.namespace }}`/`{{ $labels.deployment }}` has not matched the expected number of replicas for longer than 15 minutes.
+
+```
+(kube_deployment_spec_replicas{job="kube-state-metrics",namespace=~".*"} != kube_deployment_status_replicas_available{job="kube-state-metrics",namespace=~".*"}) and (changes(kube_deployment_status_replicas_updated{job="kube-state-metrics",namespace=~".*"}[5m]) == 0)
+```
+
 ### KubePodCrashLooping
 
 Pod is restarting x amount of times / 5 minutes.
