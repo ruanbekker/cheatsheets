@@ -14,6 +14,12 @@
 - Histogram: A histogram metric can increase or descrease
 - [Source and Statistics 101](https://opensource.com/article/18/4/metrics-monitoring-and-python)
 
+Query Functions:
+
+- `rate` - The rate function calculates at what rate the counter increases per second over a given time window. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+- `irate` - Calculates at what rate the counter increases per second over a defined time window. The difference being that irate only looks at the last two data points. This makes irate well suited for graphing volatile and/or fast-moving counters. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+- `increase` - The increase function calculates the counter increase over a given time frame. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+
 ## Curated Examples
 
 Example queries per exporter / service:
