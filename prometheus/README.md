@@ -595,7 +595,8 @@ Dashboarding:
 - [@devconnected Disk IO Dashboarding](https://devconnected.com/monitoring-disk-i-o-on-linux-with-the-node-exporter/)
 - [@deploy.live recording rules](https://deploy.live/blog/today-i-learned-prometheus-recording-rules/)
 - [CPU and Memory Requests](https://gist.github.com/max-rocket-internet/6a05ee757b6587668a1de8a5c177728b)
-- 
+- [Prometheus Counter Metrics](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+
 Setups:
 
 - [Simulating AWS Tags in Local Prometheus](https://ops.tips/blog/simulating-aws-tags-in-local-prometheus/)
