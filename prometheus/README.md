@@ -19,6 +19,7 @@ Query Functions:
 - `rate` - The rate function calculates at what rate the counter increases per second over a given time window. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
 - `irate` - Calculates at what rate the counter increases per second over a defined time window. The difference being that irate only looks at the last two data points. This makes irate well suited for graphing volatile and/or fast-moving counters. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
 - `increase` - The increase function calculates the counter increase over a given time frame. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+- `resets` - The function gives you the number of counter resets over a given time window. [src](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
 
 ## Curated Examples
 
