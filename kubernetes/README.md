@@ -241,6 +241,21 @@ Run a debug pod:
 kubectl run --generator=run-pod/v1 -it --rm load-generator --image=busybox /bin/sh
 ```
 
+To see the deployment name of which the pod is part of:
+
+```
+# list the pods for the given namespace
+kubectl get pods -n default
+
+# view the pod and output the metadata that shows the replicaset
+kubectl get pods/example-application-5dd6d8465b-dngfx -n default -o jsonpath='{.metadata.ownerReferences[*].name}'
+example-application-5dd6d8465b
+
+# view the replicaset and output the deployment name
+kubectl get replicaset/example-application-5dd6d8465b -n default -o jsonpath='{.metadata.ownerReferences[*].name}'
+example-application
+```
+
 ### Deployments
 
 List deployments	
