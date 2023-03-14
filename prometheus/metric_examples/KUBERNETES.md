@@ -127,3 +127,9 @@ Filesystem on `{{ $labels.device }}` at `{{ $labels.instance }}` has only `{{ pr
 ```
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle", instance=~"(.*)"}[5m])) * 100) * on(instance) group_left(nodename) node_uname_info{} > 80
 ```
+
+### NodeMemoryHigh
+
+```
+100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[10m]) + avg_over_time(node_memory_Cached_bytes[10m]) + avg_over_time(node_memory_Buffers_bytes[10m])) / avg_over_time(node_memory_MemTotal_bytes[10m]))) * on(instance) group_left(nodename) node_uname_info{} > 80
+```
