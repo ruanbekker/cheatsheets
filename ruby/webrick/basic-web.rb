@@ -7,8 +7,10 @@ server = WEBrick::HTTPServer.new(
     :ServerAlias => 'localhost'
 )
 
-server.mount_proc '/' do |req, res|
-  res.body = 'Hello, World!'
+server.mount_proc '/' do |request, response|
+  response.status = 200
+  response.content_type = 'text/html; charset=utf-8'
+  response.body = 'Hello, World!'
 end
 
 trap 'INT' do server.shutdown end
