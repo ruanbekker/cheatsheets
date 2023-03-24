@@ -1,0 +1,20 @@
+# https://medium.com/kubernetes-tutorials/learn-how-to-assign-pods-to-nodes-in-kubernetes-using-nodeselector-and-affinity-features-e62c437f3cf8
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+  namespace: default
+spec:
+  containers:
+  - name: debug
+    image: alpine
+    imagePullPolicy: IfNotPresent
+    command: ["sleep"]
+    args: ["100000"]
+  nodeSelector:
+    node: cpu
+  tolerations:
+  - key: application
+    operator: Equal
+    value: myapp
+    effect: NoSchedule
