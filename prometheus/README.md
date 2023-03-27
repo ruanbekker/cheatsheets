@@ -27,6 +27,14 @@ Example queries per exporter / service:
 
 - [Node Metrics](metric_examples/NODE_METRICS.md)
 
+## Questions and Answers
+
+How can I get the amount of requests over a given time (dashboard time):
+
+```
+sum by (uri) (increase(http_requests_total[$__range]))
+```
+
 ## Example Queries
 
 How many nodes are up?
