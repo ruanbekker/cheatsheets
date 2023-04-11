@@ -129,3 +129,12 @@ $ echo '[{"speed": "superfast"},{"speed": "fast"},{"speed": "slow"}]' | jq -c '.
 {"speed":"superfast"}
 {"speed":"fast"}
 ```
+
+Manipulate the output by specifying fields that you are interested with:
+
+```bash
+echo '{"ListOfThings": [{"Name": "James", "Age": 23, "Country": "Italy"}]}' | jq -r '.ListOfThings[] | "name=\(.Name)\n age=\(.age)\n"'
+name=James
+age=23
+
+```
