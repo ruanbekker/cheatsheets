@@ -119,6 +119,63 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+To get the number of blocks in the longest block chain:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockcount", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+{
+    "result": 2391641,
+    "error": null,
+    "id": "curl"
+}
+```
+
+Then return the hash of block in best-block-chain at (index x):
+
+```
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockhash", "params": [2391641]}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+{
+    "result": "eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db",
+    "error": null,
+    "id": "curl"
+}
+```
+
+Then to returns information about the block with the given hash:
+
+```
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblock", "params": ["eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db"]}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+{
+    "result": {
+        "hash": "eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db",
+        "confirmations": 1,
+        "strippedsize": 229,
+        "size": 265,
+        "weight": 952,
+        "height": 2391641,
+        "version": 536870912,
+        "versionHex": "20000000",
+        "merkleroot": "4e6a50298fb717f6356b53bf0f66fee77562c4c4d09dc0b454d0cf89168087bd",
+        "tx": [
+            "4e6a50298fb717f6356b53bf0f66fee77562c4c4d09dc0b454d0cf89168087bd"
+        ],
+        "time": 1673267350,
+        "mediantime": 1673266113,
+        "nonce": 32766,
+        "bits": "1e0fffff",
+        "difficulty": 0.0002441371325370145,
+        "chainwork": "000000000000000000000000000000000000000000000000012191b962fdedf7",
+        "nTx": 1,
+        "previousblockhash": "9db4a06c9f7abbace253e3185eb6c65531a7b6bc520b8d52f11ea984dee8cc45"
+    },
+    "error": null,
+    "id": "curl"
+}
+```
+
+More info on these parameters:
+- https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list
+
 ## Wallets
 
 Create a wallet named `main`:
