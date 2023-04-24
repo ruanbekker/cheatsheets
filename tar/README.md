@@ -23,3 +23,9 @@ Archive and follow symlinks:
 ```
 $ tar -cvhf archive.tar.gz /opt/app/current
 ```
+
+Tar combined with wget:
+
+```bash
+$ wget -q -O - https://github.com/sibprogrammer/xq/releases/download/v1.1.4/xq_1.1.4_linux_amd64.tar.gz | tar zxv
+```
