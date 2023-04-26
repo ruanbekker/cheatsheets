@@ -35,6 +35,12 @@ How can I get the amount of requests over a given time (dashboard time):
 sum by (uri) (increase(http_requests_total[$__range]))
 ```
 
+How many pod restarts per minute?
+
+```
+rate(kube_pod_container_status_restarts_total{job="kube-state-metrics",namespace="default"}[15m]) * 60 * 15
+```
+
 ## Example Queries
 
 How many nodes are up?
