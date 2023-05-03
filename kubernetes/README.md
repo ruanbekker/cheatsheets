@@ -485,6 +485,20 @@ Services:
 kubectl expose deployment nginx --port 80 --target-port 80 --dry-run=client -o yaml > service.yaml
 ```
 
+## API Resources
+
+To view all api resources, such as ingress, configmap, servicemonitor and any other CRDs:
+
+```bash
+kubectl api-resources
+```
+
+To view all the resources in a given namespace:
+
+```bash
+for obj in $(kubectl api-resources --verbs=list --namespaced -o name); do kubectl get $obj -n my-namespace --ignore-not-found --show-kind ; done
+```
+
 ## Troubleshooting
 
 Let's look at a pod:
