@@ -8,6 +8,12 @@
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":51}' http://127.0.0.1:8545
 ```
 
+- `eth_chainId`
+
+```bash
+curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}' localhost:8545 | jq -r '.result' | tr -d '\n' |  xargs -0 printf "%d"
+```
+
 - `eth_blockNumber`:
 
 ```bash
