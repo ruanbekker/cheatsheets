@@ -20,8 +20,14 @@ curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id"
 curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":["latest", false],"id":1}' localhost:8545  | jq -r ".result" | tr -d '\n' |  xargs -0 printf "%d"
 ```
 
-- `eth_getBlockByNumber`:
+- `eth_getBlockByNumber` - by blocknumber:
 
 ```bash
-curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["7881483", false],"id":1}' localhost:8545 | jq -r '.result.timestamp' | tr -d '\n' |  xargs -0 printf "%d"
+curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["7881483", false],"id":1}' localhost:8545 | jq -r '.result.number' | tr -d '\n' |  xargs -0 printf "%d"
+```
+
+- `eth_getBlockByNumber` - latest :
+
+```bash
+curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", false],"id":1}' localhost:8545 | jq -r '.result.number' | tr -d '\n' |  xargs -0 printf "%d"
 ```
