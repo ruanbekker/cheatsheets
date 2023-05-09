@@ -501,6 +501,8 @@ for obj in $(kubectl api-resources --verbs=list --namespaced -o name); do kubect
 
 ## Troubleshooting
 
+### Pods
+
 Let's look at a pod:
 
 ```
@@ -557,6 +559,14 @@ rpi-03   276m         6%     330Mi           35%
 rpi-05   1107m        27%    2222Mi          57%
 rpi-06   298m         7%     467Mi           12%
 rpi-07   238m         5%     416Mi           10%
+```
+
+### Namespace not deleting
+
+If you see the status of your namespace is `Terminating`, it could be because of a resource is prevented from deletion, you can look under the namespace using:
+
+```bash
+for obj in $(kubectl api-resources --verbs=list --namespaced -o name); do k get $obj -n my-namespace --ignore-not-found --show-kind ; done
 ```
 
 ## Taints
