@@ -566,7 +566,15 @@ rpi-07   238m         5%     416Mi           10%
 If you see the status of your namespace is `Terminating`, it could be because of a resource is prevented from deletion, you can look under the namespace using:
 
 ```bash
-for obj in $(kubectl api-resources --verbs=list --namespaced -o name); do k get $obj -n my-namespace --ignore-not-found --show-kind ; done
+for obj in $(kubectl api-resources --verbs=list --namespaced -o name); do kubectl get $obj -n my-namespace --ignore-not-found --show-kind ; done
+```
+
+### Ingress not deleting
+
+If your ingress don't want to delete you can remove the finalizers [source](https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1629#issuecomment-731011683)
+
+```bash
+kubectl patch ingress my-ingress -n my-namespace -p '{"metadata":{"finalizers":[]}}' --type=merge
 ```
 
 ## Taints
