@@ -96,6 +96,36 @@ And to manipulate the message:
 Pod {{ $labels.namespace }} / {{ $labels.pod }} ({{ $labels.container }}) is restarting {{ printf "%.2f" $value }} times / 5 minutes.
 ```
 
+### PodNotRunning
+
+```
+sum by (pod)(kube_pod_status_ready{condition="true"} == 0)
+```
+
+### TotalRestartsForContainer
+
+```
+increase(kube_pod_container_status_restarts_total[1h])
+# or
+increase(kube_pod_container_status_restarts_total{namespace="my-namespace", pod=~".*prefix.*"}[1h])
+```
+
+### OomReasonForTermination
+
+```
+kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}
+# or
+container_oom_events_total{name="container-name"}
+# or
+kube_pod_container_status_last_terminated_reason{reason="OOMKilled",namespace="my-namespace"}
+```
+
+### LessReplicasThanDesired
+
+```
+kube_deployment_status_replicas_available{namespace="my-namespace"} / kube_deployment_spec_replicas{namespace="my-namespace"}
+```
+
 ### PrometheusDown
 
 Prometheus has disappeared from Prometheus target discovery.
