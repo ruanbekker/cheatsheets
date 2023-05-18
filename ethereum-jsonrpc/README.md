@@ -31,3 +31,9 @@ curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","me
 ```bash
 curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", false],"id":1}' localhost:8545 | jq -r '.result.number' | tr -d '\n' |  xargs -0 printf "%d"
 ```
+
+- `eth_blockNumber` - timestamp of latest received block
+
+```bash
+curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", false],"id":1}' localhost:8545 | jq -r '.result.timestamp' | tr -d '\n' |  xargs -0 printf "%d"
+```
