@@ -8,6 +8,12 @@ Kafka is a distributed system consisting of servers and clients that communicate
 kafka-topics --list --zookeeper zookeeper.kafka.instance:2181
 ```
 
+## Produce Messages
+
+```bash
+echo "hello" | kafka-console-producer --bootstrap-server kafka-ops:9092 --topic system-logs
+```
+
 ## Consume Messages
 
 Read messages as they arrive:
