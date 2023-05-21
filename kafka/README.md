@@ -28,7 +28,7 @@ echo "hello" | kafka-console-producer --bootstrap-server kafka-broker:9092 --top
 
 Produce JSON Messages:
 
-```
+```bash
 cat > file.json << EOF
 { "id": 1, "first_name": "John"}
 { "id": 2, "first_name": "Peter"}
