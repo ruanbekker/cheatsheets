@@ -81,6 +81,28 @@ Delete a local branch:
 $ git branch -D branch-name 
 ```
 
+## Tags
+
+Create a tag from main, checkout main and sync:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+Create a tag called `snapshot-20230525`:
+
+```bash
+git tag snapshot-20230525
+```
+
+Push up the tag:
+
+```bash
+git push origin snapshot-20230525
+```
+
+
 ## External Cheatsheets
 
 - https://gist.github.com/mkhairi/405c4afa2fedb7328695a7a73ef49074
