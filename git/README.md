@@ -102,6 +102,19 @@ Push up the tag:
 git push origin snapshot-20230525
 ```
 
+List all tags with a prefix:
+
+```bash
+git tag --sort=-version:refname | grep "release-*"
+```
+
+List the previous release (current being 0.55.0):
+
+```bash
+git tag --sort=-version:refname | grep "release-*" | sed -n '2p'
+# release-0.54.0
+```
+
 
 ## External Cheatsheets
 
