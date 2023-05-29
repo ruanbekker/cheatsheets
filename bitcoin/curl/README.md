@@ -4,10 +4,10 @@ This will show you how to use the json-rpc to interact with your bitcoin node on
 
 ## Pre-Checks
 
-If you installed the node with this [script]() your config would be in `/etc/litecoin/bitcoin.conf` and your username and password can be retrieved using:
+If you installed the node with this [script]() your config would be in `/etc/bitcoin/bitcoin.conf` and your username and password can be retrieved using:
 
 ```
-cat /etc/litecoin/litecoin.conf | grep -E '(rpcuser|rpcpassword)'
+cat /etc/bitcoin/bitcoin.conf | grep -E '(rpcuser|rpcpassword)'
 # rpcuser=rpcuser
 # rpcpassword=9a4e9cfac082721e870575a7c66178c0421512032a6d62af
 ```
