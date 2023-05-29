@@ -202,7 +202,7 @@ List our loaded wallets:
 
 ```
 curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "listwallets", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
-{"result":["rpi01-main"],"error":null,"id":"curl"}
+{"result":["main"],"error":null,"id":"curl"}
 ```
 
 Get a new address for our main wallet:
@@ -215,14 +215,14 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 List the wallet addresses for our wallet:
 
 ```
-curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddressesbylabel", "params": [""]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/wallet/rpi01-main
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddressesbylabel", "params": [""]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/wallet/main
 {"result":{"tb1qzxmefmcpq98z42v67a80gvug2fe979r5h768yv":{"purpose":"receive"}},"error":null,"id":"curl"}
 ```
 
 Get the address info for our wallet:
 
 ```
-curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddressinfo", "params": ["tb1qzxmefmcpq98z42v67a80gvug2fe979r5h768yv"]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/wallet/rpi01-main | python -m json.tool
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddressinfo", "params": ["tb1qzxmefmcpq98z42v67a80gvug2fe979r5h768yv"]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/wallet/main | python -m json.tool
 {
     "error": null,
     "id": "curl",
@@ -253,7 +253,7 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 To load a unloaded wallet:
 
 ```bash
-curl -s -u "${rpcuser}:${rpcpass}" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["newwallet"]}' -H 'content-type: text/plain;' http://127.0.0.1:8332/wallet/newwallet/
+curl -s -u "${rpcuser}:${rpcpass}" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["nonmain"]}' -H 'content-type: text/plain;' http://127.0.0.1:8332/
 ```
 
 ## Transactions
