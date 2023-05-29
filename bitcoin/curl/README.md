@@ -250,6 +250,12 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+To load a unloaded wallet:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["newwallet"]}' -H 'content-type: text/plain;' http://127.0.0.1:8332/wallet/newwallet/
+```
+
 ## Transactions
 
 If we list transactions for our wallet it should be empty:
