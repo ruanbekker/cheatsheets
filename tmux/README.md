@@ -2,4 +2,4 @@
 
 ## Resources
 
-![](https://www.youtube.com/watch?v=DzNmUNvnB04)
+- [Dreams of Code - TMUX](https://www.youtube.com/watch?v=DzNmUNvnB04)
