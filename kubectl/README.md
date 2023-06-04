@@ -4,6 +4,7 @@
 
 - [Secrets](#secrets)
   - [Create Secret from File](#create-secret-from-file)
+  - [Create Secret from Literals](#create-secret-from-literals)
 
 ## Secrets
 
@@ -20,4 +21,12 @@ Create the secret:
 
 ```bash
 kubectl create secret generic db-secrets --from-file=admin-user=./username.txt --from-file=password=./password.txt
+```
+
+### Create Secret from Literals
+
+Create the secret by specifying the values in the command:
+
+```bash
+kubectl create secret generic db-secrets --from-literal=admin-user=admin --from-literal=password='1f2d1e2e67df'
 ```
