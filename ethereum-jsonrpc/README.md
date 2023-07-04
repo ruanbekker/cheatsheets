@@ -41,6 +41,7 @@ curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","me
 - `personal_newAccount`
 
 ```bash
+# this is not recommended - rather create a account offline with a private key
 curl -s -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"personal_newAccount","params":["securepassword"],"id":1}' localhost:8545
 ```
 
