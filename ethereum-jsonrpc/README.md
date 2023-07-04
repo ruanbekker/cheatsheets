@@ -43,3 +43,9 @@ curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","me
 ```bash
 curl -s -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"personal_newAccount","params":["securepassword"],"id":1}' localhost:8545
 ```
+
+- `eth_getBalance`
+
+```bash
+curl -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x9a070e582ef891ead3e9b92478df38dd17b4489e", "latest"],"id":1}' localhost:8545
+```
