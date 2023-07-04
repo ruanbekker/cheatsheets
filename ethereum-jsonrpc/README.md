@@ -50,3 +50,10 @@ curl -s -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method"
 ```bash
 curl -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x9a070e582ef891ead3e9b92478df38dd17b4489e", "latest"],"id":1}' localhost:8545
 ```
+
+- `eth_getBalance` - convert from wei to ether units
+
+```bash
+# testnet
+printf %.2f $(echo $(curl -s -XPOST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x746C9474d98C8A99280fC0E9DA7d706B647163DE", "latest"],"id":1}' http://localhost:8545 | jq -r '.result' | tr -d '\n' |  xargs -0 printf "%d") / 1000000000000000000 | bc -l)
+```
