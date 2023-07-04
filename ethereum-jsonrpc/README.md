@@ -23,7 +23,7 @@ curl -s -XPOST -H "Content-type: application/json" -d '{"jsonrpc":"2.0","method"
 - `eth_getBlockByNumber` - by blocknumber:
 
 ```bash
-curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["7881483", false],"id":1}' localhost:8545 | jq -r '.result.number' | tr -d '\n' |  xargs -0 printf "%d"
+curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x3a5d74", false],"id":1}' localhost:8545 | jq -r '.result.number' | tr -d '\n' |  xargs -0 printf "%d"
 ```
 
 - `eth_getBlockByNumber` - latest :
