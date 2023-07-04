@@ -17,7 +17,7 @@ curl -s -XPOST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method"
 - `eth_blockNumber`:
 
 ```bash
-curl -s -XPOST -H "Content-type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":["latest", false],"id":1}' localhost:8545  | jq -r ".result" | tr -d '\n' |  xargs -0 printf "%d"
+curl -s -XPOST -H "Content-type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' localhost:8545  | jq -r ".result" | tr -d '\n' |  xargs -0 printf "%d"
 ```
 
 - `eth_getBlockByNumber` - by blocknumber:
