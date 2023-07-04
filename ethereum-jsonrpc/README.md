@@ -37,3 +37,9 @@ curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","me
 ```bash
 curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", false],"id":1}' localhost:8545 | jq -r '.result.timestamp' | tr -d '\n' |  xargs -0 printf "%d"
 ```
+
+- `personal_newAccount`
+
+```bash
+curl -s -XPOST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"personal_newAccount","params":["securepassword"],"id":1}' localhost:8545
+```
