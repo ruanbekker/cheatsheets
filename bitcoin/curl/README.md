@@ -54,6 +54,8 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 
 ## Blockchain Info
 
+- `getblockchaininfo`
+
 The [getblockchaininfo](https://chainquery.com/bitcoin-cli/getblockchaininfo) RPC provides information about the current state of the block chain.
 
 ```
@@ -119,10 +121,12 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+- `getblockcount`
+
 To get the number of blocks in the longest block chain:
 
 ```bash
-curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockcount", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockcount", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:18332/ | python3 -m json.tool
 {
     "result": 2391641,
     "error": null,
@@ -130,10 +134,12 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+- `getblockhash`
+
 Then return the hash of block in best-block-chain at (index x):
 
 ```
-curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockhash", "params": [2391641]}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblockhash", "params": [2391641]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/ | python3 -m json.tool
 {
     "result": "eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db",
     "error": null,
@@ -141,10 +147,12 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+- `getblock`
+
 Then to returns information about the block with the given hash:
 
 ```
-curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblock", "params": ["eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db"]}' -H 'content-type: text/plain;' http://127.0.0.1:19332/ | python3 -m json.tool
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getblock", "params": ["eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db"]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/ | python3 -m json.tool
 {
     "result": {
         "hash": "eaaf8d4d27c5ce9b282e9ff870793382e14345436fac74ea40907320e50603db",
@@ -178,6 +186,8 @@ More info on these parameters:
 
 ## Wallets
 
+- `createwallet`
+
 Create a wallet named `main`:
 
 ```
@@ -198,12 +208,16 @@ sudo find /home/bitcoin/.bitcoin/ | grep main
 /home/bitcoin/.bitcoin/testnet3/wallets/main/.walletlock
 ```
 
+- `listwallets`
+
 List our loaded wallets:
 
 ```
 curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "listwallets", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
 {"result":["main"],"error":null,"id":"curl"}
 ```
+
+- `getnewaddress`
 
 Get a new address for our main wallet:
 
@@ -212,12 +226,16 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 {"result":"tb1qzxmefmcpq98z42v67a80gvug2fe979r5h768yv","error":null,"id":"curl"}
 ```
 
+- `getaddressesbylabel`
+
 List the wallet addresses for our wallet:
 
 ```
 curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "getaddressesbylabel", "params": [""]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/wallet/main
 {"result":{"tb1qzxmefmcpq98z42v67a80gvug2fe979r5h768yv":{"purpose":"receive"}},"error":null,"id":"curl"}
 ```
+
+- `getaddressinfo`
 
 Get the address info for our wallet:
 
@@ -250,10 +268,18 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 }
 ```
 
+- `loadwallet`
+
 To load a unloaded wallet:
 
 ```bash
-curl -s -u "${rpcuser}:${rpcpass}" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["nonmain"]}' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+curl -s -u "${rpcuser}:${rpcpass}" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["nonmain"]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
+```
+
+- `getwalletinfo`
+
+```bash
+curl -u "bitcoinrpc:bitcoinpass" -d '{"jsonrpc": "1.0", "id": "curltest", "method": "getwalletinfo", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:8332/wallet/main
 ```
 
 ## Transactions
