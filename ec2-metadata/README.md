@@ -34,3 +34,10 @@ TAG_VALUE="$(aws ec2 describe-tags --filters "Name=resource-id,Values=${INSTANCE
 $ echo ${TAG_VALUE}
 my-instance
 ```
+
+For authenticated requests:
+
+```bash
+token=$(curl -s -XPUT -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600' http://169.254.169.254/latest/api/token)
+curl -s -XGET -H "X-aws-ec2-metadata-token: $token" http://169.254.169.254/latest/meta-data/instance-id
+```
