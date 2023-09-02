@@ -66,7 +66,7 @@ If you can't find what you are looking for, have a look at my other content:
 * [Elasticsearch](elasticsearch/README.md)
   * [Elasticsearch with Curl](elasticsearch/README.md)
   * [Elasticsearch with Python](elasticsearch/python-elasticsearch.md)
-* [Git](github/README.md)
+* [Git](git/README.md)
 * [Github Actions](github-actions/README.md)
 * [Grafana](grafana/README.md)
 * [Grok](grok/README.md)
