@@ -33,6 +33,12 @@ Grant User all Permissions to Database:
 mysql> GRANT ALL PRIVILEGES ON my_db.* TO 'user1'@'%';
 ```
 
+Grant User all Permissions to all databases with grant option:
+
+```
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
+```
+
 Grant User all Permissions to Database in AWS RDS:
 
 ```
@@ -47,6 +53,8 @@ mysql> UPDATE mysql.user SET authentication_string = PASSWORD('foobar') WHERE Us
 mysql> SET PASSWORD FOR 'demo'@'%' = PASSWORD('foobar');
 # or
 mysql> ALTER USER 'demo'@'%' IDENTIFIED BY 'foobar';
+# or
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ```
 
 Flush:
