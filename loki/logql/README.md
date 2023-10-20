@@ -26,6 +26,12 @@ Search for logs that has the exact match "This is a test":
 {job="dev/logs"} |= "This is a test"
 ```
 
+Similar, but search with case insensitive:
+
+```
+{job="dev/logs"} |= "(?i)this is a test"
+```
+
 Similar as above, but dont include exact match "testerId=123":
 
 ```
