@@ -74,6 +74,14 @@ The PersistentVolume claimed by `{{ $labels.persistentvolumeclaim }}` in Namespa
 kubelet_volume_stats_available_bytes{job="kubelet",metrics_path="/metrics",namespace=~".*"} / kubelet_volume_stats_capacity_bytes{job="kubelet",metrics_path="/metrics",namespace=~".*"} < 0.03
 ```
 
+### KubePersistentVolumePercentageLow
+
+The PersistentVolume claimed by `{{ $labels.persistentvolumeclaim }}` in Namespace `{{ $labels.namespace }}` is only `{{ $value | humanizePercentage }}` free.
+
+```
+sum by (persistentvolumeclaim) (kubelet_volume_stats_used_bytes{job="kubelet"} / kubelet_volume_stats_capacity_bytes) * 100.0 > 80
+```
+
 ### KubePersistentVolumeErrors
 
 The persistent volume `{{ $labels.persistentvolume }}` has status `{{ $labels.phase }}`.
