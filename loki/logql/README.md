@@ -136,6 +136,14 @@ And another one:
 {job="prod/logs"} | regexp `\[(?P<timestamps>(.*))\] (?P<environment>(prod|dev)).(?P<loglevel>(INFO|DEBUG|ERROR|WARN)): (?P<jsonstring>(.*))`
 ```
 
+Extracting `json` and mixing with `line_format` and `regexp`:
+
+```
+# message: EventID:12345678-1234-1234-1234-123456789abv - Some troubleshooting needed - runbookId:123456, categoryCode:DB, cpuValue:92.000000000000000000, serverName:Server01, versionId:1
+
+{job="serverlogs"} |= "logTag:event" | json | line_format "{{.message}}" | regexp "EventID:(?P<event_id>[a-f0-9\\-]+) - Some troubleshooting needed - runbookId:(?P<runbook_id>\\d+), categoryCode:(?P<category_code>\\w+), cpuValue:(?P<cpu_value>[\\d\\.]+), serverName:(?P<server_name>[^,]+), versionId:(?P<version_id>\\d+)"
+```
+
 - https://grafana.com/docs/loki/latest/logql/log_queries/
 - https://grafana.com/docs/loki/latest/logql/#label-filter-expression
 - https://gist.github.com/ruanbekker/cb4ebdc24331661ca120f20b4445ad75
