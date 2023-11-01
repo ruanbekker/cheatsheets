@@ -1,0 +1,11 @@
+---
+# interruptible will cancel the job if another job in the same merge request is started
+stages:
+  - test
+
+test:
+  stage: test
+  image: busybox
+  interruptible: true
+  script:
+    - echo "run tests"
