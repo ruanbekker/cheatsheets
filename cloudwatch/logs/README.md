@@ -50,3 +50,11 @@ fields @timestamp, @message, @logStream
 | filter @logStream = 'cb2a300000000000000000003b3' 
 | filter @message like 'msg='
 ```
+
+Select the logstream and filter out string content:
+
+```
+fields @timestamp, @message, @logStream | sort @timestamp desc 
+| filter @logStream = 'cb2a300000000000000000003b3' 
+| filter @message not like "Something I dont want to see"
+```
