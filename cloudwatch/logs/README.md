@@ -58,3 +58,15 @@ fields @timestamp, @message, @logStream | sort @timestamp desc
 | filter @logStream = 'cb2a300000000000000000003b3' 
 | filter @message not like "Something I dont want to see"
 ```
+
+Filter out multiple strings:
+
+```
+fields @timestamp, @message, @logStream | sort @timestamp desc 
+| filter @logStream = 'cb2a300000000000000000003b3'  
+  and not (
+    @message like "Something I dont want to see" or
+    @message like "also dont want to see this" or
+    @message like "or even this"
+  )
+```
