@@ -41,3 +41,12 @@ fields @timestamp, @message, @logStream, @log
 | sort @timestamp desc
 | limit 20
 ```
+
+Select the logstream and filter on a string content:
+
+```
+fields @timestamp, @message, @logStream
+| sort @timestamp desc 
+| filter @logStream = 'cb2a300000000000000000003b3' 
+| filter @message like 'msg='
+```
