@@ -1,0 +1,57 @@
+---
+stages:
+  - setup
+
+.python-requirements:
+  script:
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip install -r requirements.txt
+    - pip install pylint
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - venv
+    - .cache/pip
+
+setup:dev:
+  extends: .python-requirements
+  stage: setup
+  image: python:3.8
+  script:
+    - python -V
+    - echo "[SETUP DEV]"
+    - pushd dev
+    - !reference [.python-requirements, script]
+    - deactivate
+    - popd
+  rules:
+    - if: '$CI_COMMIT_BRANCH'
+
+setup:staging:
+  extends: .python-requirements
+  stage: setup
+  image: python:3.8
+  script:
+    - python -V
+    - echo "[SETUP STAGING]"
+    - pushd staging
+    - !reference [.python-requirements, script]
+    - pylint --version
+    - deactivate
+    - popd
+    - echo "some other stuff"
+  rules:
+    - if: '$CI_COMMIT_BRANCH'
+
+# The reusable job becomes this ultimately:
+#
+# script:
+#   ...
+#   - pushd staging
+#   - python3 -m venv venv
+#   - source venv/bin/activate
+#   - pip install -r requirements.txt
+#   - pip install pylint
+#   - pylint --version
