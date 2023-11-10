@@ -1,4 +1,5 @@
 ---
+# Resource: https://dnsmichi.at/2021/09/17/reusable-job-attributes-in-other-jobs-in-gitlab-ci-cd-with-reference/
 stages:
   - setup
 
