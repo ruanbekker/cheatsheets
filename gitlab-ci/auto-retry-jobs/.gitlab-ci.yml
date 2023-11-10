@@ -1,0 +1,17 @@
+---
+stages:
+  - test
+
+test-job:
+  stage: test
+  interruptible: true
+  script:
+    - echo "run this"
+  retry:
+    max: 2 # runs 3 at max -> https://gitlab.com/gitlab-org/gitlab/-/issues/28088
+    when:
+      - runner_system_failure
+      - api_failure
+      - stuck_or_timeout_failure
+      - scheduler_failure      
+      - unknown_failure
