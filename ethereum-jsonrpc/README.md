@@ -1,5 +1,9 @@
 # ethereum json rpc
 
+## Resources
+
+- [Ethereum Wiki](https://github.com/ethereum/wiki/wiki/JSON-RPC/e8e0771b9f3677693649d945956bc60e886ceb2b)
+
 ## JSON RPC
 
 - `eth_syncing`:
