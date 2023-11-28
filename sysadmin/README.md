@@ -51,6 +51,26 @@ sdc    ST4000D0000-000000 XXXXXXXX 0x5000c50000000000 2:0:0:0
 └─sdc1                             0x5000c50000000000
 ```
 
+### Unable to unmount
+
+This scenario is when a disk cannot be unmounted, usually this is because the disk is still in use with another application:
+
+```bash
+umount /data
+umount: /data: target is busy.
+```
+
+Use the lsof (list open files) command to find out which processes are using the `/data` directory. Run `sudo lsof /data`. This will list all processes accessing files in /data.
+
+```bash
+sudo lsof /data
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF     NODE NAME
+sudo    21204 root  cwd    DIR  259,3     4096 27525121 /data/tmp
+bash    28594 root  cwd    DIR  259,3     4096 27525121 /data/tmp
+```
+
+In this scenario there was a shell session that was changed to that directory, we can either kill the pid (`kill 28594`) or jump to that session and exit the directory.
+
 ## Memory
 
 * **Free** memory is the amount of memory which is currently not used for anything. This number should be small, because memory which is not used is simply wasted.
