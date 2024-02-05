@@ -91,6 +91,20 @@ variable "env_name" {
 }
 ```
 
+### Booleans to control
+
+We want to use a boolean variable to set the number:
+- true = 1
+- false = 0
+
+```terraform
+warm_pool = {
+  pool_state                  = "Running"
+  min_size                    = var.warm_pool_enabled ? 1 : 0
+  max_group_prepared_capacity = var.warm_pool_enabled ? 1 : 0
+}
+```
+
 ## Resources
 
 Terraform Tutorials:
