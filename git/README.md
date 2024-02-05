@@ -115,6 +115,14 @@ git tag --sort=-version:refname | grep "release-*" | sed -n '2p'
 # release-0.54.0
 ```
 
+## Unstage changes
+
+If you have accidentally commited changes, you can unstage them:
+
+```bash
+git restore --staged modules/asg/variables.tf
+```
+
 
 ## External Cheatsheets
 
