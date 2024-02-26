@@ -26,6 +26,14 @@ diff -u -N /tmp/LIVE-1353412465/v1.ConfigMap.kube-system.kube-proxy /tmp/MERGED-
        tcpTimeout: 0s
 ```
 
+## List Resources in a Namespace
+
+To identify resources in a namespace:
+
+```bash
+kubectl api-resources --verbs=list --namespaced=true | awk '{ print $1 }' | xargs -n 1 kubectl get -n default
+```
+
 ## Secrets
 
 ### Create Secret from File
