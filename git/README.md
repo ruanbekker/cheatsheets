@@ -17,6 +17,14 @@ $ cat ~/.gitconfig
 	email = <user>@<domain>
 ```
 
+Configuration per repository:
+
+```bash
+git config user.name "Ruan"
+git config user.email "me@example.com"
+git config commit.gpgsign true
+```
+
 ## Fetch Remote Branches
 
 Fetch all remote branches:
@@ -79,6 +87,40 @@ Delete a local branch:
 
 ```bash
 $ git branch -D branch-name 
+```
+
+## Cherry Picks
+
+Given the scenario that you are creating a new branch `feature/change-website-color` from the `main` branch, but you want to include a recent commit to the branch `feature/fixed-css` to include into your branch. You can use cherry picking.
+
+Create your branch:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b "feature/change-website-color`
+# you done some changes
+git commit -m "Changed website color to blue"
+```
+
+Now to include the css change:
+
+```bash
+git checkout main
+git fetch --all
+git checkout feature/fixed-css
+git log
+# copy the commit id
+# change to your branch
+git checkout feature/change-website-color
+git cherry-pick -e <commit-id-that-you-copied>
+```
+
+Commit and push to your branch:
+
+```bash
+git commit -m "cherry picked css fix"
+git push origin feature/change-website-color
 ```
 
 ## Tags
