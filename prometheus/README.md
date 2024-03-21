@@ -43,6 +43,12 @@ rate(kube_pod_container_status_restarts_total{job="kube-state-metrics",namespace
 
 ## Example Queries
 
+Show me all the metric names for the job=app:
+
+```
+group ({job="app"}) by (__name__)
+``
+
 How many nodes are up?
 
 ```
