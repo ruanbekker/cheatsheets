@@ -407,6 +407,16 @@ sum(rate(http_server_requests_seconds_count{service="my-service", env="dev"}[1m]
 
 See this [SO thread](https://stackoverflow.com/questions/66282512/grafana-graphing-http-requests-per-minute-with-http-server-requests-seconds-coun) for more details
 
+Resource Requests and Limits:
+
+```
+# for cpu: average rate of cpu usage over 15minutes
+rate(container_cpu_usage_seconds_total{job="kubelet",container="my-application"}[15m])
+
+# for mem: shows in mb
+container_memory_usage_bytes{job="kubelet",container="my-application"}  / (1024 * 1024)
+```
+
 ## Scrape Config
 
 relabel configs:
