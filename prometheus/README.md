@@ -47,7 +47,7 @@ Show me all the metric names for the job=app:
 
 ```
 group ({job="app"}) by (__name__)
-``
+```
 
 How many nodes are up?
 
