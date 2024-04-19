@@ -58,3 +58,23 @@ Create the secret by specifying the values in the command:
 ```bash
 kubectl create secret generic db-secrets --from-literal=admin-user=admin --from-literal=password='1f2d1e2e67df'
 ```
+
+### View Secrets
+
+You can use `jsonpath`:
+
+```bash
+kubectl get secret mongodb-operator-passwords -o yaml -o jsonpath='{.data.password}'
+```
+
+The value is encoded with `base64`, to decode it:
+
+```bash
+kubectl get secret mongodb-operator-passwords -o yaml -o jsonpath='{.data.password}' | base64 -d ; echo
+```
+
+You can use `jq` to view secrets
+
+```bash
+kubectl get secret mongodb-operator-passwords -o json | jq -r '.data | with_entries(.value |= @base64d)'
+```
