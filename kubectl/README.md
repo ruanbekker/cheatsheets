@@ -5,6 +5,7 @@
 - [Secrets](#secrets)
   - [Create Secret from File](#create-secret-from-file)
   - [Create Secret from Literals](#create-secret-from-literals)
+  - [View Secrets](#view-secrets)
 
 ## Diffs
 
