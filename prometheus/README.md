@@ -380,20 +380,20 @@ Remove / Replace:
 
 - https://medium.com/@texasdave2/replace-and-remove-a-label-in-a-prometheus-query-9500faa302f0
 
-Client Request Counts:
+**Client Request Counts**:
 
 ```
 irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m])
 ```
 
-Client Response Time:
+**Client Response Time**:
 
 ```
 irate(http_client_requests_seconds_sum{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m]) / 
 irate(http_client_requests_seconds_count{job="web-metrics", environment="dev", uri!~".*actuator.*"}[5m])
 ```
 
-Requests per Second:
+**Requests per Second**:
 
 ```
 sum(increase(http_server_requests_seconds_count{service="my-service", env="dev"}[1m])) by (uri)
@@ -406,6 +406,12 @@ sum(rate(http_server_requests_seconds_count{service="my-service", env="dev"}[1m]
 ```
 
 See this [SO thread](https://stackoverflow.com/questions/66282512/grafana-graphing-http-requests-per-minute-with-http-server-requests-seconds-coun) for more details
+
+**p95 Request Latencies** with `histogram_quantile` (the latency experienced by the slowest 5% of requests in seconds):
+
+```promql
+histogram_quantile(0.95, sum by (le, store) (rate(myapp_latency_seconds_bucket{application="product-service", category=~".+"}[5m])))
+```
 
 Resource Requests and Limits:
 
