@@ -41,6 +41,12 @@ How many pod restarts per minute?
 rate(kube_pod_container_status_restarts_total{job="kube-state-metrics",namespace="default"}[15m]) * 60 * 15
 ```
 
+View the pod restarts over time:
+
+```bash
+sum(kube_pod_container_status_restarts_total{container="my-service"}) by (pod)
+```
+
 ## Example Queries
 
 Show me all the metric names for the job=app:
