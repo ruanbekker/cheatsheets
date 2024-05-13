@@ -302,6 +302,20 @@ Subtract two gauge metrics (exclude the label that dont match):
 polkadot_block_height{instance="polkadot", chain=~"$chain", status="sync_target"} - ignoring(status) polkadot_block_height{instance="polkadot", chain=~"$chain", status="finalized"}
 ```
 
+Conditional joins when labels exisits:
+
+```
+(
+    # source: https://stackoverflow.com/a/72218915
+    # For all sensors that have a name (label "label"), join them with `node_hwmon_sensor_label` to get that name.
+    (node_hwmon_temp_celsius * ignoring(label) group_left(label) node_hwmon_sensor_label)
+  or
+    # For all sensors that do NOT a name (label "label") in `node_hwmon_sensor_label`, assign them `label="unknown-sensor-name"`.
+    # `label_replace()` only adds the new label, it does not remove the old one.
+    (label_replace((node_hwmon_temp_celsius unless ignoring(label) node_hwmon_sensor_label), "label", "unknown-sensor-name", "", ".*"))
+)
+```
+
 Container CPU Average for 5m:
 
 ```
