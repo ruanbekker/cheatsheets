@@ -16,6 +16,12 @@ If you had a different workspace:
 atlantis plan -d 'environments/test' -w workspacename
 ```
 
+Plan a delete:
+
+```bash
+atlantis plan -d environments/test -w workspacename -- -destroy
+```
+
 Remove state:
 
 ```bash
