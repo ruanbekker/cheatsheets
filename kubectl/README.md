@@ -6,6 +6,10 @@
   - [Create Secret from File](#create-secret-from-file)
   - [Create Secret from Literals](#create-secret-from-literals)
   - [View Secrets](#view-secrets)
+ 
+## External Resources
+
+- [The guide to kubectl I never had](https://medium.com/@jake.page91/the-guide-to-kubectl-i-never-had-3874cc6074ff)
 
 ## Diffs
 
