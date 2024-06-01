@@ -39,6 +39,15 @@ To identify resources in a namespace:
 kubectl api-resources --verbs=list --namespaced=true | awk '{ print $1 }' | xargs -n 1 kubectl get -n default
 ```
 
+## Manipulate Output
+
+Display only the pod name with label selectors:
+
+```bash
+kubectl get pods -n gitea -o custom-columns=NAME:.metadata.name -l 'app=gitea' --no-headers
+# gitea-69f6b67895-6hwq6
+```
+
 ## Secrets
 
 ### Create Secret from File
