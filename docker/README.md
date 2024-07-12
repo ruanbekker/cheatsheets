@@ -13,6 +13,7 @@ Index:
   - [Template Variables](#template-variables)
   - [Permissions](#permissions)
   - [Update](#update)
+  - [Multi-Arch Builds](#multi-arch-builds)
 - [docker-compose](#docker-compose)
   - [build](#docker-compose-build)
   - [healthchecks](#docker-compose-healthchecks)
@@ -234,6 +235,43 @@ Add a constraint to move to a worker node:
 
 ```
 $ docker service update --constraint-add 'node.role==worker' my-service-name
+```
+
+### Multi-Arch Builds
+
+Install Docker Buildx CLI Plugin:
+
+```bash
+docker run --privileged --rm tonistiigi/binfmt --install all
+```
+
+Create a new builder instance:
+
+```bash
+docker buildx create --name multi-arch-builder
+docker buildx use multi-arch-builder
+docker buildx inspect --bootstrap
+```
+
+Dockerfile example:
+
+```Dockerfile
+# syntax=docker/dockerfile:1
+FROM alpine:latest
+RUN apk add --no-cache curl
+CMD ["curl", "--version"]
+```
+
+Build the docker image for multiple architectures:
+
+```bash
+docker buildx build --platform linux/amd64,linux/arm64 -t yourusername/yourimage:tag .
+```
+
+Or; Build and push to a registry:
+
+```bash
+docker buildx build --platform linux/amd64,linux/arm64 -t yourusername/yourimage:tag --push .
 ```
 
 ## Docker Compose
