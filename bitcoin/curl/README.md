@@ -184,6 +184,35 @@ curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method"
 More info on these parameters:
 - https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list
 
+## Logging
+
+- `logging`
+
+To view the status of logging:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "logging", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+```
+
+To enable all logging categories:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "logging", "params": []}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
+```
+
+To enable categories, we place it on the left side of the array, and to exclude on the right side of the array, to exclude only `libevent` for example:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "logging", "params": [["all"], ["libevent"]]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
+```
+
+To only enable only `net` and `rpc`:
+
+```bash
+curl -s -u "${rpcuser}:${rpcpass}" -d '{"jsonrpc": "1.0", "id": "curl", "method": "logging", "params": [["net", "rpc"], []]}' -H 'content-type: text/plain;' http://127.0.0.1:18332/
+```
+
+
 ## Wallets
 
 - `createwallet`
