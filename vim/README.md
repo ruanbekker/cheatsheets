@@ -95,7 +95,7 @@ Result:
 Commenting Lines:
 
 ```
-shift + v
+ctrl + v
 move down until the line you want to comment out
 shift + I
 Enter the character (#)
