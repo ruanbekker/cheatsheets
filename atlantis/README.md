@@ -16,6 +16,12 @@ If you had a different workspace:
 atlantis plan -d 'environments/test' -w workspacename
 ```
 
+Plan against a target:
+
+```bash
+atlantis plan -d environments/test -w workspacename -- -target=module.environment.module.vpc
+```
+
 Plan a delete:
 
 ```bash
