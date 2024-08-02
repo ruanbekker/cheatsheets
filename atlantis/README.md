@@ -28,6 +28,12 @@ Plan a delete:
 atlantis plan -d environments/test -w workspacename -- -destroy
 ```
 
+Plan a targeted delete:
+
+```bash
+atlantis plan -d environments/test -w workspacename -- -destroy -target=module.eks -target=module.vpc
+```
+
 Remove state:
 
 ```bash
