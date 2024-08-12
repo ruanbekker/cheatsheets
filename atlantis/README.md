@@ -45,3 +45,9 @@ Atlantis import:
 ```bash
 atlantis import -d 'environments/test' 'module.acm[0].aws_acm_certificate.this[0]' arn:aws:acm:us-east-2:000000000000:certificate/00000000-0000-0000-0000-000000000000
 ```
+
+Atlantis replace (taint):
+
+```bash
+atlantis plan -d environments/test -w workspacename -- -replace='module.env.some_resource.this'
+```
