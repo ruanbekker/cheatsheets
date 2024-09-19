@@ -39,6 +39,34 @@ To identify resources in a namespace:
 kubectl api-resources --verbs=list --namespaced=true | awk '{ print $1 }' | xargs -n 1 kubectl get -n default
 ```
 
+## Pods
+
+View pods:
+
+```bash
+kubectl get pods -n monitoring
+```
+
+View pods by label selector:
+
+```bash
+kubectl get pods -n monitoring --selector 'app.kubernetes.io/name=promtail' -w -o wide
+```
+
+## Deployments
+
+Rollout Restart:
+
+```bash
+kubectl rollout restart deployment/foo -n test
+```
+
+Status of Rollout Restart:
+
+```bash
+kubectl rollout status deployment foo -n test
+```
+
 ## Manipulate Output
 
 Display only the pod name with label selectors:
