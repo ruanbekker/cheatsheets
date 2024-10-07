@@ -653,6 +653,7 @@ Dashboarding:
 - [@deploy.live recording rules](https://deploy.live/blog/today-i-learned-prometheus-recording-rules/)
 - [CPU and Memory Requests](https://gist.github.com/max-rocket-internet/6a05ee757b6587668a1de8a5c177728b)
 - [Prometheus Counter Metrics](https://levelup.gitconnected.com/prometheus-counter-metrics-d6c393d86076)
+- [last9.io PromQL Cheatsheet](https://last9.io/blog/promql-cheat-sheet/?ref=cheatsheets.ruanbekker.com)
 
 Setups:
 
