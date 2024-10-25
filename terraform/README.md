@@ -2,6 +2,8 @@
 
 ## Cheatsheets
 
+### Terraform CLI Usage
+
 Terraform Format:
 
 ```bash
@@ -36,6 +38,18 @@ Terraform Apply to create/delete resources:
 
 ```bash
 terraform apply
+```
+
+To do a targeted plan:
+
+```bash
+terraform plan -target=module.platform -out=platform.tfplan
+```
+
+Then we can do a targeted destroy from the computed plan:
+
+```bash
+terraform apply "platform.tfplan"
 ```
 
 ### Merge function
