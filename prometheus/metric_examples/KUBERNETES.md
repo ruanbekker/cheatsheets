@@ -2,6 +2,16 @@
 
 ## Container Metrics
 
+### PodWithResourceConstraints
+
+This shows the pod's memory usage and limits, given they have resource requests and limits configured.
+
+```
+process_resident_memory_bytes{pod="prometheus-prometheus-kube-prometheus-prometheus-0"}
+kube_pod_container_resource_requests{resource="memory", pod="kube-prometheus-prometheus-0"}
+kube_pod_container_resource_limits{resource="memory", pod="kube-prometheus-prometheus-0"}
+```
+
 ### CPUThrottlingHigh
 
 `{{ $value | humanizePercentage }}` throttling of CPU in namespace `{{ $labels.namespace }}` for container `{{ $labels.container }}` in pod `{{ $labels.pod }}`.
