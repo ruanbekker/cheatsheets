@@ -19,7 +19,7 @@ atlantis plan -d 'environments/test' -w workspacename
 Plan against a target:
 
 ```bash
-atlantis plan -d environments/test -w workspacename -- -target=module.environment.module.vpc
+atlantis plan -d environments/test -w workspacename --auto-merge-disabled -- -target=module.environment.module.vpc
 ```
 
 Plan a delete:
@@ -31,7 +31,7 @@ atlantis plan -d environments/test -w workspacename -- -destroy
 Plan a targeted delete:
 
 ```bash
-atlantis plan -d environments/test -w workspacename -- -destroy -target=module.eks -target=module.vpc
+atlantis plan -d environments/test -w workspacename --auto-merge-disabled -- -destroy -target=module.eks -target=module.vpc
 ```
 
 Remove state:
