@@ -39,6 +39,20 @@ To identify resources in a namespace:
 kubectl api-resources --verbs=list --namespaced=true | awk '{ print $1 }' | xargs -n 1 kubectl get -n default
 ```
 
+## Nodes
+
+Check nodes:
+
+```bash
+kubectl get nodes -o wide
+```
+
+Check if nodes have taints applied:
+
+```bash
+kubectl get nodes -o json | jq '.items[] | {name: .metadata.name, taints: .spec.taints}'
+```
+
 ## Pods
 
 View pods:
