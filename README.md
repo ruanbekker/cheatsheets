@@ -103,6 +103,7 @@ If you can't find what you are looking for, have a look at my other content:
 - [rpi4cluster.com](https://rpi4cluster.com/)
 
 ## Stargazers over time
+## good
 
 [![Stargazers over time](https://starchart.cc/ruanbekker/cheatsheets.svg)](https://starchart.cc/ruanbekker/cheatsheets)
 
