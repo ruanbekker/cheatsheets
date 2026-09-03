@@ -1,6 +1,6 @@
 # examples:
 # https://rtfm.co.ua/en/prometheus-alertmanagers-alerts-receivers-and-routing-based-on-severity-level-and-tags/
-# https://awesome-prometheus-alerts.grep.to/rules.html
+# https://samber.github.io/awesome-prometheus-alerts/rules.html
 groups:
 - name: host_alert_rules.yml
   rules:

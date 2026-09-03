@@ -8,7 +8,7 @@ Tools:
 
 Alerts:
 
-- [Awesome Prometheus Rules for Alertmanager](https://awesome-prometheus-alerts.grep.to/rules.html)
+- [Awesome Prometheus Rules for Alertmanager](https://samber.github.io/awesome-prometheus-alerts/rules.html)
 - [Basic Prometheus Alerts](https://alex.dzyoba.com/blog/prometheus-alerts/)
 - [Better alerts for Slack](https://medium.com/quiq-blog/better-slack-alerts-from-prometheus-49125c8c672b)
 - [Graph in Slack](https://stackoverflow.com/questions/52918312/customizing-prometheus-alertmanager-notifications-in-slack)
